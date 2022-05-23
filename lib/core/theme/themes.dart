@@ -36,6 +36,13 @@ class CustomTheme {
         color: CustomColors.disable,
       ),
     ),
+    focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6),
+      borderSide: BorderSide(
+        width: 1,
+        color: CustomColors.red,
+      ),
+    ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(6),
       borderSide: BorderSide(
