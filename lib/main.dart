@@ -21,7 +21,7 @@ void main() {
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: AppPages.DF,
+      initialRoute: AppPages.LG,
       getPages: AppPages.routes,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
