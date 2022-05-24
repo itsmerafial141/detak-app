@@ -15,30 +15,41 @@ class NavigasiView extends GetView<NavigasiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: GetBuilder<NavigasiController>(
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 50),
+        child: GetBuilder<NavigasiController>(
           init: NavigasiController(),
           builder: (_) {
-            return Text(
-              controller.indexPageController == 3 ? "" : "DetakAppw",
-              style: CustomFonts.montserratBold18,
+            return AppBar(
+              backgroundColor: controller.indexPageController > 0
+                  ? CustomColors.primaryColor
+                  : CustomColors.secondaryColor,
+              elevation: 0,
+              centerTitle: true,
+              title: GetBuilder<NavigasiController>(
+                init: NavigasiController(),
+                builder: (_) {
+                  return Text(
+                    controller.indexPageController == 3 ? "" : "DetakAppw",
+                    style: CustomFonts.montserratBold18,
+                  );
+                },
+              ),
+              leading: GetBuilder<NavigasiController>(
+                init: NavigasiController(),
+                builder: (_) {
+                  return controller.indexPageController == 3
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.arrow_back_rounded,
+                            color: Colors.white,
+                          ),
+                        )
+                      : SizedBox();
+                },
+              ),
             );
-          },
-        ),
-        leading: GetBuilder<NavigasiController>(
-          init: NavigasiController(),
-          builder: (_) {
-            return controller.indexPageController == 3
-                ? IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.white,
-                    ),
-                  )
-                : SizedBox();
           },
         ),
       ),
