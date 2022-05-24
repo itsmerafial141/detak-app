@@ -42,7 +42,7 @@ class LoginController extends GetxController {
     ];
     if (!_allTextFieldIsNotEmpty() && _allTextFieldIsNotError()) {
       print("login");
-      Get.offAllNamed(AppPages.HP);
+      Get.offAllNamed(AppPages.NV);
     } else {
       print("error");
     }

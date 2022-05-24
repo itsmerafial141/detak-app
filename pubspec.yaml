@@ -28,6 +28,6 @@ flutter:
   assets: 
     - assets/images/
     - assets/icons/
-    - assets/models/
+    # - assets/models/
   uses-material-design: true
 

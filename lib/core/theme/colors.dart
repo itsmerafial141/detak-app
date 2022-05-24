@@ -11,7 +11,7 @@ class CustomColors {
   static Color blueAccent50 = const Color.fromRGBO(18, 205, 217, 0.5);
 
   // Secondary Colors
-  static Color secondaryColor = const Color.fromRGBO(255, 118, 118, 1);
+  static Color secondaryColor = const Color.fromRGBO(255, 112, 112, 1);
   static Color green = const Color.fromRGBO(34, 176, 125, 1);
   static Color orange = const Color.fromRGBO(255, 135, 0, 1);
   static Color red = const Color.fromRGBO(251, 65, 65, 1);
