@@ -40,7 +40,10 @@ class NavigasiView extends GetView<NavigasiController> {
                 builder: (_) {
                   return controller.indexPageController == 3
                       ? IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            controller
+                                .changePageIndex(controller.previousIndex);
+                          },
                           icon: Icon(
                             Icons.arrow_back_rounded,
                             color: Colors.white,
