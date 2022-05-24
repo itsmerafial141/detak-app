@@ -23,7 +23,7 @@ class VideoView extends GetView<VideoController> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Stackw(
+                  Stack(
                     alignment: Alignment.bottomRight,
                     children: [
                       Container(
