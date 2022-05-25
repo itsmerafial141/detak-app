@@ -1,3 +1,4 @@
+import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -58,6 +59,34 @@ class LoginView extends GetView<LoginController> {
                       fontWeight: FontWeight.w500,
                       color: CustomColors.subTittle,
                     ),
+                  ),
+                  SizedBox(
+                    height: percentageOfScreenHeight(2),
+                  ),
+                  GetBuilder<AuthController>(
+                    init: AuthController(),
+                    builder: (authController) {
+                      return authController.isDataNotExist
+                          ? Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  width: 1,
+                                  color: CustomColors.red,
+                                ),
+                                color: CustomColors.red.withOpacity(0.2),
+                              ),
+                              child: Text(
+                                "Email atau Password anda salah!",
+                                style: CustomFonts.montserratBold12.copyWith(
+                                  color: CustomColors.red,
+                                ),
+                              ),
+                            )
+                          : SizedBox();
+                    },
                   ),
                   SizedBox(
                     height: percentageOfScreenHeight(2),

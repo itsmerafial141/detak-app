@@ -1,3 +1,4 @@
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:detakapp/core/theme/colors.dart';
 import 'package:detakapp/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +69,9 @@ class PreparingTestView extends GetView<TestController> {
                   horizontal: percentageOfScreenWidth(10),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppPages.KS);
+                  },
                   child: Text("Ambil tes sekarang"),
                 ),
               ),

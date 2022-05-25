@@ -13,6 +13,7 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const TEST = _Paths.TEST;
   static const VIDEO = _Paths.VIDEO;
+  static const KUSIONER = _Paths.KUSIONER;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const TEST = '/test';
   static const VIDEO = '/video';
+  static const KUSIONER = '/kusioner';
 }

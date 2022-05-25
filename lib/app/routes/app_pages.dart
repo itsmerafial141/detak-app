@@ -4,6 +4,8 @@ import '../modules/daftar/bindings/daftar_binding.dart';
 import '../modules/daftar/views/daftar_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/kusioner/bindings/kusioner_binding.dart';
+import '../modules/kusioner/views/kusioner_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/navigasi/bindings/navigasi_binding.dart';
@@ -29,6 +31,7 @@ class AppPages {
   static const PR = Routes.PROFILE;
   static const TS = Routes.TEST;
   static const VD = Routes.VIDEO;
+  static const KS = Routes.KUSIONER;
 
   static final routes = [
     GetPage(
@@ -65,6 +68,11 @@ class AppPages {
       name: _Paths.VIDEO,
       page: () => VideoView(),
       binding: VideoBinding(),
+    ),
+    GetPage(
+      name: _Paths.KUSIONER,
+      page: () => KusionerView(),
+      binding: KusionerBinding(),
     ),
   ];
 }

@@ -1,3 +1,6 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +12,7 @@ import '../../../../core/values/strings.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
+  var authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -83,6 +87,103 @@ class ProfileView extends GetView<ProfileController> {
                   horizontal: percentageOfScreenWidth(5),
                 ),
                 child: ListTile(
+                  onTap: () {
+                    switch (index) {
+                      case 2: //logout
+                        Get.bottomSheet(
+                          Wrap(
+                            children: [
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(14),
+                                    topRight: Radius.circular(14),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: percentageOfScreenHeight(5),
+                                    ),
+                                    SizedBox(
+                                      width: percentageOfScreenWidth(75),
+                                      child: Text(
+                                        "Apakah anda yakin ingin keluar dari aplikasi?",
+                                        textAlign: TextAlign.center,
+                                        style: CustomFonts.montserratBold14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: percentageOfScreenHeight(5),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: percentageOfScreenWidth(5),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Expanded(
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                  Colors.white,
+                                                ),
+                                                side: MaterialStateProperty.all(
+                                                  BorderSide(
+                                                    width: 1,
+                                                    color: CustomColors
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "Tidak",
+                                                style: CustomFonts
+                                                    .montserratBold14
+                                                    .copyWith(
+                                                  color:
+                                                      CustomColors.primaryColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: percentageOfScreenWidth(2),
+                                          ),
+                                          Expanded(
+                                            child: ElevatedButton(
+                                              onPressed: () {
+                                                authController.logout();
+                                                Get.back();
+                                              },
+                                              child: Text(
+                                                "Ya",
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: percentageOfScreenHeight(5),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        );
+                    }
+                  },
                   leading: Image(
                     height: 20,
                     width: 20,

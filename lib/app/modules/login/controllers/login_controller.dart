@@ -1,3 +1,4 @@
+import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,7 +15,7 @@ class LoginController extends GetxController {
     super.onInit();
     listloginController = [];
     listErrorController = [];
-    for (int element = 0; element < 3; element++) {
+    for (int element = 0; element < 2; element++) {
       listloginController.add(TextEditingController());
       listErrorController.add(false);
     }
@@ -40,13 +41,15 @@ class LoginController extends GetxController {
       _emailIsError(),
       _passwordIsError(),
     ];
-    if (!_allTextFieldIsNotEmpty() && _allTextFieldIsNotError()) {
+    if (_allTextFieldIsNotEmpty() && _allTextFieldIsNotError()) {
       print("login");
-      Get.offAllNamed(AppPages.NV);
+      Get.put(AuthController()).login(
+        listloginController[0].text, //emailController
+        listloginController[1].text, //passwordController
+      );
     } else {
       print("error");
     }
-    print(_allTextFieldIsNotEmpty());
     print("emailError : ${_emailIsError()}");
     print("passwordError : ${_passwordIsError()}");
     update();

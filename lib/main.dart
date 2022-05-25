@@ -1,50 +1,71 @@
-import 'package:detakapp/services/storage_service.dart';
+// ignore_for_file: must_be_immutable
+
+import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
+import 'package:detakapp/app/modules/login/views/login_view.dart';
+import 'package:detakapp/app/modules/navigasi/views/navigasi_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'app/routes/app_pages.dart';
 import 'core/theme/colors.dart';
 import 'core/theme/fonts.dart';
 import 'core/theme/themes.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
   );
-  initialConfig();
-
+  var authController = Get.put(AuthController());
   runApp(
-    GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.LG,
-      getPages: AppPages.routes,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: CustomColors.secondaryColor,
-        ),
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: CustomColors.subTittle,
-        ),
-        inputDecorationTheme: CustomTheme.inputDecorationTheme,
-        elevatedButtonTheme: CustomTheme.elevatedButtonThemeData,
-        scaffoldBackgroundColor: CustomColors.white,
-        textTheme: TextTheme(
-          subtitle1: CustomFonts.montserratSemibold12,
-        ),
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: CustomColors.secondaryColor.withOpacity(0.5),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
+    FutureBuilder(
+      future: authController.autoLoginUser(),
+      builder: (_, snapshot) {
+        return snapshot.connectionState == ConnectionState.done
+            ? GetBuilder<AuthController>(
+                init: AuthController(),
+                builder: (_) {
+                  return GetMaterialApp(
+                    title: "Application",
+                    home: authController.isAuth ? NavigasiView() : LoginView(),
+                    getPages: AppPages.routes,
+                    theme: ThemeData(
+                      appBarTheme: AppBarTheme(
+                        color: CustomColors.secondaryColor,
+                      ),
+                      textSelectionTheme: TextSelectionThemeData(
+                        cursorColor: CustomColors.subTittle,
+                      ),
+                      inputDecorationTheme: CustomTheme.inputDecorationTheme,
+                      elevatedButtonTheme: CustomTheme.elevatedButtonThemeData,
+                      scaffoldBackgroundColor: CustomColors.white,
+                      textTheme: TextTheme(
+                        subtitle1: CustomFonts.montserratSemibold12,
+                      ),
+                      colorScheme: ColorScheme.fromSwatch().copyWith(
+                        secondary: CustomColors.secondaryColor.withOpacity(0.5),
+                      ),
+                    ),
+                    debugShowCheckedModeBanner: false,
+                  );
+                },
+              )
+            : MaterialApp(
+                home: Scaffold(
+                  body: Center(
+                    child: CircularProgressIndicator(
+                      color: CustomColors.primaryColor,
+                    ),
+                  ),
+                ),
+              );
+      },
     ),
   );
-}
-
-Future<void> initialConfig() async {
-  await Get.putAsync(() => StorageService().init());
 }
