@@ -35,6 +35,7 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
               Image(
+                height: percentageOfScreenHeight(25),
                 image: AssetImage("assets/images/personBackground.png"),
               ),
             ],

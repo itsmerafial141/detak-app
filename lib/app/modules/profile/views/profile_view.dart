@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
+import 'package:detakapp/app/modules/profile/views/hasil_test_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -87,8 +88,17 @@ class ProfileView extends GetView<ProfileController> {
                   horizontal: percentageOfScreenWidth(5),
                 ),
                 child: ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   onTap: () {
                     switch (index) {
+                      case 0: //Hasil Test
+                        Get.to(
+                          HasilTestView(),
+                          arguments: {"totalTest": 72},
+                        );
+                        break;
                       case 2: //logout
                         Get.bottomSheet(
                           Wrap(
@@ -182,6 +192,7 @@ class ProfileView extends GetView<ProfileController> {
                             ],
                           ),
                         );
+                        break;
                     }
                   },
                   leading: Image(
