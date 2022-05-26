@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:detakapp/app/modules/profile/controllers/profile_controller.dart';
-import 'package:detakapp/app/modules/profile/views/hasil_test_detail.dart';
+import 'package:detakapp/app/modules/profile/views/hasil_test_detail_view.dart';
 import 'package:detakapp/core/theme/colors.dart';
 import 'package:detakapp/core/theme/fonts.dart';
 import 'package:detakapp/core/utils/helpers.dart';
@@ -52,7 +52,7 @@ class HasilTestView extends GetView<ProfileController> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "85",
+                    "${Get.arguments["totalTest"]}",
                     style: CustomFonts.montserratBold40.copyWith(
                       fontSize: 96,
                       color: CustomColors.subTittle,
