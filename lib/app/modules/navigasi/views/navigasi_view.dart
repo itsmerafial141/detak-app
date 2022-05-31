@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -16,67 +14,36 @@ import '../controllers/navigasi_controller.dart';
 class NavigasiView extends GetView<NavigasiController> {
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(NavigasiController());
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 50),
-        child: GetBuilder<NavigasiController>(
-          init: NavigasiController(),
-          builder: (_) {
-            return AppBar(
-              backgroundColor: controller.indexPageController > 0
-                  ? CustomColors.primaryColor
-                  : CustomColors.secondaryColor,
-              elevation: 0,
-              centerTitle: true,
-              title: GetBuilder<NavigasiController>(
-                init: NavigasiController(),
-                builder: (_) {
-                  return Text(
-                    controller.indexPageController == 3 ? "" : "DetakAppw",
-                    style: CustomFonts.montserratBold18,
-                  );
-                },
-              ),
-              leading: GetBuilder<NavigasiController>(
-                init: NavigasiController(),
-                builder: (_) {
-                  return controller.indexPageController == 3
-                      ? IconButton(
-                          onPressed: () {
-                            controller
-                                .changePageIndex(controller.previousIndex);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: Colors.white,
-                          ),
-                        )
-                      : SizedBox();
-                },
-              ),
-            );
-          },
-        ),
-      ),
-      body: GetBuilder<NavigasiController>(
-        init: NavigasiController(),
-        builder: (_) {
-          return IndexedStack(
-            index: controller.indexPageController,
-            children: [
-              HomeView(),
-              VideoView(),
-              TestView(),
-              ProfileView(),
-            ],
-          );
-        },
-      ),
-      bottomNavigationBar: GetBuilder<NavigasiController>(
-        init: NavigasiController(),
-        builder: (_) {
-          return BottomNavigationBar(
+      body: _navigationController(),
+      bottomNavigationBar: _customBottomNavigation(),
+    );
+  }
+
+  Widget _navigationController() {
+    return GetBuilder<NavigasiController>(
+      init: NavigasiController(),
+      builder: (controller) {
+        return IndexedStack(
+          index: controller.indexPageController,
+          children: [
+            HomeView(),
+            VideoView(),
+            TestView(),
+            ProfileView(),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _customBottomNavigation() {
+    return GetBuilder<NavigasiController>(
+      init: NavigasiController(),
+      builder: (controller) {
+        return SizedBox(
+          height: 60,
+          child: BottomNavigationBar(
             onTap: controller.changePageIndex,
             currentIndex: controller.indexPageController,
             selectedItemColor: CustomColors.secondaryColor,
@@ -88,31 +55,21 @@ class NavigasiView extends GetView<NavigasiController> {
               CustomStrings.listBottomNavigation.length,
               (index) {
                 return BottomNavigationBarItem(
-                  icon: Column(
-                    children: [
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Image(
-                        color: controller.indexPageController == index
-                            ? CustomColors.primaryColor
-                            : CustomColors.disable,
-                        image: AssetImage(
-                          CustomStrings.listBottomNavigation[index][0],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                    ],
+                  icon: Image(
+                    color: controller.indexPageController == index
+                        ? CustomColors.primaryColor
+                        : CustomColors.disable,
+                    image: AssetImage(
+                      CustomStrings.listBottomNavigation[index][0],
+                    ),
                   ),
                   label: CustomStrings.listBottomNavigation[index][1],
                 );
               },
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }

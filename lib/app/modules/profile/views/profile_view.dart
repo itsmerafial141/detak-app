@@ -16,203 +16,207 @@ class ProfileView extends GetView<ProfileController> {
   var authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: EdgeInsets.symmetric(
-                horizontal: percentageOfScreenWidth(10),
-                vertical: percentageOfScreenWidth(5)),
-            decoration: BoxDecoration(
-              color: CustomColors.primaryColor,
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(28),
-                bottomRight: Radius.circular(28),
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                  horizontal: percentageOfScreenWidth(10),
+                  vertical: percentageOfScreenWidth(5)),
+              decoration: BoxDecoration(
+                color: CustomColors.primaryColor,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(28),
+                  bottomRight: Radius.circular(28),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage(
+                      "assets/images/stefan-stefancik-QXevDflbl8A-unsplash.jpg",
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Rafi Fitra Alamsyah",
+                          style: CustomFonts.montserratBold14.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "0813-3041-9185",
+                          style: CustomFonts.montserratSemibold12.copyWith(
+                            color: CustomColors.subTittle.withOpacity(0.5),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: AssetImage(
-                    "assets/images/stefan-stefancik-QXevDflbl8A-unsplash.jpg",
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (_, index) {
+                return index > 1
+                    ? Divider(
+                        height: 20,
+                        color: CustomColors.grey,
+                      )
+                    : const SizedBox(
+                        height: 20,
+                      );
+              },
+              separatorBuilder: (_, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: percentageOfScreenWidth(5),
                   ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Rafi Fitra Alamsyah",
-                        style: CustomFonts.montserratBold14.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "0813-3041-9185",
-                        style: CustomFonts.montserratSemibold12.copyWith(
-                          color: CustomColors.subTittle.withOpacity(0.5),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (_, index) {
-              return index > 1
-                  ? Divider(
-                      height: 20,
-                      color: CustomColors.grey,
-                    )
-                  : const SizedBox(
-                      height: 20,
-                    );
-            },
-            separatorBuilder: (_, index) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: percentageOfScreenWidth(5),
-                ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  onTap: () {
-                    switch (index) {
-                      case 0: //Hasil Test
-                        Get.to(
-                          HasilTestView(),
-                          arguments: {"totalTest": 72},
-                        );
-                        break;
-                      case 2: //logout
-                        Get.bottomSheet(
-                          Wrap(
-                            children: [
-                              Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(14),
-                                    topRight: Radius.circular(14),
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    onTap: () {
+                      switch (index) {
+                        case 0: //Hasil Test
+                          Get.to(
+                            HasilTestView(),
+                            arguments: {"totalTest": 72},
+                          );
+                          break;
+                        case 2: //logout
+                          Get.bottomSheet(
+                            Wrap(
+                              children: [
+                                Container(
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(14),
+                                      topRight: Radius.circular(14),
+                                    ),
+                                    color: Colors.white,
                                   ),
-                                  color: Colors.white,
-                                ),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: percentageOfScreenHeight(5),
-                                    ),
-                                    SizedBox(
-                                      width: percentageOfScreenWidth(75),
-                                      child: Text(
-                                        "Apakah anda yakin ingin keluar dari aplikasi?",
-                                        textAlign: TextAlign.center,
-                                        style: CustomFonts.montserratBold14,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: percentageOfScreenHeight(5),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: percentageOfScreenHeight(5),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: percentageOfScreenWidth(5),
+                                      SizedBox(
+                                        width: percentageOfScreenWidth(75),
+                                        child: Text(
+                                          "Apakah anda yakin ingin keluar dari aplikasi?",
+                                          textAlign: TextAlign.center,
+                                          style: CustomFonts.montserratBold14,
+                                        ),
                                       ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                Get.back();
-                                              },
-                                              style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateProperty.all(
-                                                  Colors.white,
+                                      SizedBox(
+                                        height: percentageOfScreenHeight(5),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal:
+                                              percentageOfScreenWidth(5),
+                                        ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  Get.back();
+                                                },
+                                                style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                    Colors.white,
+                                                  ),
+                                                  side:
+                                                      MaterialStateProperty.all(
+                                                    BorderSide(
+                                                      width: 1,
+                                                      color: CustomColors
+                                                          .primaryColor,
+                                                    ),
+                                                  ),
                                                 ),
-                                                side: MaterialStateProperty.all(
-                                                  BorderSide(
-                                                    width: 1,
+                                                child: Text(
+                                                  "Tidak",
+                                                  style: CustomFonts
+                                                      .montserratBold14
+                                                      .copyWith(
                                                     color: CustomColors
                                                         .primaryColor,
                                                   ),
                                                 ),
                                               ),
-                                              child: Text(
-                                                "Tidak",
-                                                style: CustomFonts
-                                                    .montserratBold14
-                                                    .copyWith(
-                                                  color:
-                                                      CustomColors.primaryColor,
+                                            ),
+                                            SizedBox(
+                                              width: percentageOfScreenWidth(2),
+                                            ),
+                                            Expanded(
+                                              child: ElevatedButton(
+                                                onPressed: () {
+                                                  authController.logout();
+                                                  Get.back();
+                                                },
+                                                child: Text(
+                                                  "Ya",
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          SizedBox(
-                                            width: percentageOfScreenWidth(2),
-                                          ),
-                                          Expanded(
-                                            child: ElevatedButton(
-                                              onPressed: () {
-                                                authController.logout();
-                                                Get.back();
-                                              },
-                                              child: Text(
-                                                "Ya",
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: percentageOfScreenHeight(5),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                        break;
-                    }
-                  },
-                  leading: Image(
-                    height: 20,
-                    width: 20,
-                    color: CustomColors.primaryColor,
-                    image: AssetImage(
-                      CustomStrings.listProfileListTile[index][0],
+                                      SizedBox(
+                                        height: percentageOfScreenHeight(5),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                          break;
+                      }
+                    },
+                    leading: Image(
+                      height: 20,
+                      width: 20,
+                      color: CustomColors.primaryColor,
+                      image: AssetImage(
+                        CustomStrings.listProfileListTile[index][0],
+                      ),
+                    ),
+                    title: Text(
+                      CustomStrings.listProfileListTile[index][1],
+                      style: CustomFonts.montserratSemibold12,
                     ),
                   ),
-                  title: Text(
-                    CustomStrings.listProfileListTile[index][1],
-                    style: CustomFonts.montserratSemibold12,
-                  ),
-                ),
-              );
-            },
-            itemCount: CustomStrings.listProfileListTile.length + 1,
-          ),
-        ],
+                );
+              },
+              itemCount: CustomStrings.listProfileListTile.length + 1,
+            ),
+          ],
+        ),
       ),
     );
   }

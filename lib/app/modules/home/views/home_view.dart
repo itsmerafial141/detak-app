@@ -1,3 +1,7 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:detakapp/app/modules/video/controllers/video_controller.dart';
+import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -6,196 +10,136 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../../../../core/utils/helpers.dart';
 import '../controllers/home_controller.dart';
-import 'detail_berita_view.dart';
+import '../widgets/custom_card_berita_widget.dart';
+import '../widgets/custom_main_card_widget.dart';
 
 class HomeView extends GetView<HomeController> {
   @override
+  var controller = Get.put(HomeController());
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: [
-          Stack(
-            alignment: Alignment.bottomRight,
-            children: [
-              Stack(
-                children: [
-                  ColoredBox(
-                    color: CustomColors.primaryColor,
-                    child: SizedBox(
-                      height: percentageOfScreenHeight(30),
-                      width: percentageOfScreenWidth(100),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Image(
-                      image: AssetImage("assets/images/background image.png"),
-                    ),
-                  ),
-                ],
-              ),
-              Image(
-                height: percentageOfScreenHeight(25),
-                image: AssetImage("assets/images/personBackground.png"),
-              ),
-            ],
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size(double.infinity, 50),
+        child: AppBar(
+          backgroundColor: CustomColors.secondaryColor,
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            "DetakAppw",
+            style: CustomFonts.montserratBold18,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: percentageOfScreenHeight(20),
-              ),
-              SizedBox(
-                height: percentageOfScreenHeight(25),
-                child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (_, __) {
-                    return SizedBox(
-                      width: 20,
-                    );
-                  },
-                  separatorBuilder: (_, index) {
-                    return Stack(
-                      alignment: Alignment.bottomCenter,
-                      children: [
-                        Container(
-                          width: percentageOfScreenWidth(70),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(14),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                "assets/images/annie-spratt-zA7I5BtFbvw-unsplash.jpg",
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: percentageOfScreenWidth(70),
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(14),
-                              bottomRight: Radius.circular(14),
-                            ),
-                          ),
-                          child: Text(
-                            "Penyebab Kanker Payudara | Yayasan Kanker Indonesia",
-                            style: CustomFonts.montserratBold12.copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                  itemCount: 5,
-                ),
-              ),
-              SizedBox(
-                height: percentageOfScreenHeight(3),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Berita",
-                      style: CustomFonts.montserratBold14,
-                    ),
-                    SizedBox(
-                      height: percentageOfScreenHeight(3),
-                    ),
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (_, index) {
-                        return InkWell(
-                          onTap: () {
-                            Get.to(DetailBeritaView());
-                          },
-                          borderRadius: BorderRadius.circular(14),
-                          child: SizedBox(
-                            height: percentageOfScreenHeight(15),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: Container(
-                                    width: percentageOfScreenWidth(35),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(14),
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: AssetImage(
-                                          "assets/images/annie-spratt-zA7I5BtFbvw-unsplash.jpg",
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Kenali, 8 Gejala Kanker Payudara Pada Wanita, Salah Satunya Nyeri",
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                          softWrap: false,
-                                          style: CustomFonts.montserratBold12,
-                                        ),
-                                        Spacer(),
-                                        RichText(
-                                          text: TextSpan(
-                                            style: CustomFonts
-                                                .montserratSemibold9
-                                                .copyWith(
-                                              color: CustomColors.darkGray,
-                                            ),
-                                            children: [
-                                              TextSpan(
-                                                text: "Oleh ",
-                                              ),
-                                              TextSpan(
-                                                style:
-                                                    CustomFonts.montserratBold9,
-                                                text: "Rafi Fitra Alamsyah",
-                                              ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (_, __) {
-                        return SizedBox(
-                          height: 20,
-                        );
-                      },
-                      itemCount: 10,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
+      body: SingleChildScrollView(
+        // Stack main content with background
+        child: Stack(
+          children: [
+            // Stack person ilustration with background
+            _backgroundView(),
+            _mainView(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _mainView() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _customDivider(height: 20.sh),
+        _listMainBerita(),
+        _customDivider(height: 3.sh),
+        _customSubTitle(tittle: "Berita").wrapMargin(h: 3.sh),
+        _customDivider(height: 3.sh),
+        _listBerita().wrapMargin(h: 3.sh),
+        _customDivider(height: 3.sh),
+      ],
+    );
+  }
+
+  Widget _listBerita() {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemBuilder: (_, index) {
+        return CustomCardBeritaWidget(
+          index: index,
+          listData: controller.listBerita,
+        );
+      },
+      separatorBuilder: (_, __) {
+        return SizedBox(
+          height: 20,
+        );
+      },
+      itemCount: controller.listBerita.length,
+    );
+  }
+
+  Widget _customSubTitle({required String tittle}) {
+    return Text(
+      tittle,
+      style: CustomFonts.montserratBold14,
+    );
+  }
+
+  SizedBox _listMainBerita() {
+    var listData = Get.put(VideoController()).listDataVideo;
+    return SizedBox(
+      height: percentageOfScreenHeight(25),
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (_, __) {
+          return SizedBox(
+            width: 3.sh,
+          );
+        },
+        separatorBuilder: (_, index) {
+          return CustomMainCardWidget(
+            index: index,
+            listData: listData,
+          );
+        },
+        itemCount: listData.length + 1,
+      ),
+    );
+  }
+
+  SizedBox _customDivider({double? height, double? widht}) {
+    return SizedBox(
+      height: height ?? 0,
+      width: widht ?? 0,
+    );
+  }
+
+  Widget _backgroundView() {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: [
+        // Stack red background with wave background
+        Stack(
+          children: [
+            SizedBox(
+              height: 30.sh,
+              width: 100.sw,
+            ).backgroundColor(
+              color: CustomColors.primaryColor,
+            ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: Image(
+                image: AssetImage("assets/images/background image.png"),
+              ),
+            ),
+          ],
+        ),
+        Image(
+          height: 25.sh,
+          image: AssetImage("assets/images/personBackground.png"),
+        ),
+      ],
     );
   }
 }
