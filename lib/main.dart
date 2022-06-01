@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:detakapp/app/modules/login/views/login_view.dart';
 import 'package:detakapp/app/modules/navigasi/views/navigasi_view.dart';

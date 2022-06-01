@@ -4,6 +4,7 @@ import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
@@ -63,11 +64,8 @@ class DetailBeritaView extends GetView<HomeController> {
               ),
             ),
             _customDivider(height: 2.sh),
-            Text(
+            HtmlWidget(
               controller.dataDetailBerita.data.contentNews,
-              style: CustomFonts.montserratRegular11.copyWith(
-                color: CustomColors.grey,
-              ),
             ).wrapMargin(h: 3.sh),
             _customDivider(height: 5.sh),
           ],

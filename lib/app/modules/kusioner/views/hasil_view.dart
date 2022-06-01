@@ -66,8 +66,8 @@ class HasilView extends GetView<KusionerController> {
                         height: percentageOfScreenHeight(2),
                       ),
                       Text(
-                        textAlign: TextAlign.center,
                         "Jangan lupa untuk tetap lakukan pemerikasaan payudara sedara mandiri dengan rutin",
+                        textAlign: TextAlign.center,
                         style: CustomFonts.montserratRegular12.copyWith(
                           color: Colors.white,
                         ),

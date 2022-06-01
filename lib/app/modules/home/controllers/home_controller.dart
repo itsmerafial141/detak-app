@@ -58,7 +58,7 @@ class HomeController extends GetxController with StateMixin {
           status: value.status,
           data: value.data,
         );
-        Get.to(DetailBeritaView());
+        Get.to(() => DetailBeritaView());
       }).onError((error, stackTrace) {
         error.printError();
         stackTrace.printError();
