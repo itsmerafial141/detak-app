@@ -7,44 +7,60 @@ String beritaModelToJson(BeritaModel data) => json.encode(data.toJson());
 
 class BeritaModel {
   BeritaModel({
-    required this.id,
-    required this.title,
-    required this.image,
-    required this.content,
-    required this.penulis,
-    required this.kategori,
-    required this.tanggal,
-    required this.waktu,
+    required this.status,
+    required this.data,
   });
 
-  String id;
-  String title;
-  String image;
-  String content;
-  String penulis;
-  String kategori;
-  String tanggal;
-  String waktu;
+  bool status;
+  List<Datum> data;
 
   factory BeritaModel.fromJson(Map<String, dynamic> json) => BeritaModel(
-        id: json["id"],
-        title: json["title"],
-        image: json["image"],
-        content: json["content"],
-        penulis: json["penulis"],
-        kategori: json["kategori"],
-        tanggal: json["tanggal"],
-        waktu: json["waktu"],
+        status: json["status"],
+        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "title": title,
-        "image": image,
-        "content": content,
-        "penulis": penulis,
-        "kategori": kategori,
-        "tanggal": tanggal,
-        "waktu": waktu,
+        "status": status,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+      };
+}
+
+class Datum {
+  Datum({
+    required this.idNews,
+    required this.nameCategory,
+    required this.titleNews,
+    required this.newsImage,
+    required this.dateNews,
+    required this.editor,
+    required this.verificator,
+  });
+
+  String idNews;
+  String nameCategory;
+  String titleNews;
+  String newsImage;
+  String dateNews;
+  String editor;
+  String verificator;
+
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        idNews: json["ID_NEWS"],
+        nameCategory: json["NAME_CATEGORY"],
+        titleNews: json["TITLE_NEWS"],
+        newsImage: json["NEWS_IMAGE"],
+        dateNews: json["DATE_NEWS"],
+        editor: json["EDITOR"],
+        verificator: json["VERIFICATOR"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "ID_NEWS": idNews,
+        "NAME_CATEGORY": nameCategory,
+        "TITLE_NEWS": titleNews,
+        "NEWS_IMAGE": newsImage,
+        "DATE_NEWS": dateNews,
+        "EDITOR": editor,
+        "VERIFICATOR": verificator,
       };
 }

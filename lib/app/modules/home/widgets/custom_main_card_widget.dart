@@ -35,10 +35,10 @@ class CustomMainCardWidget extends StatelessWidget {
         ),
         Container(
           width: 45.sh,
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.5),
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(14),
               bottomRight: Radius.circular(14),
             ),

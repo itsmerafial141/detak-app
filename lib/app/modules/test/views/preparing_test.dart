@@ -9,6 +9,8 @@ import '../../../../core/theme/fonts.dart';
 import '../controllers/test_controller.dart';
 
 class PreparingTestView extends GetView<TestController> {
+  const PreparingTestView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(TestController());
@@ -63,7 +65,7 @@ class PreparingTestView extends GetView<TestController> {
                   child: controller.player,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: percentageOfScreenWidth(10),
@@ -72,10 +74,10 @@ class PreparingTestView extends GetView<TestController> {
                   onPressed: () {
                     Get.toNamed(AppPages.KS);
                   },
-                  child: Text("Ambil tes sekarang"),
+                  child: const Text("Ambil tes sekarang"),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),

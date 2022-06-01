@@ -6,7 +6,6 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../controllers/home_controller.dart';
 import '../models/berita_model.dart';
-import '../views/detail_berita_view.dart';
 
 class CustomCardBeritaWidget extends GetView<HomeController> {
   const CustomCardBeritaWidget({
@@ -22,8 +21,7 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(DetailBeritaView(), arguments: {"id": listData[index].id});
-        // controller.getDataByID(listData[index].id);
+        controller.detailBerita(listData[0].data[index].idNews);
       },
       borderRadius: BorderRadius.circular(14),
       child: SizedBox(
@@ -37,10 +35,12 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
                 width: 35.sh,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
+                  color: CustomColors.disable,
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      listData[index].image,
+                      "/images/news/${listData[0].data[index].newsImage}"
+                          .fromUrl,
                     ),
                   ),
                 ),
@@ -54,25 +54,26 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      listData[index].title,
+                      listData[0].data[index].titleNews,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
                       style: CustomFonts.montserratBold12,
                     ),
-                    Spacer(),
+                    const Spacer(),
                     RichText(
                       text: TextSpan(
                         style: CustomFonts.montserratSemibold9.copyWith(
                           color: CustomColors.darkGray,
                         ),
                         children: [
-                          TextSpan(
+                          const TextSpan(
                             text: "Oleh ",
                           ),
                           TextSpan(
-                              style: CustomFonts.montserratBold9,
-                              text: listData[index].penulis),
+                            style: CustomFonts.montserratBold9,
+                            text: listData[0].data[index].editor,
+                          ),
                         ],
                       ),
                     )

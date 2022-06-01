@@ -8,9 +8,10 @@ import '../../core/theme/fonts.dart';
 class CustomText extends StatelessWidget {
   const CustomText(
     this.text, {
+    Key? key,
     this.style,
     this.color,
-  });
+  }) : super(key: key);
 
   final String? text;
   final TextStyle? style;

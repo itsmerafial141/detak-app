@@ -2,14 +2,28 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../../../../core/utils/helpers.dart';
+import '../../../widgets/custom_text_widget.dart';
 import '../controllers/video_controller.dart';
 
 class VideoView extends GetView<VideoController> {
+  const VideoView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CustomColors.primaryColor,
+        elevation: 0,
+        centerTitle: true,
+        title: CustomText(
+          "DetakApp",
+          style: CustomFonts.montserratBold18,
+          color: CustomColors.white,
+        ),
+      ),
       body: Column(
         children: [
           Expanded(

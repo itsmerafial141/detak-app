@@ -1,9 +1,17 @@
+// ignore_for_file: avoid_print
+
 import 'package:detakapp/app/modules/home/models/berita_model.dart';
-import 'package:detakapp/core/values/lists.dart';
+import 'package:detakapp/app/modules/home/models/detail_berita_model.dart';
+import 'package:detakapp/app/modules/home/providers/berita_provider.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
-  late List<BeritaModel> listBerita;
+import '../views/detail_berita_view.dart';
+
+class HomeController extends GetxController with StateMixin {
+  var beritaProvider = Get.put(BeritaProvider());
+
+  List<BeritaModel> listBerita = List<BeritaModel>.empty().obs;
+  late DetailBeritaModel dataDetailBerita;
 
   @override
   void onInit() {
@@ -19,24 +27,51 @@ class HomeController extends GetxController {
   }
 
   void _initialData() {
-    for (int index = 0; index < CustomList.berita.length; index++) {
-      var data = CustomList.berita[index];
-      listBerita.add(
-        BeritaModel(
-          id: data['id'].toString(),
-          title: data['title'].toString(),
-          image: data['image'].toString(),
-          content: data['content'].toString(),
-          penulis: data['penulis'].toString(),
-          kategori: data['kategori'].toString(),
-          tanggal: data['tanggal'].toString(),
-          waktu: data['waktu'].toString(),
-        ),
-      );
+    try {
+      beritaProvider.getBerita().then((value) {
+        listBerita.add(
+          BeritaModel(
+            status: value.status,
+            data: value.data,
+          ),
+        );
+        print("${listBerita[0].data.length} <- beritaLength");
+        print("berita success");
+        change(null, status: RxStatus.success());
+      }).onError((error, stackTrace) {
+        error.printError();
+        stackTrace.printError();
+        print("berita OnError");
+      }).whenComplete(() {
+        print("berita whenComplete");
+      });
+    } catch (err) {
+      err.printError();
     }
   }
 
-  List<BeritaModel> getDataByID(String id) {
-    return listBerita.where((element) => element.id == id).toList();
+  void detailBerita(String idNews) {
+    try {
+      beritaProvider.getDetailBerita(idNews).then((value) {
+        print("detail berita success");
+        dataDetailBerita = DetailBeritaModel(
+          status: value.status,
+          data: value.data,
+        );
+        Get.to(DetailBeritaView());
+      }).onError((error, stackTrace) {
+        error.printError();
+        stackTrace.printError();
+        print("detail berita onError");
+      }).whenComplete(() {
+        print("detail berita whenComplete");
+      });
+    } catch (err) {
+      err.printError();
+    }
+  }
+
+  String getTimeDetailBerita(String time) {
+    return time.split(" ")[1].split('').getRange(0, 5).join('');
   }
 }

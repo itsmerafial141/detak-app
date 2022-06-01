@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,109 +12,95 @@ import '../controllers/home_controller.dart';
 class DetailBeritaView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    var arguments = Get.arguments["id"];
-    var data = controller.getDataByID(arguments);
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: CustomColors.white,
-          ),
-        ),
-        title: Text(
-          "DetakApp",
-          style: CustomFonts.montserratBold18,
-        ),
-      ),
+      appBar: _appBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            _customDivider(height: 3.sh),
+            Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(
-                  height: 5.sh,
+                CustomText(
+                  controller.dataDetailBerita.data.nameCategory,
+                  style: CustomFonts.montserratBold12,
+                  color: CustomColors.grey,
                 ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      data[0].kategori,
-                      style: CustomFonts.montserratSemibold12.copyWith(
-                        color: CustomColors.grey,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      Icons.circle,
-                      size: 5,
-                      color: CustomColors.grey,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "${data[0].waktu} AM",
-                      style: CustomFonts.montserratSemibold12.copyWith(
-                        color: CustomColors.grey,
-                      ),
-                    ),
-                  ],
+                _customDivider(width: 1.sw),
+                Icon(
+                  Icons.circle,
+                  size: 5,
+                  color: CustomColors.grey,
                 ),
-                SizedBox(
-                  height: 1.sh,
-                ),
-                Text(
-                  data[0].title,
-                  style: CustomFonts.montserratBold14.copyWith(
-                    color: CustomColors.subTittle,
-                  ),
-                ),
-                SizedBox(
-                  height: 1.sh,
-                ),
-                Text(
-                  "oleh ${data[0].penulis}",
-                  style: CustomFonts.montserratBold9.copyWith(
-                    color: CustomColors.grey,
-                  ),
+                _customDivider(width: 1.sw),
+                CustomText(
+                  "${controller.getTimeDetailBerita(controller.dataDetailBerita.data.dateNews)} WIB",
+                  style: CustomFonts.montserratSemibold12,
+                  color: CustomColors.grey,
                 ),
               ],
             ).wrapMargin(h: 3.sh),
-            SizedBox(
-              height: 1.sh,
-            ),
+            _customDivider(height: 1.sh),
+            CustomText(
+              controller.dataDetailBerita.data.titleNews,
+              style: CustomFonts.montserratBold14,
+            ).wrapMargin(h: 3.sh),
+            _customDivider(height: 1.sh),
+            CustomText(
+              "oleh ${controller.dataDetailBerita.data.editor}",
+              style: CustomFonts.montserratBold9,
+              color: CustomColors.grey,
+            ).wrapMargin(h: 3.sh),
+            _customDivider(height: 1.sh),
             Image(
               width: double.infinity,
               height: 30.sh,
               fit: BoxFit.cover,
               image: NetworkImage(
-                data[0].image,
+                "/images/news/${controller.dataDetailBerita.data.newsImage}"
+                    .fromUrl,
               ),
             ),
-            SizedBox(
-              height: 2.sh,
-            ),
+            _customDivider(height: 2.sh),
             Text(
-              data[0].content,
+              controller.dataDetailBerita.data.contentNews,
               style: CustomFonts.montserratRegular11.copyWith(
                 color: CustomColors.grey,
               ),
             ).wrapMargin(h: 3.sh),
-            SizedBox(
-              height: 5.sh,
-            ),
+            _customDivider(height: 5.sh),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _customDivider({double? height, double? width}) {
+    return SizedBox(
+      height: height ?? 0,
+      width: width ?? 0,
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      elevation: 0,
+      backgroundColor: CustomColors.primaryColor,
+      centerTitle: true,
+      leading: IconButton(
+        onPressed: () {
+          Get.back();
+        },
+        icon: Icon(
+          Icons.arrow_back_rounded,
+          color: CustomColors.white,
+        ),
+      ),
+      title: CustomText(
+        "DetakApp",
+        style: CustomFonts.montserratBold18,
+        color: CustomColors.white,
       ),
     );
   }

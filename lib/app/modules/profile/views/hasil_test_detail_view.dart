@@ -9,12 +9,15 @@ import '../../../../core/theme/fonts.dart';
 import '../controllers/profile_controller.dart';
 
 class HasilTestDetailView extends StatelessWidget {
+  HasilTestDetailView({Key? key}) : super(key: key);
+
   var controllers = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 55),
+        preferredSize: const Size(double.infinity, 55),
         child: AppBar(
           centerTitle: true,
           elevation: 0,
@@ -58,7 +61,7 @@ class HasilTestDetailView extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: EdgeInsets.all(
                   percentageOfScreenWidth(10),
@@ -68,7 +71,7 @@ class HasilTestDetailView extends StatelessWidget {
                     Get.back();
                     Get.back();
                   },
-                  child: Text("FINISH"),
+                  child: const Text("FINISH"),
                 ),
               ),
             ],

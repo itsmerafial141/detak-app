@@ -8,11 +8,13 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 
 class HasilView extends GetView<KusionerController> {
+  const HasilView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 55),
+        preferredSize: const Size(double.infinity, 55),
         child: AppBar(
           backgroundColor: Colors.white,
           elevation: 0,
@@ -35,7 +37,7 @@ class HasilView extends GetView<KusionerController> {
                 width: percentageOfScreenWidth(100),
                 child: Image(
                   height: percentageOfScreenHeight(50),
-                  image: AssetImage("assets/images/hasilImage.png"),
+                  image: const AssetImage("assets/images/hasilImage.png"),
                 ),
               ),
               Align(
@@ -44,7 +46,7 @@ class HasilView extends GetView<KusionerController> {
                   height: percentageOfScreenHeight(50),
                   width: percentageOfScreenWidth(100),
                   padding: EdgeInsets.all(percentageOfScreenWidth(10)),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fill,
                       image: AssetImage("assets/images/hasilBg.png"),
@@ -52,7 +54,7 @@ class HasilView extends GetView<KusionerController> {
                   ),
                   child: Column(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         "Yay! Kamu kamu bebas dari kanker payudara.",
                         textAlign: TextAlign.center,
@@ -70,7 +72,7 @@ class HasilView extends GetView<KusionerController> {
                           color: Colors.white,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       ElevatedButton(
                         onPressed: () {
                           Get.offAllNamed(AppPages.NV);

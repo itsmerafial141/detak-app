@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_this
 
+import 'package:detakapp/core/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../helpers.dart';
 
@@ -15,6 +17,7 @@ extension DoubleExtension on num {
 extension StringExtension on String {
   /// Mengembalikan nilai integer dari string
   int get toInt => int.parse(this);
+  String get fromUrl => "https://detak.bgskr-project.my.id$this";
 }
 
 extension WidgetExtension on Widget {
@@ -39,6 +42,14 @@ extension WidgetExtension on Widget {
   Widget align({AlignmentGeometry? alignment}) {
     return Align(
       alignment: alignment ?? Alignment.centerLeft,
+      child: this,
+    );
+  }
+
+  Widget shimmer() {
+    return Shimmer.fromColors(
+      baseColor: CustomColors.disable,
+      highlightColor: CustomColors.white,
       child: this,
     );
   }

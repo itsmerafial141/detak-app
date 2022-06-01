@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:developer';
 
 import 'package:detakapp/app/modules/daftar/providers/daftar_provider.dart';

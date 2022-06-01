@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:detakapp/app/modules/kusioner/views/hasil_view.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +52,7 @@ class KusionerController extends GetxController {
       kusionerAnswer.add(answer);
       update();
     } else {
-      Get.to(HasilView());
+      Get.to(const HasilView());
     }
   }
 }

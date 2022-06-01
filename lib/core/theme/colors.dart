@@ -22,8 +22,8 @@ class CustomColors {
   static Color black = const Color.fromRGBO(23, 23, 37, 1);
   static Color darkGray = const Color.fromRGBO(105, 105, 116, 1);
   static Color grey = const Color.fromRGBO(146, 146, 157, 1);
-  static Color grey50 = const Color.fromRGBO(146, 146, 157, 0.5);
-  static Color whiteGrey = const Color.fromRGBO(235, 235, 239, 1);
+  static Color grey50 = const Color.fromRGBO(181, 181, 195, 1);
+  static Color whiteGrey = const Color.fromRGBO(245, 245, 245, 1);
   static Color white = const Color.fromRGBO(255, 255, 255, 1);
   static Color lineDark = const Color.fromRGBO(234, 234, 234, 1);
 }

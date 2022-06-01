@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

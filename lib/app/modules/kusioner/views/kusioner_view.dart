@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import '../controllers/kusioner_controller.dart';
 
 class KusionerView extends GetView<KusionerController> {
+  const KusionerView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +91,7 @@ class KusionerView extends GetView<KusionerController> {
               percentageOfScreenHeight(100) + Get.mediaQuery.viewPadding.top,
           child: Column(
             children: [
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 width: percentageOfScreenWidth(70),
                 child: Text(
@@ -97,7 +99,7 @@ class KusionerView extends GetView<KusionerController> {
                   style: CustomFonts.montserratMedium14,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: percentageOfScreenHeight(5),
@@ -138,12 +140,12 @@ class KusionerView extends GetView<KusionerController> {
                       onPressed: () {
                         controller.answerKusioner(false);
                       },
-                      child: Text("TIDAK"),
+                      child: const Text("TIDAK"),
                     ),
                   ],
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),

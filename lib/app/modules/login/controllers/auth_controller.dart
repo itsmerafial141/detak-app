@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:detakapp/app/modules/login/providers/login_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

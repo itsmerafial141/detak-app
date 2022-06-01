@@ -11,11 +11,13 @@ import 'package:get/get.dart';
 class HasilTestView extends GetView<ProfileController> {
   var controllers = Get.put(ProfileController());
   var totalTest = Get.arguments;
+
+  HasilTestView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size(double.infinity, 55),
+        preferredSize: const Size(double.infinity, 55),
         child: AppBar(
           centerTitle: true,
           elevation: 0,
@@ -79,7 +81,7 @@ class HasilTestView extends GetView<ProfileController> {
                   )
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -142,7 +144,7 @@ class HasilTestView extends GetView<ProfileController> {
                         children: [
                           Row(
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 width: 5 + 9,
                               ),
                               ClipRRect(
@@ -155,10 +157,10 @@ class HasilTestView extends GetView<ProfileController> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 5,
                               ),
-                              Image(
+                              const Image(
                                 width: 9,
                                 height: 12,
                                 image: AssetImage("assets/icons/Polygon 1.png"),
@@ -208,7 +210,7 @@ class HasilTestView extends GetView<ProfileController> {
                   )
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: percentageOfScreenWidth(10),
@@ -217,7 +219,7 @@ class HasilTestView extends GetView<ProfileController> {
                   onPressed: () {
                     Get.to(HasilTestDetailView());
                   },
-                  child: Text(
+                  child: const Text(
                     "DETAIL RIWAYAT",
                   ),
                 ),

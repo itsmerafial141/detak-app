@@ -15,6 +15,8 @@ import '../controllers/login_controller.dart';
 import 'lupa_password_view.dart';
 
 class LoginView extends GetView<LoginController> {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     List<Widget> listWidget = [
@@ -162,7 +164,7 @@ class LoginView extends GetView<LoginController> {
         return authController.isDataNotExist
             ? Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
@@ -177,7 +179,7 @@ class LoginView extends GetView<LoginController> {
                   color: CustomColors.red,
                 ),
               )
-            : SizedBox();
+            : const SizedBox();
       },
     );
   }

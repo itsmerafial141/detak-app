@@ -1,0 +1,32 @@
+{
+    "status": true,
+    "data": [
+        {
+            "ID_NEWS": "5",
+            "NAME_CATEGORY": "Artikel",
+            "TITLE_NEWS": "Kondisi Jantung Terendam Air, Kenali Efusi Perikardium",
+            "NEWS_IMAGE": "KJTA.png",
+            "DATE_NEWS": "2022-05-31 17: 31: 33",
+            "EDITOR": "Admin",
+            "VERIFICATOR": "Admin"
+        },
+        {
+            "ID_NEWS": "4",
+            "NAME_CATEGORY": "Artikel",
+            "TITLE_NEWS": "Beragam Prosedur Medis untuk Mengobati Sakit Jantung",
+            "NEWS_IMAGE": "BPMMS.png",
+            "DATE_NEWS": "2022-05-31 17: 30: 52",
+            "EDITOR": "Admin",
+            "VERIFICATOR": "Admin"
+        },
+        {
+            "ID_NEWS": "3",
+            "NAME_CATEGORY": "Artikel",
+            "TITLE_NEWS": "Benarkah Jantung Manusia Kebal terhadap Kanker?",
+            "NEWS_IMAGE": "BJMK.png",
+            "DATE_NEWS": "2022-05-31 17: 28: 02",
+            "EDITOR": "Admin",
+            "VERIFICATOR": "Admin"
+        }
+    ]
+}

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:detakapp/core/utils/helpers.dart';
 import 'package:get/get.dart';
 

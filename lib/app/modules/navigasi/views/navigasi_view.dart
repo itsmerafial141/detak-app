@@ -12,6 +12,8 @@ import '../../video/views/video_view.dart';
 import '../controllers/navigasi_controller.dart';
 
 class NavigasiView extends GetView<NavigasiController> {
+  const NavigasiView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +30,8 @@ class NavigasiView extends GetView<NavigasiController> {
           index: controller.indexPageController,
           children: [
             HomeView(),
-            VideoView(),
-            TestView(),
+            const VideoView(),
+            const TestView(),
             ProfileView(),
           ],
         );

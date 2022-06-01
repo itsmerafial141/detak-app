@@ -10,6 +10,8 @@ import '../../../widgets/custom_app_bar_widget.dart';
 import '../controllers/daftar_controller.dart';
 
 class DaftarView extends GetView<DaftarController> {
+  const DaftarView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

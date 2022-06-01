@@ -41,17 +41,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DAFTAR,
-      page: () => DaftarView(),
+      page: () => const DaftarView(),
       binding: DaftarBinding(),
     ),
     GetPage(
       name: _Paths.LOGIN,
-      page: () => LoginView(),
+      page: () => const LoginView(),
       binding: LoginBinding(),
     ),
     GetPage(
       name: _Paths.NAVIGASI,
-      page: () => NavigasiView(),
+      page: () => const NavigasiView(),
       binding: NavigasiBinding(),
     ),
     GetPage(
@@ -61,17 +61,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TEST,
-      page: () => TestView(),
+      page: () => const TestView(),
       binding: TestBinding(),
     ),
     GetPage(
       name: _Paths.VIDEO,
-      page: () => VideoView(),
+      page: () => const VideoView(),
       binding: VideoBinding(),
     ),
     GetPage(
       name: _Paths.KUSIONER,
-      page: () => KusionerView(),
+      page: () => const KusionerView(),
       binding: KusionerBinding(),
     ),
   ];

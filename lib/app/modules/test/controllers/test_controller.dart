@@ -12,11 +12,11 @@ class TestController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    player = YoutubePlayerIFrame();
+    player = const YoutubePlayerIFrame();
     var urlID = "4zI0zBhkJIY";
     youtubePlayerController = YoutubePlayerController(
       initialVideoId: urlID,
-      params: YoutubePlayerParams(
+      params: const YoutubePlayerParams(
         showControls: true,
         showFullscreenButton: true,
         desktopMode: false,

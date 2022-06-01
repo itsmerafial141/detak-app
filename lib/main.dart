@@ -18,7 +18,7 @@ void main() async {
   await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
+    const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
   );
@@ -33,7 +33,9 @@ void main() async {
                 builder: (_) {
                   return GetMaterialApp(
                     title: "Application",
-                    home: authController.isAuth ? NavigasiView() : LoginView(),
+                    home: authController.isAuth
+                        ? const NavigasiView()
+                        : const LoginView(),
                     getPages: AppPages.routes,
                     theme: ThemeData(
                       appBarTheme: AppBarTheme(

@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
+import 'package:detakapp/app/modules/navigasi/controllers/navigasi_controller.dart';
 import 'package:detakapp/app/modules/profile/views/hasil_test_view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,10 +14,27 @@ import '../../../../core/values/strings.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
+  ProfileView({Key? key}) : super(key: key);
   var authController = Get.put(AuthController());
+  var navController = Get.put(NavigasiController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CustomColors.primaryColor,
+        elevation: 0,
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            navController.changePageIndex(navController.previousIndex);
+          },
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: CustomColors.white,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +54,7 @@ class ProfileView extends GetView<ProfileController> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 30,
                     backgroundImage: AssetImage(
                       "assets/images/stefan-stefancik-QXevDflbl8A-unsplash.jpg",
@@ -106,7 +124,7 @@ class ProfileView extends GetView<ProfileController> {
                               children: [
                                 Container(
                                   width: double.infinity,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(14),
                                       topRight: Radius.circular(14),
@@ -178,7 +196,7 @@ class ProfileView extends GetView<ProfileController> {
                                                   authController.logout();
                                                   Get.back();
                                                 },
-                                                child: Text(
+                                                child: const Text(
                                                   "Ya",
                                                 ),
                                               ),

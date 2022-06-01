@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:detakapp/app/modules/test/views/preparing_test.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +9,25 @@ import 'package:get/get.dart';
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../../../../core/utils/helpers.dart';
+import '../../../widgets/custom_text_widget.dart';
 import '../controllers/test_controller.dart';
 
 class TestView extends GetView<TestController> {
+  const TestView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: CustomColors.primaryColor,
+        elevation: 0,
+        centerTitle: true,
+        title: CustomText(
+          "DetakApp",
+          style: CustomFonts.montserratBold18,
+          color: CustomColors.white,
+        ),
+      ),
       body: ColoredBox(
         color: CustomColors.primaryColor,
         child: SizedBox(
@@ -92,7 +107,7 @@ class TestView extends GetView<TestController> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.to(PreparingTestView());
+                            Get.to(const PreparingTestView());
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
