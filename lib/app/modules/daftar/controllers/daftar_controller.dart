@@ -1,8 +1,14 @@
-import 'package:detakapp/app/routes/app_pages.dart';
+import 'dart:developer';
+
+import 'package:detakapp/app/modules/daftar/providers/daftar_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
+
 class DaftarController extends GetxController {
+  var daftarProvider = Get.put(DaftarProvider());
+
   late List<TextEditingController> listController;
   late List<bool> listErrorController;
 
@@ -44,7 +50,12 @@ class DaftarController extends GetxController {
     ];
     if (allTextFieldIsNotEmpty() && allTextFieldIsNotError()) {
       print("daftar");
-      Get.offAllNamed(AppPages.LG);
+      _daftarProcess(
+        nama: listController[0].text,
+        email: listController[1].text,
+        phone: listController[2].text,
+        password: listController[4].text,
+      );
     } else {
       print("error");
     }
@@ -55,6 +66,41 @@ class DaftarController extends GetxController {
     print("passwordError : ${passwordIsError()}");
     print("konformPasswordError : ${konfirmPasswordIsError()}");
     update();
+  }
+
+  void _daftarProcess({
+    required String nama,
+    required String email,
+    required String phone,
+    required String password,
+  }) {
+    try {
+      daftarProvider
+          .daftar(
+        nama,
+        email,
+        phone,
+        password,
+      )
+          .then(
+        (value) {
+          print("sucess");
+          log(value.message);
+          Get.offAllNamed(AppPages.LG);
+        },
+      ).onError(
+        (error, stackTrace) {
+          print("onError");
+          error.printError();
+        },
+      ).whenComplete(
+        () {
+          print("whenComplete");
+        },
+      );
+    } catch (err) {
+      err.printError();
+    }
   }
 
   bool allTextFieldIsNotEmpty() {

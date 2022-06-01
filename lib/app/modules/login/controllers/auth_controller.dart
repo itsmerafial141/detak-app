@@ -1,7 +1,13 @@
+import 'package:detakapp/app/modules/login/providers/login_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+// danngriel@gmail.com
+// tes123
+
 class AuthController extends GetxController {
+  var loginProvider = Get.put(LoginProvider());
+
   var isAuth = false;
   var isDataNotExist = false;
 
@@ -15,33 +21,76 @@ class AuthController extends GetxController {
     final service = GetStorage();
     if (service.read("dataUser") != null) {
       var dataUser = GetStorage().read("dataUser");
-      login(
-        dataUser["email"].toString(),
-        dataUser["password"].toString(),
-      );
+      try {
+        login(
+          dataUser["EMAIL"].toString(),
+          dataUser["PASSWORD"].toString(),
+        );
+      } catch (err) {
+        err.printError();
+      }
     }
     update();
   }
 
   void login(String email, String password) {
-    if (emailCheckFromDB(email) && passwordCheckFromDB(password)) {
-      final service = GetStorage();
-      service.write(
-        "dataUser",
-        {
-          "id": "AD001",
-          "email": email,
-          "password": password,
+    try {
+      loginProvider
+          .login(
+        email,
+        password,
+      )
+          .then(
+        (value) {
+          print("success");
+          _saveToStorage(
+            email: value.data.email,
+            name: value.data.name,
+            nameRole: value.data.nameRole,
+            phone: value.data.phone,
+            password: password,
+          );
+        },
+      ).onError(
+        (error, stackTrace) {
+          print("onError");
+          stackTrace.printError();
+          error.printError();
+          isDataNotExist = true;
+        },
+      ).whenComplete(
+        () {
+          update();
+          print("whernComplete");
         },
       );
-      isAuth = true;
-      isDataNotExist = false;
-      update();
-    } else {
-      isDataNotExist = true;
-      print("asd");
-      update();
+    } catch (err) {
+      err.printError();
     }
+  }
+
+  void _saveToStorage({
+    required String email,
+    required String name,
+    required String nameRole,
+    required String phone,
+    required String password,
+  }) {
+    GetStorage().write(
+      "dataUser",
+      {
+        "EMAIL": email,
+        "PASSWORD": password,
+        "NAME": name,
+        "NAME_ROLE": nameRole,
+        "PROFILEPIC_USER": null,
+        "PHONE": phone,
+        "DATE_BIRTH": null
+      },
+    );
+    isAuth = true;
+    isDataNotExist = false;
+    update();
   }
 
   void logout() {

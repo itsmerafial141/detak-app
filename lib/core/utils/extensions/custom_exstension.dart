@@ -35,4 +35,11 @@ extension WidgetExtension on Widget {
       child: this,
     );
   }
+
+  Widget align({AlignmentGeometry? alignment}) {
+    return Align(
+      alignment: alignment ?? Alignment.centerLeft,
+      child: this,
+    );
+  }
 }

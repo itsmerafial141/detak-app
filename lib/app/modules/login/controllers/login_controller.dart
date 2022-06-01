@@ -86,7 +86,7 @@ class LoginController extends GetxController {
   }
 
   bool _passwordIsError() {
-    String pattern = r'^(?=.*?[0-9]).{8,}$';
+    String pattern = r'^(?=.*?[0-9]).{6,}$';
     RegExp regExp = RegExp(pattern);
     return !regExp.hasMatch(listloginController[1].text);
   }
