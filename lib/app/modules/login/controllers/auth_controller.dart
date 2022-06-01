@@ -85,9 +85,9 @@ class AuthController extends GetxController {
         "PASSWORD": password,
         "NAME": name,
         "NAME_ROLE": nameRole,
-        "PROFILEPIC_USER": null,
+        "PROFILEPIC_USER": "",
         "PHONE": phone,
-        "DATE_BIRTH": null
+        "DATE_BIRTH": ""
       },
     );
     isAuth = true;
