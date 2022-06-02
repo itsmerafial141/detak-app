@@ -1,49 +1,46 @@
+// ignore: use_key_in_widget_constructors
+import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme/colors.dart';
 import '../../core/theme/fonts.dart';
-import '../../core/utils/helpers.dart';
+import 'custom_text_widget.dart';
 
-class CustomAppBarWidget extends StatelessWidget {
-  const CustomAppBarWidget({
-    Key? key,
-    required this.leadingOnPressed,
-    required this.title,
-  }) : super(key: key);
-
-  final Function() leadingOnPressed;
-  final String title;
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  // ignore: use_key_in_widget_constructors
+  const CustomAppBar({
+    this.colorBackground,
+    this.textColor,
+    this.label,
+    this.centerTitle,
+    this.leadingColor,
+    this.leading,
+  });
+  final Color? colorBackground;
+  final Color? textColor;
+  final Color? leadingColor;
+  final String? label;
+  final bool? centerTitle;
+  final Widget? leading;
 
   @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        SizedBox(
-          width: percentageOfScreenWidth(70),
-          child: Text(
-            title,
-            overflow: TextOverflow.ellipsis,
-            softWrap: false,
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            style: CustomFonts.montserratBold18.copyWith(
-              color: CustomColors.primaryColor,
-            ),
-          ),
+  PreferredSize build(BuildContext context) {
+    return PreferredSize(
+      preferredSize: Size(100.sw, 45),
+      child: AppBar(
+        backgroundColor: colorBackground ?? CustomColors.primaryColor,
+        elevation: 0,
+        centerTitle: centerTitle ?? true,
+        title: CustomText(
+          label ?? "DetakApp",
+          style: CustomFonts.montserratBold18,
+          color: textColor ?? Colors.white,
         ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: IconButton(
-            splashRadius: 20,
-            onPressed: leadingOnPressed,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: CustomColors.primaryColor,
-            ),
-          ),
-        ),
-      ],
+        leading: leading ?? const SizedBox(),
+      ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size(double.infinity, 45);
 }

@@ -39,7 +39,7 @@ class LoginView extends GetView<LoginController> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, index) {
-              return listWidget[index].wrapMargin(h: 8.sh);
+              return listWidget[index].margin(horizontal: 8.sh);
             },
             separatorBuilder: (_, __) {
               return _customDivider(height: 2.sh);

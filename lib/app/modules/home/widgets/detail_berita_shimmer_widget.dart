@@ -63,7 +63,7 @@ class DetailBeritaShimmerWidget extends StatelessWidget {
           itemCount: 5,
         ),
       ],
-    ).wrapMargin(h: 3.sh).shimmer();
+    ).margin(horizontal: 3.sh).shimmer();
   }
 
   Widget _customDivider({double? height, double? width}) {

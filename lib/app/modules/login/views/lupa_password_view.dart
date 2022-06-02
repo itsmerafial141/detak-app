@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:detakapp/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,20 @@ class LupaPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(LoginController());
     return Scaffold(
+      appBar: CustomAppBar(
+        colorBackground: Colors.white,
+        textColor: CustomColors.primaryColor,
+        label: "Lupa Password",
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: CustomColors.primaryColor,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -21,17 +36,6 @@ class LupaPasswordView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: Get.mediaQuery.viewPadding.top + 10,
-              ),
-              CustomAppBarWidget(
-                leadingOnPressed: () {
-                  controller.lupaPasswordEmailController.clear();
-                  controller.lupaPasswordEmailErrorController = false;
-                  Get.back();
-                },
-                title: "Lupa Password",
-              ),
               SizedBox(
                 height: percentageOfScreenHeight(5),
               ),

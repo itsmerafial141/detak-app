@@ -2,7 +2,7 @@
 
 import 'package:detakapp/app/modules/home/widgets/home_shimmer_widdget.dart';
 import 'package:detakapp/app/modules/video/controllers/video_controller.dart';
-import 'package:detakapp/app/widgets/custom_text_widget.dart';
+import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../../../../core/utils/helpers.dart';
+import '../../../widgets/custom_app_bar_widget.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/custom_card_berita_widget.dart';
 import '../widgets/custom_main_card_widget.dart';
@@ -23,18 +24,8 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 50),
-        child: AppBar(
-          backgroundColor: CustomColors.secondaryColor,
-          elevation: 0,
-          centerTitle: true,
-          title: CustomText(
-            "DetakApp",
-            style: CustomFonts.montserratBold18,
-            color: CustomColors.white,
-          ),
-        ),
+      appBar: CustomAppBar(
+        colorBackground: CustomColors.secondaryColor,
       ),
       body: SingleChildScrollView(
         // Stack main content with background
@@ -50,18 +41,22 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _mainView() {
+    List<Widget> listMainView = [
+      _listMainBerita().margin(top: 20.sh),
+      _customSubTitle(tittle: "Berita").margin(horizontal: 3.sh),
+      _listBerita().margin(horizontal: 3.sh),
+    ];
     return controller.obx(
-      (_) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _customDivider(height: 20.sh),
-          _listMainBerita(),
-          _customDivider(height: 3.sh),
-          _customSubTitle(tittle: "Berita").wrapMargin(h: 3.sh),
-          _customDivider(height: 3.sh),
-          _listBerita().wrapMargin(h: 3.sh),
-          _customDivider(height: 3.sh),
-        ],
+      (_) => ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (_, index) {
+          return listMainView[index];
+        },
+        separatorBuilder: (_, __) {
+          return CustomDivider(height: 3.sh);
+        },
+        itemCount: listMainView.length,
       ),
       onLoading: const HomeShimmer(),
     );
@@ -100,7 +95,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  SizedBox _listMainBerita() {
+  Widget _listMainBerita() {
     var listData = Get.put(VideoController()).listDataVideo;
     return SizedBox(
       height: percentageOfScreenHeight(25),
@@ -119,13 +114,6 @@ class HomeView extends GetView<HomeController> {
         },
         itemCount: listData.length + 1,
       ),
-    );
-  }
-
-  SizedBox _customDivider({double? height, double? widht}) {
-    return SizedBox(
-      height: height ?? 0,
-      width: widht ?? 0,
     );
   }
 
