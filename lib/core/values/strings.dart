@@ -1,7 +1,7 @@
 class CustomStrings {
   static List listBottomNavigation = [
     ["assets/icons/home.png", "Home"],
-    ["assets/icons/video.png", "Video"],
+    // ["assets/icons/video.png", "Video"],
     ["assets/icons/test.png", "Test"],
     ["assets/icons/profile.png", "Profile"],
   ];

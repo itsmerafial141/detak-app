@@ -26,12 +26,11 @@ void main() async {
       future: authController.autoLoginUser(),
       builder: (_, snapshot) {
         return snapshot.connectionState == ConnectionState.done
-            ? GetBuilder<AuthController>(
-                init: AuthController(),
-                builder: (_) {
+            ? Obx(
+                () {
                   return GetMaterialApp(
                     title: "Application",
-                    home: authController.isAuth
+                    home: authController.isAuth.value
                         ? const NavigasiView()
                         : const LoginView(),
                     getPages: AppPages.routes,

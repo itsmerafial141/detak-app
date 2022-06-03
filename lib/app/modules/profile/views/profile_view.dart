@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:detakapp/app/modules/navigasi/controllers/navigasi_controller.dart';
 import 'package:detakapp/app/modules/profile/views/hasil_test_view.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +10,7 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../../../../core/utils/helpers.dart';
 import '../../../../core/values/strings.dart';
+import '../../login/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {

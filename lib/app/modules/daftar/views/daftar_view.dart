@@ -2,6 +2,7 @@ import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 
@@ -83,6 +84,7 @@ class DaftarView extends GetView<DaftarController> {
                       return _customTextField(
                         hintText: listTextField[index]['hint'].toString(),
                         errorText: listTextField[index]['error'].toString(),
+                        obscureText: index > 2 ? true : false,
                         textInputType: textInputType[index],
                         index: index,
                       );
@@ -141,6 +143,11 @@ class DaftarView extends GetView<DaftarController> {
     return TextField(
       controller: controller.listController[index],
       keyboardType: textInputType ?? TextInputType.text,
+      inputFormatters: index == 0
+          ? <TextInputFormatter>[
+              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+            ]
+          : null,
       textInputAction: TextInputAction.next,
       obscureText: obscureText ?? false,
       decoration: InputDecoration(

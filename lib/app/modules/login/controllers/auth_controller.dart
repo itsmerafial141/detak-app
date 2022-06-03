@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
 import 'package:detakapp/app/modules/login/providers/login_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,29 +12,17 @@ import 'package:get_storage/get_storage.dart';
 class AuthController extends GetxController {
   var loginProvider = Get.put(LoginProvider());
 
-  var isAuth = false;
-  var isDataNotExist = false;
-
-  final Map<String, String> _dataUser = {
-    "id": "AD001",
-    "email": "admin@gmail.com",
-    "password": "admin1234"
-  };
+  var isAuth = false.obs;
+  var isDataNotExist = "";
 
   Future<void> autoLoginUser() async {
-    final service = GetStorage();
-    if (service.read("dataUser") != null) {
+    if (storageIsNotNull("dataUser")) {
       var dataUser = GetStorage().read("dataUser");
-      try {
-        login(
-          dataUser["EMAIL"].toString(),
-          dataUser["PASSWORD"].toString(),
-        );
-      } catch (err) {
-        err.printError();
-      }
+      login(
+        dataUser["EMAIL"].toString(),
+        dataUser["PASSWORD"].toString(),
+      );
     }
-    update();
   }
 
   void login(String email, String password) {
@@ -44,7 +34,7 @@ class AuthController extends GetxController {
       )
           .then(
         (value) {
-          print("success");
+          log("success");
           _saveToStorage(
             email: value.data.email,
             name: value.data.name,
@@ -55,15 +45,16 @@ class AuthController extends GetxController {
         },
       ).onError(
         (error, stackTrace) {
-          print("onError");
+          log("onError");
           stackTrace.printError();
-          error.printError();
-          isDataNotExist = true;
+          log(error.toString());
+          isDataNotExist = error.toString();
         },
       ).whenComplete(
         () {
+          Get.back();
           update();
-          print("whernComplete");
+          log("whernComplete");
         },
       );
     } catch (err) {
@@ -90,31 +81,21 @@ class AuthController extends GetxController {
         "DATE_BIRTH": null
       },
     );
-    isAuth = true;
-    isDataNotExist = false;
-    update();
+    isAuth.value = true;
+    isDataNotExist = "";
   }
 
   void logout() {
     if (storageIsNotNull("dataUser")) {
       GetStorage().erase();
-      isAuth = false;
+      isAuth.value = false;
     }
-    update();
   }
 
   @override
   void dispose() {
     super.dispose();
-    isDataNotExist = false;
-  }
-
-  bool emailCheckFromDB(String email) {
-    return email.contains(_dataUser['email'].toString());
-  }
-
-  bool passwordCheckFromDB(String password) {
-    return password.contains(_dataUser['password'].toString());
+    isDataNotExist = "";
   }
 
   bool storageIsNotNull(String key) {

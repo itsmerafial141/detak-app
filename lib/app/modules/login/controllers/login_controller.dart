@@ -1,10 +1,11 @@
 // ignore_for_file: avoid_print
 
-import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../widgets/custom_loading_dialog_widget.dart';
+import '../../login/controllers/auth_controller.dart';
 
 class LoginController extends GetxController {
   late List<TextEditingController> listloginController;
@@ -44,6 +45,7 @@ class LoginController extends GetxController {
       _passwordIsError(),
     ];
     if (_allTextFieldIsNotEmpty() && _allTextFieldIsNotError()) {
+      CustomLoadingDialog.customLoadingDialog();
       print("login");
       Get.put(AuthController()).login(
         listloginController[0].text, //emailController

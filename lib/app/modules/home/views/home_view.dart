@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:detakapp/app/modules/home/widgets/home_shimmer_widdget.dart';
-import 'package:detakapp/app/modules/video/controllers/video_controller.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:get/get.dart';
 
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
-import '../../../../core/utils/helpers.dart';
 import '../../../widgets/custom_app_bar_widget.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/custom_card_berita_widget.dart';
@@ -41,50 +39,36 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _mainView() {
-    List<Widget> listMainView = [
-      _listMainBerita().margin(top: 20.sh),
-      _customSubTitle(tittle: "Berita").margin(horizontal: 3.sh),
-      _listBerita().margin(horizontal: 3.sh),
-    ];
     return controller.obx(
-      (_) => ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (_, index) {
-          return listMainView[index];
-        },
-        separatorBuilder: (_, __) {
-          return CustomDivider(height: 3.sh);
-        },
-        itemCount: listMainView.length,
-      ),
-      onLoading: const HomeShimmer(),
-    );
+        (_) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _listMainBerita().margin(top: 20.sh),
+                CustomDivider(height: 3.sh),
+                _customSubTitle(tittle: "Berita").margin(horizontal: 3.sh),
+                CustomDivider(height: 3.sh),
+                _listBerita().margin(horizontal: 3.sh).margin(bottom: 3.sh),
+              ],
+            ),
+        onLoading: const HomeShimmer());
   }
 
   Widget _listBerita() {
-    return controller.obx(
-      (_) {
-        return ListView.separated(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (_, index) {
-            return CustomCardBeritaWidget(
-              index: index,
-              listData: controller.listBerita,
-            );
-          },
-          separatorBuilder: (_, __) {
-            return const SizedBox(
-              height: 20,
-            );
-          },
-          itemCount: controller.listBerita[0].data.length,
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (_, index) {
+        return CustomCardBeritaWidget(
+          index: index,
+          listData: controller.listBerita,
         );
       },
-      onLoading: const Center(
-        child: CircularProgressIndicator(),
-      ),
+      separatorBuilder: (_, __) {
+        return CustomDivider(
+          height: 2.sh,
+        );
+      },
+      itemCount: controller.listBerita[0].data.length,
     );
   }
 
@@ -96,23 +80,25 @@ class HomeView extends GetView<HomeController> {
   }
 
   Widget _listMainBerita() {
-    var listData = Get.put(VideoController()).listDataVideo;
     return SizedBox(
-      height: percentageOfScreenHeight(25),
+      height: 25.sh,
+      width: 100.sw,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, __) {
-          return SizedBox(
-            width: 3.sh,
-          );
+          return CustomDivider(width: 3.sh);
         },
         separatorBuilder: (_, index) {
-          return CustomMainCardWidget(
-            index: index,
-            listData: listData,
+          return Stack(
+            children: [
+              CustomMainCardWidget(
+                index: index,
+                listData: controller.dataBeritaSlide,
+              ),
+            ],
           );
         },
-        itemCount: listData.length + 1,
+        itemCount: controller.dataBeritaSlide.data.length + 1,
       ),
     );
   }

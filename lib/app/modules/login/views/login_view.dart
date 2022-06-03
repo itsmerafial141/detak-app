@@ -161,7 +161,8 @@ class LoginView extends GetView<LoginController> {
     return GetBuilder<AuthController>(
       init: AuthController(),
       builder: (authController) {
-        return authController.isDataNotExist
+        return authController.isDataNotExist != "" ||
+                authController.isDataNotExist.isNotEmpty
             ? Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(15),
@@ -174,7 +175,7 @@ class LoginView extends GetView<LoginController> {
                   color: CustomColors.red.withOpacity(0.2),
                 ),
                 child: CustomText(
-                  "Email atau Password anda salah!",
+                  authController.isDataNotExist,
                   style: CustomFonts.montserratBold12,
                   color: CustomColors.red,
                 ),

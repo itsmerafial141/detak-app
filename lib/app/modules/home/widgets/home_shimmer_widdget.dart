@@ -24,7 +24,7 @@ class HomeShimmer extends StatelessWidget {
             },
             separatorBuilder: (_, __) {
               return Skelaton(
-                width: 45.sh,
+                width: 40.sh,
               );
             },
             itemCount: 3,
