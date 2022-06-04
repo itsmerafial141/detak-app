@@ -23,9 +23,12 @@ class CustomLoadingDialog {
                   CustomDivider(
                     height: 1.sh,
                   ),
-                  CustomText(
-                    "Loading...",
+                  DefaultTextStyle(
                     style: CustomFonts.montserratBold12,
+                    child: CustomText(
+                      "Loading...",
+                      style: CustomFonts.montserratBold12,
+                    ),
                   ),
                 ],
               ).margin(all: 5.sh),

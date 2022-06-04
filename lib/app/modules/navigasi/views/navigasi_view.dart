@@ -30,7 +30,7 @@ class NavigasiView extends GetView<NavigasiController> {
           children: [
             HomeView(),
             // const VideoView(),
-            const TestView(),
+            TestView(),
             ProfileView(),
           ],
         );

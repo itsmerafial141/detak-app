@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:detakapp/app/modules/login/providers/login_provider.dart';
+import 'package:detakapp/app/modules/profile/controllers/profile_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -12,8 +13,12 @@ import 'package:get_storage/get_storage.dart';
 class AuthController extends GetxController {
   var loginProvider = Get.put(LoginProvider());
 
+  var profileController = Get.put(ProfileController());
+
   var isAuth = false.obs;
   var isDataNotExist = "";
+
+  var keepAwakae = false;
 
   Future<void> autoLoginUser() async {
     if (storageIsNotNull("dataUser")) {
@@ -22,6 +27,8 @@ class AuthController extends GetxController {
         dataUser["EMAIL"].toString(),
         dataUser["PASSWORD"].toString(),
       );
+      print(dataUser["NAME"].toString());
+      print(dataUser["PHONE"].toString());
     }
   }
 
@@ -81,8 +88,10 @@ class AuthController extends GetxController {
         "DATE_BIRTH": null
       },
     );
+
     isAuth.value = true;
     isDataNotExist = "";
+    profileController.initializeProfile();
   }
 
   void logout() {

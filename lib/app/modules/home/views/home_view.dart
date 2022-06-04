@@ -15,10 +15,13 @@ import '../widgets/custom_card_berita_widget.dart';
 import '../widgets/custom_main_card_widget.dart';
 
 class HomeView extends GetView<HomeController> {
+  HomeView({
+    Key? key,
+  }) : super(key: key);
+
   @override
   var controller = Get.put(HomeController());
 
-  HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

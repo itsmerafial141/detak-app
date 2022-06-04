@@ -23,6 +23,7 @@ class CustomMainCardWidget extends GetView<HomeController> {
       onTap: () {
         controller.detailBerita(listData.data[index].idNews);
       },
+      borderRadius: BorderRadius.circular(14),
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [

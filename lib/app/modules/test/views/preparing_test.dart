@@ -1,5 +1,10 @@
+// ignore_for_file: import_of_legacy_library_into_null_safe
+
+import 'package:chewie/chewie.dart';
 import 'package:detakapp/app/routes/app_pages.dart';
+import 'package:detakapp/app/widgets/skelaton_widget.dart';
 import 'package:detakapp/core/theme/colors.dart';
+import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:detakapp/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,6 +35,10 @@ class PreparingTestView extends GetView<TestController> {
           leading: IconButton(
             onPressed: () {
               controller.youtubePlayerController.close();
+              controller.chewieController!.pause();
+              controller.chewieController!.seekTo(
+                const Duration(milliseconds: 0),
+              );
               Get.back();
             },
             icon: Icon(
@@ -60,9 +69,27 @@ class PreparingTestView extends GetView<TestController> {
                 padding: EdgeInsets.symmetric(
                   horizontal: percentageOfScreenWidth(5),
                 ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: controller.player,
+                child: GetBuilder<TestController>(
+                  init: TestController(),
+                  builder: (controller) => Expanded(
+                    child: controller.chewieController != null &&
+                            controller.chewieController!.videoPlayerController
+                                .value.isInitialized
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: SizedBox(
+                              height: 30.sh,
+                              width: double.infinity,
+                              child: Chewie(
+                                controller: controller.chewieController!,
+                              ),
+                            ).backgroundColor(color: Colors.black),
+                          )
+                        : Skelaton(
+                            height: 30.sh,
+                            width: double.infinity,
+                          ).shimmer(),
+                  ),
                 ),
               ),
               const Spacer(),
@@ -72,6 +99,11 @@ class PreparingTestView extends GetView<TestController> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
+                    controller.chewieController!.pause();
+                    controller.chewieController!.seekTo(
+                      const Duration(milliseconds: 0),
+                    );
+
                     Get.toNamed(AppPages.KS);
                   },
                   child: const Text("Ambil tes sekarang"),

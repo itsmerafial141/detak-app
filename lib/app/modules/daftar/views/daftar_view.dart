@@ -1,6 +1,7 @@
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,8 +9,7 @@ import 'package:get/get.dart';
 
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
-import '../../../../core/utils/helpers.dart';
-import '../../../routes/app_pages.dart';
+import '../../../../core/values/strings.dart';
 import '../../../widgets/custom_app_bar_widget.dart';
 import '../controllers/daftar_controller.dart';
 
@@ -18,29 +18,6 @@ class DaftarView extends GetView<DaftarController> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> listTextField = [
-      {
-        "hint": "Nama",
-        "error": "* Nama harus lebih dari 2 karakter.",
-      },
-      {
-        "hint": "Email",
-        "error": "* Email tidak sesuai. contoh : user@gmail.com",
-      },
-      {
-        "hint": "No. Handphone",
-        "error": "* No. Handphone tidak sesuai",
-      },
-      {
-        "hint": "Password",
-        "error":
-            "* Password harus lebih dari 7 karakter.\n* Password harus terdapat minimal satu digit.",
-      },
-      {
-        "hint": "Konfirm Password",
-        "error": "* Password tidak sesuai.",
-      },
-    ];
     List<TextInputType> textInputType = [
       TextInputType.name,
       TextInputType.emailAddress,
@@ -72,65 +49,78 @@ class DaftarView extends GetView<DaftarController> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
-                    "Buat akun baru",
-                    style: CustomFonts.montserratSemibold12,
-                  ),
+                  _customSubTitle(),
                   CustomDivider(height: 4.sh),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (_, index) {
-                      return _customTextField(
-                        hintText: listTextField[index]['hint'].toString(),
-                        errorText: listTextField[index]['error'].toString(),
-                        obscureText: index > 2 ? true : false,
-                        textInputType: textInputType[index],
-                        index: index,
-                      );
-                    },
-                    separatorBuilder: (_, __) {
-                      return CustomDivider(height: 2.sh);
-                    },
-                    itemCount: listTextField.length,
-                  ),
+                  _listTextField(textInputType),
                   CustomDivider(height: 5.sh),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Get.offAllNamed(AppPages.LG);
-                      controller.daftar();
-                    },
-                    child: const Text("DAFTAR"),
-                  ),
-                  SizedBox(
-                    height: percentageOfScreenHeight(1),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Sudah punya akun? ",
-                        style: CustomFonts.montserratMedium10,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.offAllNamed(AppPages.LG);
-                        },
-                        child: Text(
-                          "Login",
-                          style: CustomFonts.montserratMedium10.copyWith(
-                            color: CustomColors.primaryColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  _buttonDaftar(),
+                  CustomDivider(height: 4.sh),
+                  _loginText(),
                 ],
               ).margin(horizontal: 3.sh, top: 8.sh);
             },
           ),
         ),
       ),
+    );
+  }
+
+  Widget _loginText() {
+    return Center(
+      child: RichText(
+        text: TextSpan(
+          style: CustomFonts.montserratMedium10,
+          children: [
+            const TextSpan(text: "Sudah punya akun? "),
+            TextSpan(
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  Get.back();
+                },
+              text: "Login",
+              style: CustomFonts.montserratMedium10.copyWith(
+                color: CustomColors.primaryColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buttonDaftar() {
+    return ElevatedButton(
+      onPressed: () {
+        controller.daftar();
+      },
+      child: const Text("DAFTAR"),
+    );
+  }
+
+  Widget _listTextField(List<TextInputType> textInputType) {
+    return ListView.separated(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (_, index) {
+        return _customTextField(
+          hintText: CustomStrings.listTextField[index]['hint'].toString(),
+          errorText: CustomStrings.listTextField[index]['error'].toString(),
+          obscureText: index > 2 ? true : false,
+          textInputType: textInputType[index],
+          index: index,
+        );
+      },
+      separatorBuilder: (_, __) {
+        return CustomDivider(height: 2.sh);
+      },
+      itemCount: CustomStrings.listTextField.length,
+    );
+  }
+
+  Widget _customSubTitle() {
+    return CustomText(
+      "Buat akun baru",
+      style: CustomFonts.montserratSemibold12,
     );
   }
 

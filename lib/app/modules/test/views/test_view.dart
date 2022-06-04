@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, must_be_immutable
 
 import 'package:detakapp/app/modules/test/views/preparing_test.dart';
 import 'package:flutter/gestures.dart';
@@ -13,7 +13,12 @@ import '../../../widgets/custom_text_widget.dart';
 import '../controllers/test_controller.dart';
 
 class TestView extends GetView<TestController> {
-  const TestView({Key? key}) : super(key: key);
+  TestView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  var controller = Get.put(TestController());
 
   @override
   Widget build(BuildContext context) {
