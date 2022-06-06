@@ -76,25 +76,26 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                                   .data[index]
                                                   .totalScore
                                                   .toInt >
-                                              17
+                                              15
                                           ? CustomColors.red
                                           : CustomColors.green,
                                       size: 5.sh,
                                     ),
                                     CustomDivider(
-                                      width: 2.sh,
+                                      width: 1.sh,
                                     ),
-                                    CustomText(
+                                    AutoSizeText(
                                       controller.daftarRiwayatModel.data[index]
                                           .hasilSadari,
-                                      style: CustomFonts.montserratBold20,
+                                      maxLines: 1,
+                                      style: CustomFonts.montserratBold16,
                                     ),
                                     const Spacer(),
                                     Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.end,
                                       children: [
-                                        CustomText(
+                                        AutoSizeText(
                                           controller
                                               .datePicker(
                                                   value: controller
@@ -104,14 +105,18 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                                       .toString(),
                                                   index: 0)
                                               .formatedDate("d MMMM yyyy"),
-                                          style: CustomFonts.montserratBold12,
+                                          maxLines: 1,
+                                          style:
+                                              CustomFonts.montserratRegular10,
                                         ),
-                                        CustomText(
+                                        AutoSizeText(
                                           controller.daftarRiwayatModel
                                               .data[index].dateSadari
                                               .toString()
                                               .formatedDate("h:mm a"),
-                                          style: CustomFonts.montserratBold12,
+                                          maxLines: 1,
+                                          style:
+                                              CustomFonts.montserratRegular10,
                                         ),
                                       ],
                                     ),
