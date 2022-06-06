@@ -1,0 +1,42 @@
+{
+    "status": true,
+    "data": {
+        "data_sadari": [{
+            "ID_SADARI": "14",
+            "EMAIL": "danngriel@gmail.com",
+            "TOTAL_SCORE": "12",
+            "HASIL_SADARI": "Low Risk",
+            "KETERANGAN": "Risiko rendah tanpa keluhan gejala klinis : perbaiki gaya hidup, hindari merokok, kelola stress dan pola hidup sehat.",
+            "DATE_SADARI": "2022-06-03 12: 57: 31"
+        }],
+        "data_sadari_detail": [{
+                "CONTENT_QUESTION": "Umur",
+                "ANSWER": "22"
+            },
+            {
+                "CONTENT_QUESTION": "Jenis Kelamin",
+                "ANSWER": "Male"
+            },
+            {
+                "CONTENT_QUESTION": "Mempunyai penyakit arteri koroner atau ≥3 faktor risiko (DM,hipertensi,hiperkolesterol,obesitas,perokok)",
+                "ANSWER": "Yes"
+            },
+            {
+                "CONTENT_QUESTION": "Keringat dingin tanpa sebab",
+                "ANSWER": "No"
+            },
+            {
+                "CONTENT_QUESTION": "Nyeri menjalar ke lengan, bahu, leher, atau rahang",
+                "ANSWER": "No"
+            },
+            {
+                "CONTENT_QUESTION": "Nyeri terjadi atau memburuk dengan menarik nafas",
+                "ANSWER": "No"
+            },
+            {
+                "CONTENT_QUESTION": "Nyeri pada saat dilakukan pemeriksaan dengan ditekan",
+                "ANSWER": "No"
+            }
+        ]
+    }
+}

@@ -2,6 +2,7 @@
 
 import 'package:detakapp/core/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../helpers.dart';
@@ -18,6 +19,11 @@ extension StringExtension on String {
   /// Mengembalikan nilai integer dari string
   int get toInt => int.parse(this);
   String get fromUrl => "https://detak.bgskr-project.my.id$this";
+
+  String formatedDate(String pattern) {
+    var formatDate = DateFormat(pattern, "id_ID");
+    return formatDate.format(DateTime.parse(this));
+  }
 }
 
 extension WidgetExtension on Widget {
@@ -91,5 +97,29 @@ extension WidgetExtension on Widget {
       highlightColor: CustomColors.white,
       child: this,
     );
+  }
+
+  Widget button(
+      {required Function() onPressed,
+      Color? backgroundColor,
+      double? borderRadius,
+      double? elevation}) {
+    return ElevatedButton(
+        onPressed: onPressed,
+        style: ButtonStyle(
+          elevation: MaterialStateProperty.all(elevation ?? 0),
+          overlayColor: MaterialStateProperty.all(
+            CustomColors.black.withOpacity(0.1),
+          ),
+          backgroundColor:
+              MaterialStateProperty.all(backgroundColor ?? Colors.white),
+          padding: MaterialStateProperty.all(EdgeInsets.zero),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 10),
+            ),
+          ),
+        ),
+        child: this);
   }
 }

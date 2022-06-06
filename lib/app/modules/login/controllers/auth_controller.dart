@@ -55,7 +55,8 @@ class AuthController extends GetxController {
           log("onError");
           stackTrace.printError();
           log(error.toString());
-          isDataNotExist = error.toString();
+          isDataNotExist =
+              "Terjadi gangguan pada server, silahkan login kembali.";
         },
       ).whenComplete(
         () {

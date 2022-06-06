@@ -8,8 +8,8 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../controllers/profile_controller.dart';
 
-class HasilTestDetailView extends StatelessWidget {
-  HasilTestDetailView({Key? key}) : super(key: key);
+class NHasilTestDetailView extends StatelessWidget {
+  NHasilTestDetailView({Key? key}) : super(key: key);
 
   var controllers = Get.put(ProfileController());
 

@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:detakapp/app/modules/navigasi/controllers/navigasi_controller.dart';
-import 'package:detakapp/app/modules/profile/views/hasil_test_view.dart';
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -120,10 +120,7 @@ class ProfileView extends GetView<ProfileController> {
                     onTap: () {
                       switch (index) {
                         case 0: //Hasil Test
-                          Get.to(
-                            HasilTestView(),
-                            arguments: {"totalTest": 72},
-                          );
+                          Get.toNamed(AppPages.DR);
                           break;
                         case 1: //logout
                           Get.bottomSheet(

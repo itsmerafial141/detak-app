@@ -12,9 +12,9 @@ class CustomColors {
 
   // Secondary Colors
   static Color secondaryColor = const Color.fromRGBO(255, 112, 112, 1);
-  static Color green = const Color.fromRGBO(34, 176, 125, 1);
+  static Color green = const Color.fromRGBO(0, 192, 77, 1);
   static Color orange = const Color.fromRGBO(255, 135, 0, 1);
-  static Color red = const Color.fromRGBO(251, 65, 65, 1);
+  static Color red = const Color.fromRGBO(226, 33, 33, 1);
 
   // Text Colors
   static Color disable = const Color.fromRGBO(229, 229, 229, 1);
@@ -23,7 +23,7 @@ class CustomColors {
   static Color darkGray = const Color.fromRGBO(105, 105, 116, 1);
   static Color grey = const Color.fromRGBO(146, 146, 157, 1);
   static Color grey50 = const Color.fromRGBO(181, 181, 195, 1);
-  static Color whiteGrey = const Color.fromRGBO(245, 245, 245, 1);
+  static Color whiteGrey = const Color.fromRGBO(238, 238, 238, 1);
   static Color white = const Color.fromRGBO(255, 255, 255, 1);
   static Color lineDark = const Color.fromRGBO(234, 234, 234, 1);
 }

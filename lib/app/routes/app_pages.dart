@@ -1,3 +1,6 @@
+import 'package:detakapp/app/modules/profile/bindings/daftar_riwayat_binding.dart';
+import 'package:detakapp/app/modules/profile/bindings/hasil_test_binding.dart';
+import 'package:detakapp/app/modules/profile/views/daftar_riwayat_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/daftar/bindings/daftar_binding.dart';
@@ -11,6 +14,7 @@ import '../modules/login/views/login_view.dart';
 import '../modules/navigasi/bindings/navigasi_binding.dart';
 import '../modules/navigasi/views/navigasi_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/hasil_test_view.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
@@ -32,6 +36,8 @@ class AppPages {
   static const TS = Routes.TEST;
   static const VD = Routes.VIDEO;
   static const KS = Routes.KUSIONER;
+  static const HT = Routes.HASIL_TEST;
+  static const DR = Routes.DAFTAR_RIWAYAT;
 
   static final routes = [
     GetPage(
@@ -73,6 +79,16 @@ class AppPages {
       name: _Paths.KUSIONER,
       page: () => const KusionerView(),
       binding: KusionerBinding(),
+    ),
+    GetPage(
+      name: _Paths.HASIL_TEST,
+      page: () => const HasilTestView(),
+      binding: HasilTestBinding(),
+    ),
+    GetPage(
+      name: _Paths.DAFTAR_RIWAYAT,
+      page: () => const DaftarRiwayatView(),
+      binding: DaftarRiwayatBinding(),
     ),
   ];
 }
