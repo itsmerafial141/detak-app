@@ -103,7 +103,8 @@ extension WidgetExtension on Widget {
       {required Function() onPressed,
       Color? backgroundColor,
       double? borderRadius,
-      double? elevation}) {
+      double? elevation,
+      Size? size}) {
     return ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
@@ -111,6 +112,8 @@ extension WidgetExtension on Widget {
           overlayColor: MaterialStateProperty.all(
             CustomColors.black.withOpacity(0.1),
           ),
+          minimumSize:
+              MaterialStateProperty.all(size ?? Size(double.infinity, 5.sh)),
           backgroundColor:
               MaterialStateProperty.all(backgroundColor ?? Colors.white),
           padding: MaterialStateProperty.all(EdgeInsets.zero),

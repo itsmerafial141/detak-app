@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:detakapp/app/modules/profile/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/widgets/custom_app_bar_widget.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
@@ -37,7 +38,7 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
           width: 100.sw,
           child: controller.obx(
               (_) => ListView.separated(
-                    padding: EdgeInsets.only(top: 4.sh),
+                    padding: EdgeInsets.only(top: 4.sh, bottom: 4.sh),
                     itemBuilder: (_, index) {
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,10 +47,12 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                         children: [
                           Expanded(
                             flex: 3,
-                            child: CustomText(
+                            child: AutoSizeText(
                               controller
                                   .daftarRiwayatModel.data[index].totalScore,
+                              textAlign: TextAlign.center,
                               style: CustomFonts.montserratRegular96,
+                              maxLines: 1,
                             ),
                           ),
                           CustomDivider(
@@ -68,7 +71,14 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                   children: [
                                     Icon(
                                       Icons.circle,
-                                      color: CustomColors.green,
+                                      color: controller
+                                                  .daftarRiwayatModel
+                                                  .data[index]
+                                                  .totalScore
+                                                  .toInt >
+                                              17
+                                          ? CustomColors.red
+                                          : CustomColors.green,
                                       size: 5.sh,
                                     ),
                                     CustomDivider(
@@ -89,7 +99,7 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                               .datePicker(
                                                   value: controller
                                                       .daftarRiwayatModel
-                                                      .data[0]
+                                                      .data[index]
                                                       .dateSadari
                                                       .toString(),
                                                   index: 0)
@@ -97,8 +107,8 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                           style: CustomFonts.montserratBold12,
                                         ),
                                         CustomText(
-                                          controller.daftarRiwayatModel.data[0]
-                                              .dateSadari
+                                          controller.daftarRiwayatModel
+                                              .data[index].dateSadari
                                               .toString()
                                               .formatedDate("h:mm a"),
                                           style: CustomFonts.montserratBold12,

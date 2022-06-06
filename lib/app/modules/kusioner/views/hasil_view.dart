@@ -1,5 +1,4 @@
 import 'package:detakapp/app/modules/kusioner/controllers/kusioner_controller.dart';
-import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:detakapp/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -75,7 +74,9 @@ class HasilView extends GetView<KusionerController> {
                       const Spacer(),
                       ElevatedButton(
                         onPressed: () {
-                          Get.offAllNamed(AppPages.NV);
+                          Get.back();
+                          Get.back();
+                          Get.back();
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(

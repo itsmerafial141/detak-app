@@ -1,0 +1,32 @@
+{
+    "status": true,
+    "data": [{
+            "ID_QUESTION": "1",
+            "CONTENT_QUESTION": "Umur"
+        },
+        {
+            "ID_QUESTION": "2",
+            "CONTENT_QUESTION": "Jenis Kelamin"
+        },
+        {
+            "ID_QUESTION": "3",
+            "CONTENT_QUESTION": "Mempunyai penyakit arteri koroner atau ≥3 faktor risiko (DM,hipertensi,hiperkolesterol,obesitas,perokok)"
+        },
+        {
+            "ID_QUESTION": "4",
+            "CONTENT_QUESTION": "Keringat dingin tanpa sebab"
+        },
+        {
+            "ID_QUESTION": "5",
+            "CONTENT_QUESTION": "Nyeri menjalar ke lengan, bahu, leher, atau rahang"
+        },
+        {
+            "ID_QUESTION": "6",
+            "CONTENT_QUESTION": "Nyeri terjadi atau memburuk dengan menarik nafas"
+        },
+        {
+            "ID_QUESTION": "7",
+            "CONTENT_QUESTION": "Nyeri pada saat dilakukan pemeriksaan dengan ditekan"
+        }
+    ]
+}

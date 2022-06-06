@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:detakapp/app/modules/profile/controllers/hasil_test_controller.dart';
 import 'package:detakapp/app/widgets/custom_app_bar_widget.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
@@ -205,7 +206,7 @@ class HasilTestView extends GetView<HasilTestController> {
                       Row(
                         children: [
                           Expanded(
-                            flex: 6,
+                            flex: 9,
                             child: SizedBox(
                               height: 7.sh,
                               child: Align(
@@ -224,17 +225,18 @@ class HasilTestView extends GetView<HasilTestController> {
                             width: 2.sw,
                           ),
                           Expanded(
-                            flex: 1,
+                            flex: 2,
                             child: SizedBox(
                               height: 7.sh,
                               // width: 7.sh,
                               child: Align(
                                 alignment: Alignment.center,
-                                child: Text(
+                                child: AutoSizeText(
                                   controller.listDataHasilTest.data
                                       .dataSadariDetail[index].answer,
+                                  maxLines: 1,
                                   style: CustomFonts.montserratBold16,
-                                ),
+                                ).margin(all: 1.sh),
                               ),
                             )
                                 .backgroundColor(color: CustomColors.whiteGrey)

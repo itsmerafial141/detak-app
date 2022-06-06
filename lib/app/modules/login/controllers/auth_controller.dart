@@ -2,6 +2,7 @@
 
 import 'dart:developer';
 
+import 'package:detakapp/app/modules/login/controllers/login_controller.dart';
 import 'package:detakapp/app/modules/login/providers/login_provider.dart';
 import 'package:detakapp/app/modules/profile/controllers/profile_controller.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class AuthController extends GetxController {
   var loginProvider = Get.put(LoginProvider());
 
   var profileController = Get.put(ProfileController());
+  var loginController = Get.put(LoginController());
 
   var isAuth = false.obs;
   var isDataNotExist = "";
@@ -42,6 +44,11 @@ class AuthController extends GetxController {
           .then(
         (value) {
           log("success");
+          loginController.listloginController[0].text = "";
+          loginController.listloginController[1].text = "";
+          loginController.update();
+          isDataNotExist = "";
+          update();
           _saveToStorage(
             email: value.data.email,
             name: value.data.name,
@@ -55,8 +62,7 @@ class AuthController extends GetxController {
           log("onError");
           stackTrace.printError();
           log(error.toString());
-          isDataNotExist =
-              "Terjadi gangguan pada server, silahkan login kembali.";
+          isDataNotExist = error.toString();
         },
       ).whenComplete(
         () {

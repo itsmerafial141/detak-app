@@ -133,9 +133,10 @@ class DaftarView extends GetView<DaftarController> {
     return TextField(
       controller: controller.listController[index],
       keyboardType: textInputType ?? TextInputType.text,
-      inputFormatters: index == 0
+      inputFormatters: index == 0 || index == 2
           ? <TextInputFormatter>[
-              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+              FilteringTextInputFormatter.allow(
+                  RegExp(index == 2 ? "[0-9]" : "[a-z A-Z]")),
             ]
           : null,
       textInputAction: TextInputAction.next,
