@@ -5,7 +5,9 @@ import 'dart:developer';
 import 'package:detakapp/app/modules/kusioner/models/kuisoner_model.dart';
 import 'package:detakapp/app/modules/kusioner/providers/kuisoner_provider.dart';
 import 'package:detakapp/app/modules/kusioner/views/hasil_view.dart';
+import 'package:detakapp/app/modules/profile/providers/hasil_test_provider.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
+import 'package:detakapp/app/widgets/custom_loading_dialog_widget.dart';
 import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/core/theme/colors.dart';
 import 'package:detakapp/core/theme/fonts.dart';
@@ -14,9 +16,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../models/answer_model.dart';
+
 class KusionerController extends GetxController with StateMixin {
+  var hasilTestProvider = Get.put(HasilTestProvider());
   var kuisonerProvider = Get.put(KuisonerProvider());
   late KuisonerModel kuisonerModel;
+  late AnswerModel answerModel;
   late List<String> listAnswer;
   var indexKusioner = 0.obs;
 
@@ -219,6 +225,7 @@ class KusionerController extends GetxController with StateMixin {
   }
 
   void _postAnswer() {
+    CustomLoadingDialog.customLoadingDialog();
     try {
       kuisonerProvider
           .answer(
@@ -226,8 +233,12 @@ class KusionerController extends GetxController with StateMixin {
         email: GetStorage().read("dataUser")["EMAIL"],
       )
           .then((value) {
-        print(value.data.idSadari);
         log("Post Answer Success!");
+        answerModel = AnswerModel(
+          status: value.status,
+          data: value.data,
+        );
+        Get.back();
         Get.off(const HasilView());
       }).onError((error, stackTrace) {
         log("Post Answer onError!");

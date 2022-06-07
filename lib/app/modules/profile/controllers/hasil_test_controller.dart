@@ -4,6 +4,8 @@ import 'package:detakapp/app/modules/profile/models/detail_riwayat_test_model.da
 import 'package:detakapp/app/modules/profile/providers/hasil_test_provider.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/utils/helpers.dart';
+
 class HasilTestController extends GetxController with StateMixin {
   var htdProvider = Get.put(HasilTestProvider());
 
@@ -35,5 +37,9 @@ class HasilTestController extends GetxController with StateMixin {
     }).whenComplete(() {
       log("Detail riwayat test onComplete!");
     });
+  }
+
+  double countTestMetter(int totalTest) {
+    return percentageOfScreenWidth(40) * totalTest / 100;
   }
 }

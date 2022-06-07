@@ -42,10 +42,12 @@ class HasilTestView extends GetView<HasilTestController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             controller.obx(
-                (_) => CustomText(
-                      controller
-                          .listDataHasilTest.data.dataSadari[0].totalScore,
-                      style: CustomFonts.montserratRegular128,
+                (_) => Center(
+                      child: CustomText(
+                        controller
+                            .listDataHasilTest.data.dataSadari[0].totalScore,
+                        style: CustomFonts.montserratRegular128,
+                      ),
                     ),
                 onLoading: Skelaton(
                   height: 25.sh,
@@ -119,78 +121,134 @@ class HasilTestView extends GetView<HasilTestController> {
             CustomDivider(
               height: 2.sh,
             ),
-            Stack(
-              alignment: Alignment.bottomCenter,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+            controller.obx(
+              (_) {
+                return Stack(
+                  alignment: Alignment.bottomLeft,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(
+                          height: 8.sh,
+                          width: 40.sw,
+                        )
+                            .backgroundColor(color: CustomColors.green)
+                            .borderRadius(horizontalLeft: 7),
+                        SizedBox(
+                          height: 8.sh,
+                          width: 40.sw,
+                        )
+                            .backgroundColor(color: CustomColors.red)
+                            .borderRadius(horizontalRight: 7),
+                      ],
+                    ).margin(bottom: 0.5.sh),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image(
+                          height: 2.sh,
+                          width: 2.sh,
+                          fit: BoxFit.fitWidth,
+                          image: const AssetImage("assets/icons/polygon.png"),
+                        ),
+                        SizedBox(
+                          height: 9.sh,
+                          width: 1.sh,
+                        )
+                            .backgroundColor(color: CustomColors.subTittle)
+                            .borderRadius(all: 1),
+                      ],
+                    ).margin(
+                      left: controller
+                          .countTestMetter(
+                            controller.listDataHasilTest.data.dataSadari[0]
+                                .totalScore.toInt,
+                          )
+                          .sh,
+                    ),
+                  ],
+                );
+              },
+              onLoading: Center(
+                child: Skelaton(
+                  width: 80.sw,
+                  height: 8.sh,
+                ).shimmer(),
+              ),
+            ),
+            CustomDivider(
+              height: 1.sh,
+            ),
+            controller.obx(
+              (_) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    SizedBox(
-                      height: 8.sh,
-                      width: 40.sw,
-                    )
-                        .backgroundColor(color: CustomColors.green)
-                        .borderRadius(horizontalLeft: 7),
-                    SizedBox(
-                      height: 8.sh,
-                      width: 40.sw,
-                    )
-                        .backgroundColor(color: CustomColors.red)
-                        .borderRadius(horizontalRight: 7),
-                  ],
-                ).margin(bottom: 0.5.sh),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image(
-                      height: 2.sh,
-                      width: 2.sh,
-                      fit: BoxFit.fitWidth,
-                      image: const AssetImage("assets/icons/polygon.png"),
+                    Column(
+                      children: [
+                        CustomText(
+                          "<16",
+                          style: CustomFonts.montserratRegular24,
+                        ),
+                        CustomText(
+                          "Low Risk",
+                          style: CustomFonts.montserratRegular11,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: 9.sh,
-                      width: 1.sh,
-                    )
-                        .backgroundColor(color: CustomColors.subTittle)
-                        .borderRadius(all: 1),
+                    Column(
+                      children: [
+                        CustomText(
+                          "<17",
+                          style: CustomFonts.montserratRegular24,
+                        ),
+                        CustomText(
+                          "High Risk",
+                          style: CustomFonts.montserratRegular11,
+                        ),
+                      ],
+                    ),
                   ],
-                ),
-              ],
+                ).margin(horizontal: 10.sw);
+              },
+              onLoading: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Skelaton(
+                        height: 8.sh,
+                        width: 8.sh,
+                      ),
+                      CustomDivider(height: 1.sh),
+                      Skelaton(
+                        height: 2.sh,
+                        width: 10.sh,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Skelaton(
+                        height: 8.sh,
+                        width: 8.sh,
+                      ),
+                      CustomDivider(height: 1.sh),
+                      Skelaton(
+                        height: 2.sh,
+                        width: 10.sh,
+                      ),
+                    ],
+                  ),
+                ],
+              ).shimmer().margin(horizontal: 10.sw),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Column(
-                  children: [
-                    CustomText(
-                      "<16",
-                      style: CustomFonts.montserratRegular24,
-                    ),
-                    CustomText(
-                      "Low Risk",
-                      style: CustomFonts.montserratRegular11,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    CustomText(
-                      "<17",
-                      style: CustomFonts.montserratRegular24,
-                    ),
-                    CustomText(
-                      "High Risk",
-                      style: CustomFonts.montserratRegular11,
-                    ),
-                  ],
-                ),
-              ],
-            ).margin(horizontal: 10.sw),
             CustomDivider(
               height: 5.sh,
             ),

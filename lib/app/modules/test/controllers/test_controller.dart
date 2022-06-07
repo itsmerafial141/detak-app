@@ -53,6 +53,10 @@ class TestController extends GetxController {
   void dispose() {
     super.dispose();
     videoPlayerController.dispose();
+    chewieController!.pause();
+    chewieController!.seekTo(
+      const Duration(milliseconds: 0),
+    );
     chewieController!.dispose();
   }
 

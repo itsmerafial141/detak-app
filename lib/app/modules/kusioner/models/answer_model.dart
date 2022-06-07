@@ -2,8 +2,6 @@
 //
 //     final answerModel = answerModelFromJson(jsonString);
 
-// ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'dart:convert';
 
 AnswerModel answerModelFromJson(String str) =>
@@ -33,16 +31,24 @@ class AnswerModel {
 
 class Data {
   Data({
-    required this.idSadari,
+    required this.hasilSadari,
+    required this.keterangan,
+    required this.totalScore,
   });
 
-  var idSadari;
+  String hasilSadari;
+  String keterangan;
+  int totalScore;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        idSadari: json["ID_SADARI"],
+        hasilSadari: json["HASIL_SADARI"],
+        keterangan: json["KETERANGAN"],
+        totalScore: json["TOTAL_SCORE"],
       );
 
   Map<String, dynamic> toJson() => {
-        "ID_SADARI": idSadari,
+        "HASIL_SADARI": hasilSadari,
+        "KETERANGAN": keterangan,
+        "TOTAL_SCORE": totalScore,
       };
 }
