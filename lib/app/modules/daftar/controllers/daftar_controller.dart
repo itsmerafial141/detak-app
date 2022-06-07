@@ -1,12 +1,11 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_log
 
 import 'dart:developer';
 
 import 'package:detakapp/app/modules/daftar/providers/daftar_provider.dart';
+import 'package:detakapp/app/widgets/custom_loading_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../routes/app_pages.dart';
 
 class DaftarController extends GetxController {
   var daftarProvider = Get.put(DaftarProvider());
@@ -51,7 +50,8 @@ class DaftarController extends GetxController {
       konfirmPasswordIsError(),
     ];
     if (allTextFieldIsNotEmpty() && allTextFieldIsNotError()) {
-      print("daftar");
+      log("daftar");
+      CustomLoadingDialog.customLoadingDialog();
       _daftarProcess(
         nama: listController[0].text,
         email: listController[1].text,
@@ -59,14 +59,8 @@ class DaftarController extends GetxController {
         password: listController[4].text,
       );
     } else {
-      print("error");
+      log("error");
     }
-
-    print("namaError : ${nameIsError()}");
-    print("emailError : ${emailIsError()}");
-    print("phoneError : ${phoneIsError()}");
-    print("passwordError : ${passwordIsError()}");
-    print("konformPasswordError : ${konfirmPasswordIsError()}");
     update();
   }
 
@@ -86,18 +80,19 @@ class DaftarController extends GetxController {
       )
           .then(
         (value) {
-          print("sucess");
+          log("sucess");
           log(value.message);
-          Get.offAllNamed(AppPages.LG);
+          Get.back();
         },
       ).onError(
         (error, stackTrace) {
-          print("onError");
+          log("onError");
           error.printError();
         },
       ).whenComplete(
         () {
-          print("whenComplete");
+          log("whenComplete");
+          Get.back();
         },
       );
     } catch (err) {

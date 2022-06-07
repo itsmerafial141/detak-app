@@ -1,0 +1,25 @@
+{
+    "status": true,
+    "data": [{
+            "ID_SADARI": "16",
+            "TOTAL_SCORE": "11",
+            "HASIL_SADARI": "Low Risk",
+            "KETERANGAN": "Risiko rendah dengan keluhan gejala klinis : segera bawa ke klinik/puskesmas terdekat yang tersedia pemeriksaan EKG.",
+            "DATE_SADARI": "2022-06-03 13:07:54"
+        },
+        {
+            "ID_SADARI": "15",
+            "TOTAL_SCORE": "6",
+            "HASIL_SADARI": "Low Risk",
+            "KETERANGAN": "Risiko rendah dengan keluhan gejala klinis : segera bawa ke klinik/puskesmas terdekat yang tersedia pemeriksaan EKG.",
+            "DATE_SADARI": "2022-06-03 12:58:34"
+        },
+        {
+            "ID_SADARI": "14",
+            "TOTAL_SCORE": "12",
+            "HASIL_SADARI": "Low Risk",
+            "KETERANGAN": "Risiko rendah tanpa keluhan gejala klinis : perbaiki gaya hidup, hindari merokok, kelola stress dan pola hidup sehat.",
+            "DATE_SADARI": "2022-06-03 12:57:31"
+        }
+    ]
+}

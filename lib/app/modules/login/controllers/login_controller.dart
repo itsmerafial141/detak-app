@@ -1,34 +1,133 @@
 // ignore_for_file: avoid_print
 
-import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../routes/app_pages.dart';
+import '../../../widgets/custom_loading_dialog_widget.dart';
+import '../../login/controllers/auth_controller.dart';
+import '../providers/login_provider.dart';
 
 class LoginController extends GetxController {
+  var loginProvider = Get.put(LoginProvider());
+
+  var keepAwakae = false;
+
   late List<TextEditingController> listloginController;
   late List<bool> listErrorController;
   late TextEditingController lupaPasswordEmailController;
   late bool lupaPasswordEmailErrorController = false;
+  var authController = Get.put(AuthController());
+  var isDataNotExist = "";
 
   @override
   void onInit() {
     super.onInit();
-    listloginController = [];
-    listErrorController = [];
-    for (int element = 0; element < 2; element++) {
-      listloginController.add(TextEditingController());
-      listErrorController.add(false);
-    }
-
-    lupaPasswordEmailController = TextEditingController();
+    _initializeData();
+    _autoLogin();
   }
 
   @override
   void dispose() {
     super.dispose();
     listDispose();
+  }
+
+  void _autoLogin() {
+    if (storageIsNotNull("dataUser")) {
+      var dataUser = GetStorage().read("dataUser");
+      login(
+        dataUser["EMAIL"].toString(),
+        dataUser["PASSWORD"].toString(),
+      );
+      print(dataUser["NAME"].toString());
+      print(dataUser["PHONE"].toString());
+    }
+  }
+
+  void login(String email, String password) async {
+    try {
+      print("object");
+      loginProvider
+          .login(
+        email,
+        password,
+      )
+          .then(
+        (value) {
+          log("success");
+          _saveToStorage(
+            email: value.data.email,
+            name: value.data.name,
+            nameRole: value.data.nameRole,
+            phone: value.data.phone,
+            password: password,
+          );
+        },
+      ).onError(
+        (error, stackTrace) {
+          log("onError");
+          stackTrace.printError();
+          log(error.toString());
+          isDataNotExist = error.toString();
+          update();
+        },
+      ).whenComplete(
+        () {
+          Get.back();
+          // update();q
+          // change(null, status: RxStatus.success());
+          log("whernComplete");
+        },
+      );
+    } catch (err) {
+      err.printError();
+    }
+  }
+
+  void _saveToStorage({
+    required String email,
+    required String name,
+    required String nameRole,
+    required String phone,
+    required String password,
+  }) {
+    GetStorage().write(
+      "dataUser",
+      {
+        "EMAIL": email,
+        "PASSWORD": password,
+        "NAME": name,
+        "NAME_ROLE": nameRole,
+        "PROFILEPIC_USER": "",
+        "PHONE": phone,
+        "DATE_BIRTH": ""
+      },
+    );
+
+    Get.offAllNamed(AppPages.NV);
+
+    // profileController.initializeProfile();
+    // isAuth.value = true;
+    // change(null, status: RxStatus.success());
+    // log("delayed");
+    // Future.delayed(Duration(seconds: 1)).then((value) {
+    //   loginController.update();
+    //   update();
+    // });
+  }
+
+  void _initializeData() {
+    listloginController = [];
+    listErrorController = [];
+    for (int element = 0; element < 2; element++) {
+      listloginController.add(TextEditingController());
+      listErrorController.add(false);
+    }
+    lupaPasswordEmailController = TextEditingController();
   }
 
   void listDispose() {
@@ -38,14 +137,15 @@ class LoginController extends GetxController {
     lupaPasswordEmailErrorController = false;
   }
 
-  void login() {
+  void loginButton() {
     listErrorController = [
       _emailIsError(),
       _passwordIsError(),
     ];
     if (_allTextFieldIsNotEmpty() && _allTextFieldIsNotError()) {
+      CustomLoadingDialog.customLoadingDialog();
       print("login");
-      Get.put(AuthController()).login(
+      login(
         listloginController[0].text, //emailController
         listloginController[1].text, //passwordController
       );
@@ -68,6 +168,11 @@ class LoginController extends GetxController {
     }
     print("emailError : ${_lupaPassEmailIsError()}");
     update();
+  }
+
+  bool storageIsNotNull(String key) {
+    final box = GetStorage();
+    return box.read(key) != null;
   }
 
   bool _allTextFieldIsNotEmpty() {

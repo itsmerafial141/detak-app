@@ -1,10 +1,14 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
 import 'package:detakapp/app/modules/home/models/berita_model.dart';
+import 'package:detakapp/app/modules/home/models/berita_slider_model.dart';
 import 'package:detakapp/app/modules/home/models/detail_berita_model.dart';
 import 'package:detakapp/app/modules/home/providers/berita_provider.dart';
 import 'package:get/get.dart';
 
+import '../../../widgets/custom_loading_dialog_widget.dart';
 import '../views/detail_berita_view.dart';
 
 class HomeController extends GetxController with StateMixin {
@@ -12,6 +16,7 @@ class HomeController extends GetxController with StateMixin {
 
   List<BeritaModel> listBerita = List<BeritaModel>.empty().obs;
   late DetailBeritaModel dataDetailBerita;
+  late BeritaSliderModel dataBeritaSlide;
 
   @override
   void onInit() {
@@ -27,6 +32,34 @@ class HomeController extends GetxController with StateMixin {
   }
 
   void _initialData() {
+    _initialGetBeritaSlideData();
+  }
+
+  void _initialGetBeritaSlideData() {
+    try {
+      beritaProvider.getBeritalSlide().then((value) {
+        dataBeritaSlide = BeritaSliderModel(
+          status: value.status,
+          data: value.data,
+        );
+        log("Get berita slide is success!");
+        _initialGetBeritaData();
+      }).onError((error, stackTrace) {
+        error.printError();
+        stackTrace.printError();
+        log("Get berita slide is onError!");
+        change(null,
+            status: RxStatus.error(
+                "Gagal mendapatkan berita, silahkan refresh halaman ini!"));
+      }).whenComplete(() {
+        log("Get berita slide complete execute!");
+      });
+    } catch (err) {
+      err.printError();
+    }
+  }
+
+  void _initialGetBeritaData() {
     try {
       beritaProvider.getBerita().then((value) {
         listBerita.add(
@@ -35,15 +68,17 @@ class HomeController extends GetxController with StateMixin {
             data: value.data,
           ),
         );
-        print("${listBerita[0].data.length} <- beritaLength");
-        print("berita success");
         change(null, status: RxStatus.success());
+        log("Berita is success!");
       }).onError((error, stackTrace) {
         error.printError();
         stackTrace.printError();
-        print("berita OnError");
+        log("Berita is OnError!");
+        change(null,
+            status: RxStatus.error(
+                "Gagal mendapatkan berita, silahkan refresh halaman ini!"));
       }).whenComplete(() {
-        print("berita whenComplete");
+        log("Berita is complete execute!");
       });
     } catch (err) {
       err.printError();
@@ -51,20 +86,22 @@ class HomeController extends GetxController with StateMixin {
   }
 
   void detailBerita(String idNews) {
+    CustomLoadingDialog.customLoadingDialog();
     try {
       beritaProvider.getDetailBerita(idNews).then((value) {
-        print("detail berita success");
         dataDetailBerita = DetailBeritaModel(
           status: value.status,
           data: value.data,
         );
+        Get.back();
         Get.to(() => DetailBeritaView());
+        log("Detail Berita is success!");
       }).onError((error, stackTrace) {
         error.printError();
         stackTrace.printError();
-        print("detail berita onError");
+        log("Detail Berita is onError!");
       }).whenComplete(() {
-        print("detail berita whenComplete");
+        log("Detail Berita is complete execute!");
       });
     } catch (err) {
       err.printError();

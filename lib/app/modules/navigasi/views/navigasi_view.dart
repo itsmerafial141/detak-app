@@ -8,7 +8,6 @@ import '../../../../core/values/strings.dart';
 import '../../home/views/home_view.dart';
 import '../../profile/views/profile_view.dart';
 import '../../test/views/test_view.dart';
-import '../../video/views/video_view.dart';
 import '../controllers/navigasi_controller.dart';
 
 class NavigasiView extends GetView<NavigasiController> {
@@ -30,8 +29,8 @@ class NavigasiView extends GetView<NavigasiController> {
           index: controller.indexPageController,
           children: [
             HomeView(),
-            const VideoView(),
-            const TestView(),
+            // const VideoView(),
+            TestView(),
             ProfileView(),
           ],
         );

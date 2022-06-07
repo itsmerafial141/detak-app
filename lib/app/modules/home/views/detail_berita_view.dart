@@ -41,18 +41,18 @@ class DetailBeritaView extends GetView<HomeController> {
                   color: CustomColors.grey,
                 ),
               ],
-            ).wrapMargin(h: 3.sh),
+            ).margin(horizontal: 3.sh),
             _customDivider(height: 1.sh),
             CustomText(
               controller.dataDetailBerita.data.titleNews,
               style: CustomFonts.montserratBold14,
-            ).wrapMargin(h: 3.sh),
+            ).margin(horizontal: 3.sh),
             _customDivider(height: 1.sh),
             CustomText(
               "oleh ${controller.dataDetailBerita.data.editor}",
               style: CustomFonts.montserratBold9,
               color: CustomColors.grey,
-            ).wrapMargin(h: 3.sh),
+            ).margin(horizontal: 3.sh),
             _customDivider(height: 1.sh),
             Image(
               width: double.infinity,
@@ -66,7 +66,7 @@ class DetailBeritaView extends GetView<HomeController> {
             _customDivider(height: 2.sh),
             HtmlWidget(
               controller.dataDetailBerita.data.contentNews,
-            ).wrapMargin(h: 3.sh),
+            ).margin(horizontal: 3.sh),
             _customDivider(height: 5.sh),
           ],
         ),

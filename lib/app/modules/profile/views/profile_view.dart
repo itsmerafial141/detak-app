@@ -1,8 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
 import 'package:detakapp/app/modules/navigasi/controllers/navigasi_controller.dart';
-import 'package:detakapp/app/modules/profile/views/hasil_test_view.dart';
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,10 +10,13 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../../../../core/utils/helpers.dart';
 import '../../../../core/values/strings.dart';
+import '../../login/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  ProfileView({Key? key}) : super(key: key);
+class ProfileView extends GetView<NavigasiController> {
+  ProfileView({
+    Key? key,
+  }) : super(key: key);
   var authController = Get.put(AuthController());
   var navController = Get.put(NavigasiController());
 
@@ -64,25 +66,30 @@ class ProfileView extends GetView<ProfileController> {
                     width: 20,
                   ),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Rafi Fitra Alamsyah",
-                          style: CustomFonts.montserratBold14.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          "0813-3041-9185",
-                          style: CustomFonts.montserratSemibold12.copyWith(
-                            color: CustomColors.subTittle.withOpacity(0.5),
-                          ),
-                        ),
-                      ],
+                    child: GetBuilder<ProfileController>(
+                      init: ProfileController(),
+                      builder: (_) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.getCapitalizeString(controller.name),
+                              style: CustomFonts.montserratBold14.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              controller.phone,
+                              style: CustomFonts.montserratSemibold12.copyWith(
+                                color: CustomColors.subTittle.withOpacity(0.5),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -92,7 +99,7 @@ class ProfileView extends GetView<ProfileController> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (_, index) {
-                return index > 1
+                return index > 0
                     ? Divider(
                         height: 20,
                         color: CustomColors.grey,
@@ -113,12 +120,9 @@ class ProfileView extends GetView<ProfileController> {
                     onTap: () {
                       switch (index) {
                         case 0: //Hasil Test
-                          Get.to(
-                            HasilTestView(),
-                            arguments: {"totalTest": 72},
-                          );
+                          Get.toNamed(AppPages.DR);
                           break;
-                        case 2: //logout
+                        case 1: //logout
                           Get.bottomSheet(
                             Wrap(
                               children: [

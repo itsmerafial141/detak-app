@@ -21,10 +21,12 @@ class LoginProvider extends GetConnect {
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {
-      if (response.body["status"] == true) {
+      if (response.body["status"] != false) {
         return userModelFromJson(response.bodyString.toString());
       } else {
-        return Future.error(response.body["message"].toString());
+        return Future.error(
+          response.body["message"].toString(),
+        );
       }
     }
   }

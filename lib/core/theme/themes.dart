@@ -5,7 +5,7 @@ import 'fonts.dart';
 
 class CustomTheme {
   static InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
-    errorMaxLines: 1,
+    errorMaxLines: 2,
     iconColor: CustomColors.disable,
     filled: true,
     fillColor: CustomColors.white,

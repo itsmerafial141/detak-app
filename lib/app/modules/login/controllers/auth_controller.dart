@@ -1,6 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer';
+
+import 'package:detakapp/app/modules/login/controllers/login_controller.dart';
 import 'package:detakapp/app/modules/login/providers/login_provider.dart';
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -9,34 +13,28 @@ import 'package:get_storage/get_storage.dart';
 
 class AuthController extends GetxController {
   var loginProvider = Get.put(LoginProvider());
+  // var profileController = Get.put(ProfileController());
+  // var loginController = Get.put(LoginController());
 
-  var isAuth = false;
-  var isDataNotExist = false;
+  // var isAuth = false.obs;
 
-  final Map<String, String> _dataUser = {
-    "id": "AD001",
-    "email": "admin@gmail.com",
-    "password": "admin1234"
-  };
+  var keepAwakae = false;
 
   Future<void> autoLoginUser() async {
-    final service = GetStorage();
-    if (service.read("dataUser") != null) {
+    if (storageIsNotNull("dataUser")) {
       var dataUser = GetStorage().read("dataUser");
-      try {
-        login(
-          dataUser["EMAIL"].toString(),
-          dataUser["PASSWORD"].toString(),
-        );
-      } catch (err) {
-        err.printError();
-      }
+      login(
+        dataUser["EMAIL"].toString(),
+        dataUser["PASSWORD"].toString(),
+      );
+      print(dataUser["NAME"].toString());
+      print(dataUser["PHONE"].toString());
     }
-    update();
   }
 
-  void login(String email, String password) {
+  void login(String email, String password) async {
     try {
+      print("object");
       loginProvider
           .login(
         email,
@@ -44,7 +42,7 @@ class AuthController extends GetxController {
       )
           .then(
         (value) {
-          print("success");
+          log("success");
           _saveToStorage(
             email: value.data.email,
             name: value.data.name,
@@ -55,15 +53,18 @@ class AuthController extends GetxController {
         },
       ).onError(
         (error, stackTrace) {
-          print("onError");
+          log("onError");
           stackTrace.printError();
-          error.printError();
-          isDataNotExist = true;
+          log(error.toString());
+          LoginController().isDataNotExist = error.toString();
+          LoginController().update();
         },
       ).whenComplete(
         () {
-          update();
-          print("whernComplete");
+          Get.back();
+          // update();q
+          // change(null, status: RxStatus.success());
+          log("whernComplete");
         },
       );
     } catch (err) {
@@ -90,32 +91,34 @@ class AuthController extends GetxController {
         "DATE_BIRTH": ""
       },
     );
-    isAuth = true;
-    isDataNotExist = false;
-    update();
+
+    Get.offAllNamed(AppPages.NV);
+
+    // profileController.initializeProfile();
+    // isAuth.value = true;
+    // change(null, status: RxStatus.success());
+    // log("delayed");
+    // Future.delayed(Duration(seconds: 1)).then((value) {
+    //   loginController.update();
+    //   update();
+    // });
   }
 
   void logout() {
     if (storageIsNotNull("dataUser")) {
       GetStorage().erase();
-      isAuth = false;
+      Get.offAllNamed(AppPages.LG);
+      // isAuth.value = false;
+      // update();
+      // change(null, status: RxStatus.success());
     }
-    update();
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    isDataNotExist = false;
-  }
-
-  bool emailCheckFromDB(String email) {
-    return email.contains(_dataUser['email'].toString());
-  }
-
-  bool passwordCheckFromDB(String password) {
-    return password.contains(_dataUser['password'].toString());
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   isDataNotExist = "";
+  // }
 
   bool storageIsNotNull(String key) {
     final box = GetStorage();

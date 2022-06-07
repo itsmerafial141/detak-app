@@ -11,16 +11,19 @@ class CustomText extends StatelessWidget {
     Key? key,
     this.style,
     this.color,
+    this.textAlign,
   }) : super(key: key);
 
   final String? text;
   final TextStyle? style;
   final Color? color;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text ?? "",
+      textAlign: textAlign ?? TextAlign.center,
       style: style?.copyWith(
             color: color ?? CustomColors.subTittle,
           ) ??

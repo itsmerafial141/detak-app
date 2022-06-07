@@ -41,6 +41,12 @@ class CustomFonts {
       fontSize: 32, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
   static TextStyle montserratRegular40 = GoogleFonts.montserrat(
       fontSize: 40, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
+  static TextStyle montserratRegular96 = GoogleFonts.montserrat(
+      fontSize: 96, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
+  static TextStyle montserratRegular128 = GoogleFonts.montserrat(
+      fontSize: 128,
+      fontWeight: FontWeight.w400,
+      color: CustomColors.subTittle);
 
   // Montserrat Medium
   static TextStyle montserratMedium9 = GoogleFonts.montserrat(

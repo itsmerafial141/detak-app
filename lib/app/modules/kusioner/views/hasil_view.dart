@@ -1,5 +1,4 @@
 import 'package:detakapp/app/modules/kusioner/controllers/kusioner_controller.dart';
-import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:detakapp/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +36,11 @@ class HasilView extends GetView<KusionerController> {
                 width: percentageOfScreenWidth(100),
                 child: Image(
                   height: percentageOfScreenHeight(50),
-                  image: const AssetImage("assets/images/hasilImage.png"),
+                  image: AssetImage(
+                    controller.answerModel.data.totalScore < 17
+                        ? "assets/images/sehat.png"
+                        : "assets/images/sakit.png",
+                  ),
                 ),
               ),
               Align(
@@ -56,7 +59,7 @@ class HasilView extends GetView<KusionerController> {
                     children: [
                       const Spacer(),
                       Text(
-                        "Yay! Kamu kamu bebas dari kanker payudara.",
+                        controller.answerModel.data.hasilSadari,
                         textAlign: TextAlign.center,
                         style: CustomFonts.montserratBold18.copyWith(
                           color: Colors.white,
@@ -66,7 +69,7 @@ class HasilView extends GetView<KusionerController> {
                         height: percentageOfScreenHeight(2),
                       ),
                       Text(
-                        "Jangan lupa untuk tetap lakukan pemerikasaan payudara sedara mandiri dengan rutin",
+                        controller.answerModel.data.keterangan,
                         textAlign: TextAlign.center,
                         style: CustomFonts.montserratRegular12.copyWith(
                           color: Colors.white,
@@ -75,7 +78,9 @@ class HasilView extends GetView<KusionerController> {
                       const Spacer(),
                       ElevatedButton(
                         onPressed: () {
-                          Get.offAllNamed(AppPages.NV);
+                          Get.back();
+                          Get.back();
+                          Get.back();
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(

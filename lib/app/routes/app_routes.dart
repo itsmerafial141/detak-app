@@ -14,6 +14,8 @@ abstract class Routes {
   static const TEST = _Paths.TEST;
   static const VIDEO = _Paths.VIDEO;
   static const KUSIONER = _Paths.KUSIONER;
+  static const HASIL_TEST = _Paths.HASIL_TEST;
+  static const DAFTAR_RIWAYAT = _Paths.DAFTAR_RIWAYAT;
 }
 
 abstract class _Paths {
@@ -25,4 +27,6 @@ abstract class _Paths {
   static const TEST = '/test';
   static const VIDEO = '/video';
   static const KUSIONER = '/kusioner';
+  static const HASIL_TEST = '/hasil-test';
+  static const DAFTAR_RIWAYAT = '/daftar-riwayat';
 }

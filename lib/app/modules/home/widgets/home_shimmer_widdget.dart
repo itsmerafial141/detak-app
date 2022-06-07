@@ -24,7 +24,7 @@ class HomeShimmer extends StatelessWidget {
             },
             separatorBuilder: (_, __) {
               return Skelaton(
-                width: 45.sh,
+                width: 40.sh,
               );
             },
             itemCount: 3,
@@ -34,7 +34,7 @@ class HomeShimmer extends StatelessWidget {
         Skelaton(
           height: 3.sh,
           width: 10.sh,
-        ).wrapMargin(h: 3.sh),
+        ).margin(horizontal: 3.sh),
         _customDivider(height: 2.sh),
         ListView.separated(
           shrinkWrap: true,
@@ -72,7 +72,7 @@ class HomeShimmer extends StatelessWidget {
                   ),
                 ],
               ),
-            ).wrapMargin(h: 3.sh);
+            ).margin(horizontal: 3.sh);
           },
           separatorBuilder: (_, __) {
             return _customDivider(height: 3.sh);
