@@ -25,7 +25,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   
   # Youtube player
-  youtube_player_iframe: ^2.3.0
+  # youtube_player_iframe: ^2.3.0
   
   # Splashscreen
   flutter_native_splash: ^2.2.1

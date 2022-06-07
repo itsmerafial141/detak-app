@@ -11,9 +11,8 @@ import 'package:get_storage/get_storage.dart';
 // danngriel@gmail.com
 // tes123
 
-class AuthController extends GetxController {
+class AuthController extends GetxController with StateMixin {
   var loginProvider = Get.put(LoginProvider());
-
   var profileController = Get.put(ProfileController());
   var loginController = Get.put(LoginController());
 
@@ -44,11 +43,6 @@ class AuthController extends GetxController {
           .then(
         (value) {
           log("success");
-          loginController.listloginController[0].text = "";
-          loginController.listloginController[1].text = "";
-          loginController.update();
-          isDataNotExist = "";
-          update();
           _saveToStorage(
             email: value.data.email,
             name: value.data.name,
@@ -67,7 +61,8 @@ class AuthController extends GetxController {
       ).whenComplete(
         () {
           Get.back();
-          update();
+          // update();q
+          change(null, status: RxStatus.success());
           log("whernComplete");
         },
       );
@@ -96,15 +91,26 @@ class AuthController extends GetxController {
       },
     );
 
-    isAuth.value = true;
     isDataNotExist = "";
     profileController.initializeProfile();
+    isAuth.value = true;
+    loginController.listloginController[0].text = "";
+    loginController.listloginController[1].text = "";
+    isDataNotExist = "";
+    change(null, status: RxStatus.success());
+    log("delayed");
+    // Future.delayed(Duration(seconds: 1)).then((value) {
+    //   loginController.update();
+    //   update();
+    // });
   }
 
   void logout() {
     if (storageIsNotNull("dataUser")) {
       GetStorage().erase();
       isAuth.value = false;
+      // update();
+      change(null, status: RxStatus.success());
     }
   }
 
