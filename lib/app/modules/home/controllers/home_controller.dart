@@ -7,6 +7,7 @@ import 'package:detakapp/app/modules/home/models/berita_slider_model.dart';
 import 'package:detakapp/app/modules/home/models/detail_berita_model.dart';
 import 'package:detakapp/app/modules/home/providers/berita_provider.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../widgets/custom_loading_dialog_widget.dart';
 import '../views/detail_berita_view.dart';
@@ -17,6 +18,8 @@ class HomeController extends GetxController with StateMixin {
   List<BeritaModel> listBerita = List<BeritaModel>.empty().obs;
   late DetailBeritaModel dataDetailBerita;
   late BeritaSliderModel dataBeritaSlide;
+
+  late String nameUser = "";
 
   @override
   void onInit() {
@@ -68,6 +71,7 @@ class HomeController extends GetxController with StateMixin {
             data: value.data,
           ),
         );
+        nameUser = GetStorage().read("dataUser")["NAME"];
         change(null, status: RxStatus.success());
         log("Berita is success!");
       }).onError((error, stackTrace) {

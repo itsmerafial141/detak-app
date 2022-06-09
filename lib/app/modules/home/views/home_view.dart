@@ -53,7 +53,7 @@ class HomeView extends GetView<HomeController> {
                   width: 65.sw,
                   height: 10.sh,
                   child: AutoSizeText(
-                    "Sindrom Koroner Akut",
+                    "Halo, ${controller.nameUser}!",
                     maxLines: 2,
                     softWrap: true,
                     style: CustomFonts.montserratBold24.copyWith(
