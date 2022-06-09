@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print, unrelated_type_equality_checks, unnecessary_null_comparison
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:detakapp/app/modules/kusioner/models/kuisoner_model.dart';
@@ -26,6 +27,9 @@ class KusionerController extends GetxController with StateMixin {
   late List<String> listAnswer;
   var indexKusioner = 0.obs;
 
+  var umur = 0.obs;
+
+  late Timer? timer;
   late TextEditingController umurController;
 
   @override
@@ -33,6 +37,7 @@ class KusionerController extends GetxController with StateMixin {
     super.onInit();
     listAnswer = [];
     umurController = TextEditingController();
+    umurController.text = "0";
     _initializeKusionerListData();
   }
 
@@ -41,6 +46,53 @@ class KusionerController extends GetxController with StateMixin {
     super.dispose();
     listAnswer.clear();
     umurController.dispose();
+  }
+
+  void increment() {
+    if (umur < 150) {
+      umur++;
+      umurController.text = umur.value.toString();
+      change(null, status: RxStatus.success());
+    }
+  }
+
+  void autoIncrement() {
+    timer = Timer.periodic(
+      const Duration(milliseconds: 100),
+      (t) {
+        if (umur < 150) {
+          umur++;
+          umurController.text = umur.value.toString();
+          change(null, status: RxStatus.success());
+        }
+      },
+    );
+  }
+
+  void autoDecrement() {
+    timer = Timer.periodic(
+      const Duration(milliseconds: 100),
+      (t) {
+        if (umur > 0) {
+          umur--;
+          umurController.text = umur.value.toString();
+          change(null, status: RxStatus.success());
+        }
+      },
+    );
+  }
+
+  void onTapOut() {
+    timer!.cancel();
+    change(null, status: RxStatus.success());
+  }
+
+  void decrement() {
+    if (umur > 0) {
+      umur--;
+      umurController.text = umur.value.toString();
+      change(null, status: RxStatus.success());
+    }
   }
 
   void _initializeKusionerListData() {
@@ -75,13 +127,17 @@ class KusionerController extends GetxController with StateMixin {
 
   void nextPageKusioner() {
     if (indexKusioner < kuisonerModel.data.length - 1) {
-      indexKusioner += 1;
-      update();
+      if (listAnswer.length < indexKusioner.value + 1) {
+        _showDialogDataNotNull();
+      } else {
+        indexKusioner += 1;
+        update();
+      }
     }
   }
 
   void submitUmur(String umur) {
-    if (umur != null && umur.isNotEmpty || umur != "") {
+    if (umur != null && umur.isNotEmpty && umur != "" && umur != "0") {
       indexKusioner += 1;
       if (listAnswer.isNotEmpty) {
         listAnswer.removeAt(0);
@@ -89,48 +145,52 @@ class KusionerController extends GetxController with StateMixin {
       listAnswer.insert(0, umur);
       update();
     } else {
-      Get.dialog(
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Wrap(
-              children: [
-                Material(
-                    child: Column(
-                  children: [
-                    CustomText(
-                      "Umur harus diisi!",
-                      style: CustomFonts.montserratBold16,
-                    ),
-                    CustomDivider(
-                      height: 4.sh,
-                    ),
-                    SizedBox(
-                      width: 50.sw,
-                      height: 10.sh,
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: CustomText(
-                          "OK",
-                          style: CustomFonts.montserratBold16,
-                          color: CustomColors.white,
-                        ),
-                      ),
-                    ).borderRadius(all: 10).button(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        size: Size(50.sw, 1.sh),
-                        backgroundColor: CustomColors.primaryColor)
-                  ],
-                ).margin(all: 4.sh)),
-              ],
-            ).borderRadius(all: 10)
-          ],
-        ),
-      );
+      _showDialogDataNotNull();
     }
+  }
+
+  void _showDialogDataNotNull() {
+    Get.dialog(
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Wrap(
+            children: [
+              Material(
+                  child: Column(
+                children: [
+                  CustomText(
+                    "Data harus diisi!",
+                    style: CustomFonts.montserratBold16,
+                  ),
+                  CustomDivider(
+                    height: 4.sh,
+                  ),
+                  SizedBox(
+                    width: 50.sw,
+                    height: 10.sh,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: CustomText(
+                        "OK",
+                        style: CustomFonts.montserratBold16,
+                        color: CustomColors.white,
+                      ),
+                    ),
+                  ).borderRadius(all: 10).button(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      size: Size(50.sw, 1.sh),
+                      backgroundColor: CustomColors.primaryColor)
+                ],
+              ).margin(all: 4.sh)),
+            ],
+          ).borderRadius(all: 10)
+        ],
+      ),
+    );
   }
 
   void submitAnswer({required String answer, required int index}) {
@@ -171,6 +231,7 @@ class KusionerController extends GetxController with StateMixin {
                         Container(
                           width: 30.sw,
                           height: 7.sh,
+                          alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
@@ -178,13 +239,35 @@ class KusionerController extends GetxController with StateMixin {
                               color: CustomColors.primaryColor,
                             ),
                           ),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: CustomText(
-                              "Yakin",
-                              style: CustomFonts.montserratBold16,
-                              color: CustomColors.primaryColor,
-                            ),
+                          child: CustomText(
+                            "Belum",
+                            style: CustomFonts.montserratBold16,
+                            color: CustomColors.primaryColor,
+                          ),
+                        ).borderRadius(all: 10).button(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            size: Size(30.sw, 1.sh),
+                            backgroundColor: Colors.white),
+                        CustomDivider(
+                          width: 2.sh,
+                        ),
+                        Container(
+                          width: 30.sw,
+                          height: 7.sh,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                width: 1,
+                                color: CustomColors.primaryColor,
+                              ),
+                              color: CustomColors.primaryColor),
+                          child: CustomText(
+                            "Yakin",
+                            style: CustomFonts.montserratBold16,
+                            color: CustomColors.white,
                           ),
                         ).borderRadius(all: 10).button(
                             onPressed: () {
@@ -192,26 +275,6 @@ class KusionerController extends GetxController with StateMixin {
                             },
                             size: Size(30.sw, 1.sh),
                             backgroundColor: CustomColors.white),
-                        CustomDivider(
-                          width: 2.sh,
-                        ),
-                        SizedBox(
-                          width: 30.sw,
-                          height: 7.sh,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: CustomText(
-                              "Belum",
-                              style: CustomFonts.montserratBold16,
-                              color: CustomColors.white,
-                            ),
-                          ),
-                        ).borderRadius(all: 10).button(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            size: Size(30.sw, 1.sh),
-                            backgroundColor: CustomColors.primaryColor),
                       ],
                     ),
                   ],

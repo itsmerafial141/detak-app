@@ -41,6 +41,8 @@ class CustomFonts {
       fontSize: 32, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
   static TextStyle montserratRegular40 = GoogleFonts.montserrat(
       fontSize: 40, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
+  static TextStyle montserratRegular64 = GoogleFonts.montserrat(
+      fontSize: 64, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
   static TextStyle montserratRegular96 = GoogleFonts.montserrat(
       fontSize: 96, fontWeight: FontWeight.w400, color: CustomColors.subTittle);
   static TextStyle montserratRegular128 = GoogleFonts.montserrat(
@@ -93,6 +95,8 @@ class CustomFonts {
       fontSize: 9, fontWeight: FontWeight.w700, color: CustomColors.subTittle);
   static TextStyle montserratBold10 = GoogleFonts.montserrat(
       fontSize: 10, fontWeight: FontWeight.w700, color: CustomColors.subTittle);
+  static TextStyle montserratBold11 = GoogleFonts.montserrat(
+      fontSize: 11, fontWeight: FontWeight.w700, color: CustomColors.subTittle);
   static TextStyle montserratBold12 = GoogleFonts.montserrat(
       fontSize: 12, fontWeight: FontWeight.w700, color: CustomColors.subTittle);
   static TextStyle montserratBold14 = GoogleFonts.montserrat(

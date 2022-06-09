@@ -4,7 +4,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/widgets/custom_app_bar_widget.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
-import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/app/widgets/skelaton_widget.dart';
 import 'package:detakapp/core/theme/fonts.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
@@ -22,20 +21,21 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
 
   @override
   Widget build(BuildContext context) {
+    // var navController = Get.put(NavigasiController());
     return Scaffold(
       appBar: CustomAppBar(
         label: "Daftar Riwayat",
         textColor: CustomColors.subTittle,
         colorBackground: Colors.white,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: CustomColors.subTittle,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     navController.changePageIndex(navController.previousIndex);
+        //   },
+        //   icon: Icon(
+        //     Icons.arrow_back_rounded,
+        //     color: CustomColors.subTittle,
+        //   ),
+        // ),
       ),
       body: SingleChildScrollView(
         child: SizedBox(
@@ -56,7 +56,7 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                               controller
                                   .daftarRiwayatModel.data[index].totalScore,
                               textAlign: TextAlign.center,
-                              style: CustomFonts.montserratRegular96,
+                              style: CustomFonts.montserratRegular64,
                               maxLines: 1,
                             ),
                           ),
@@ -65,80 +65,54 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                           ),
                           Expanded(
                             flex: 8,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
                               mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                Icon(
+                                  Icons.circle,
+                                  color: controller.daftarRiwayatModel
+                                              .data[index].totalScore.toInt >
+                                          15
+                                      ? CustomColors.red
+                                      : CustomColors.green,
+                                  size: 19,
+                                ),
+                                CustomDivider(
+                                  width: 1.sh,
+                                ),
+                                AutoSizeText(
+                                  controller.daftarRiwayatModel.data[index]
+                                      .hasilSadari,
+                                  maxLines: 1,
+                                  style: CustomFonts.montserratBold20,
+                                ),
+                                const Spacer(),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Icon(
-                                      Icons.circle,
-                                      color: controller
+                                    AutoSizeText(
+                                      controller
+                                          .datePicker(
+                                              value: controller
                                                   .daftarRiwayatModel
                                                   .data[index]
-                                                  .totalScore
-                                                  .toInt >
-                                              15
-                                          ? CustomColors.red
-                                          : CustomColors.green,
-                                      size: 5.sh,
-                                    ),
-                                    CustomDivider(
-                                      width: 1.sh,
+                                                  .dateSadari
+                                                  .toString(),
+                                              index: 0)
+                                          .formatedDate("d MMMM yyyy"),
+                                      maxLines: 1,
+                                      style: CustomFonts.montserratBold11,
                                     ),
                                     AutoSizeText(
                                       controller.daftarRiwayatModel.data[index]
-                                          .hasilSadari,
+                                          .dateSadari
+                                          .toString()
+                                          .formatedDate("h:mm a"),
                                       maxLines: 1,
-                                      style: CustomFonts.montserratBold16,
-                                    ),
-                                    const Spacer(),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        AutoSizeText(
-                                          controller
-                                              .datePicker(
-                                                  value: controller
-                                                      .daftarRiwayatModel
-                                                      .data[index]
-                                                      .dateSadari
-                                                      .toString(),
-                                                  index: 0)
-                                              .formatedDate("d MMMM yyyy"),
-                                          maxLines: 1,
-                                          style:
-                                              CustomFonts.montserratRegular10,
-                                        ),
-                                        AutoSizeText(
-                                          controller.daftarRiwayatModel
-                                              .data[index].dateSadari
-                                              .toString()
-                                              .formatedDate("h:mm a"),
-                                          maxLines: 1,
-                                          style:
-                                              CustomFonts.montserratRegular10,
-                                        ),
-                                      ],
+                                      style: CustomFonts.montserratBold11,
                                     ),
                                   ],
-                                ),
-                                CustomDivider(
-                                  height: 2.sh,
-                                ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: CustomText(
-                                    controller.daftarRiwayatModel.data[index]
-                                        .keterangan
-                                        .split(":")[0],
-                                    style: CustomFonts.montserratBold12,
-                                    textAlign: TextAlign.left,
-                                  ),
                                 ),
                               ],
                             ),

@@ -229,7 +229,8 @@ class ProfileView extends GetView<NavigasiController> {
                     ),
                     title: Text(
                       CustomStrings.listProfileListTile[index][1],
-                      style: CustomFonts.montserratSemibold12,
+                      style: CustomFonts.montserratSemibold12
+                          .copyWith(color: CustomColors.primaryColor),
                     ),
                   ),
                 );

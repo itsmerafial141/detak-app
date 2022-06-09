@@ -26,4 +26,7 @@ class CustomColors {
   static Color whiteGrey = const Color.fromRGBO(238, 238, 238, 1);
   static Color white = const Color.fromRGBO(255, 255, 255, 1);
   static Color lineDark = const Color.fromRGBO(234, 234, 234, 1);
+
+  // Kusioner Umur
+  static Color umurTotalBackground = const Color.fromRGBO(237, 241, 246, 1);
 }
