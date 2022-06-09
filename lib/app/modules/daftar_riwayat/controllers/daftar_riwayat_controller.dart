@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:detakapp/app/modules/profile/models/daftar_riwayat_model.dart';
-import 'package:detakapp/app/modules/profile/providers/daftar_riwayat_provider.dart';
+import 'package:detakapp/app/modules/daftar_riwayat/models/daftar_riwayat_model.dart';
+import 'package:detakapp/app/modules/daftar_riwayat/providers/daftar_riwayat_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -13,8 +13,12 @@ class DaftarRiwayatController extends GetxController with StateMixin {
   @override
   void onInit() {
     super.onInit();
-    final service = GetStorage();
+    initializeData();
+  }
+
+  void initializeData() {
     try {
+      final service = GetStorage();
       if (service.read("dataUser") != null) {
         var data = service.read("dataUser");
         daftarRiwayatProvider

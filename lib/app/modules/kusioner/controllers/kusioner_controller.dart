@@ -239,7 +239,7 @@ class KusionerController extends GetxController with StateMixin {
           data: value.data,
         );
         Get.back();
-        Get.off(const HasilView());
+        Get.off(HasilView());
       }).onError((error, stackTrace) {
         log("Post Answer onError!");
         print(error);

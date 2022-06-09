@@ -1,8 +1,10 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
 import 'package:detakapp/app/modules/test/views/preparing_test.dart';
+import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
@@ -41,11 +43,16 @@ class TestView extends GetView<TestController> {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              Image(
-                width: percentageOfScreenWidth(95),
-                image: const AssetImage("assets/images/testBackground.png"),
+              SvgPicture.asset(
+                "assets/images/testImageBackground.svg",
+                width: 95.sw,
                 fit: BoxFit.fitWidth,
               ),
+              // Image(
+              //   width: percentageOfScreenWidth(95),
+              //   image: const AssetImage("assets/images/testBackground.png"),
+              //   fit: BoxFit.fitWidth,
+              // ),
               Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
@@ -58,7 +65,7 @@ class TestView extends GetView<TestController> {
                           height: percentageOfScreenHeight(5),
                         ),
                         Text(
-                          "Yuk jawab beberapa pertanyaan berikut untuk menemukan gejala kanker payudara sedini mungkin!",
+                          "Yuk jawab beberapa pertanyaan berikut untuk menemukan gejala sindrom koroner akut sedini mungkin!",
                           style: CustomFonts.montserratBold18.copyWith(
                             color: Colors.white,
                           ),

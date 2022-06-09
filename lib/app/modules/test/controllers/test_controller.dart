@@ -19,7 +19,7 @@ class TestController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _initializedPlayer();
+    initializeData();
 
     // player = const YoutubePlayerIFrame();
     // var urlID = "4zI0zBhkJIY";
@@ -57,7 +57,7 @@ class TestController extends GetxController {
     chewieController!.dispose();
   }
 
-  Future<void> _initializedPlayer() async {
+  Future<void> initializeData() async {
     videoPlayerController =
         VideoPlayerController.asset("assets/videos/video.mp4");
     try {

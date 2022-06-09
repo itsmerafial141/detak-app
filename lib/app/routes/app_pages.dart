@@ -1,6 +1,6 @@
-import 'package:detakapp/app/modules/profile/bindings/daftar_riwayat_binding.dart';
+import 'package:detakapp/app/modules/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
 import 'package:detakapp/app/modules/profile/bindings/hasil_test_binding.dart';
-import 'package:detakapp/app/modules/profile/views/daftar_riwayat_view.dart';
+import 'package:detakapp/app/modules/daftar_riwayat/views/daftar_riwayat_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/daftar/bindings/daftar_binding.dart';
@@ -87,7 +87,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DAFTAR_RIWAYAT,
-      page: () => const DaftarRiwayatView(),
+      page: () => DaftarRiwayatView(),
       binding: DaftarRiwayatBinding(),
     ),
   ];

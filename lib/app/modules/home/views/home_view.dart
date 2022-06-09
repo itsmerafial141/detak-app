@@ -1,9 +1,11 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:detakapp/app/modules/home/widgets/home_shimmer_widdget.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
@@ -46,7 +48,21 @@ class HomeView extends GetView<HomeController> {
         (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _listMainBerita().margin(top: 20.sh),
+                CustomDivider(height: 10.sh),
+                SizedBox(
+                  width: 65.sw,
+                  height: 10.sh,
+                  child: AutoSizeText(
+                    "Sindrom Koroner Akut",
+                    maxLines: 2,
+                    softWrap: true,
+                    style: CustomFonts.montserratBold24.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                ).margin(left: 3.sh),
+                CustomDivider(height: 5.sh),
+                _listMainBerita(),
                 CustomDivider(height: 3.sh),
                 _customSubTitle(tittle: "Berita").margin(horizontal: 3.sh),
                 CustomDivider(height: 3.sh),
@@ -127,9 +143,10 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
-        Image(
+        SvgPicture.asset(
           height: 25.sh,
-          image: const AssetImage("assets/images/personBackground.png"),
+          "assets/images/homeImageBackground.svg",
+          alignment: Alignment.topRight,
         ),
       ],
     );

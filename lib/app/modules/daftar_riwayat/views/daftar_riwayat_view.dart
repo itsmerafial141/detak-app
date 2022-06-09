@@ -1,5 +1,7 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:detakapp/app/modules/profile/controllers/daftar_riwayat_controller.dart';
+import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/widgets/custom_app_bar_widget.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/app/widgets/custom_text_widget.dart';
@@ -13,7 +15,10 @@ import '../../../../core/theme/colors.dart';
 import '../../../routes/app_pages.dart';
 
 class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
-  const DaftarRiwayatView({Key? key}) : super(key: key);
+  DaftarRiwayatView({Key? key}) : super(key: key);
+
+  @override
+  var controller = Get.put(DaftarRiwayatController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +39,7 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 100.sh - 45,
+          height: 100.sh - 45 - 60,
           width: 100.sw,
           child: controller.obx(
               (_) => ListView.separated(

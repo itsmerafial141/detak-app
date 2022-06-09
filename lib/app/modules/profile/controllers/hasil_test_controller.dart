@@ -15,28 +15,28 @@ class HasilTestController extends GetxController with StateMixin {
 
   @override
   void onInit() {
+    initializeData();
     super.onInit();
+  }
+
+  void initializeData() {
     try {
-      _initializeHasilTestDetail();
+      htdProvider.getHasilTestDetail(idData.toString()).then((value) {
+        log("Detail riwayat test success!");
+        listDataHasilTest = DetailRiwayatTestModel(
+          status: value.status,
+          data: value.data,
+        );
+        change(null, status: RxStatus.success());
+      }).onError((error, stackTrace) {
+        log("Detail riwayat test onError!");
+        change(null, status: RxStatus.error(error.toString()));
+      }).whenComplete(() {
+        log("Detail riwayat test onComplete!");
+      });
     } catch (err) {
       err.printError();
     }
-  }
-
-  void _initializeHasilTestDetail() {
-    htdProvider.getHasilTestDetail(idData.toString()).then((value) {
-      log("Detail riwayat test success!");
-      listDataHasilTest = DetailRiwayatTestModel(
-        status: value.status,
-        data: value.data,
-      );
-      change(null, status: RxStatus.success());
-    }).onError((error, stackTrace) {
-      log("Detail riwayat test onError!");
-      change(null, status: RxStatus.error(error.toString()));
-    }).whenComplete(() {
-      log("Detail riwayat test onComplete!");
-    });
   }
 
   double countTestMetter(int totalTest) {

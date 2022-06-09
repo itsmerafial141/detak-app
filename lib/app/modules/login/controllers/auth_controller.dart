@@ -92,7 +92,7 @@ class AuthController extends GetxController with StateMixin {
     );
 
     isDataNotExist = "";
-    profileController.initializeProfile();
+    profileController.initializeData();
     isAuth.value = true;
     loginController.listloginController[0].text = "";
     loginController.listloginController[1].text = "";

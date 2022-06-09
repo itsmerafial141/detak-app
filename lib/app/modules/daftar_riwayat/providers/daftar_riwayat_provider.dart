@@ -1,4 +1,4 @@
-import 'package:detakapp/app/modules/profile/models/daftar_riwayat_model.dart';
+import 'package:detakapp/app/modules/daftar_riwayat/models/daftar_riwayat_model.dart';
 import 'package:get/get.dart';
 
 class DaftarRiwayatProvider extends GetConnect {

@@ -5,9 +5,10 @@ class CustomStrings {
     // ["assets/icons/video.png", "Video"],
     ["assets/icons/test.png", "Test"],
     ["assets/icons/profile.png", "Profile"],
+    ["assets/icons/hasilTest.png", "Hasil Test"],
   ];
   static List listProfileListTile = [
-    ["assets/icons/hasilTest.png", "Hasil Test"],
+    // ["assets/icons/hasilTest.png", "Hasil Test"],
     // ["assets/icons/pengaturan.png", "Pengaturan"],
     ["assets/icons/keluar.png", "Keluar"],
   ];

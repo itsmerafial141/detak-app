@@ -22,7 +22,7 @@ class HomeController extends GetxController with StateMixin {
   void onInit() {
     super.onInit();
     listBerita = [];
-    _initialData();
+    initializeData();
   }
 
   @override
@@ -31,7 +31,7 @@ class HomeController extends GetxController with StateMixin {
     listBerita.clear();
   }
 
-  void _initialData() {
+  void initializeData() {
     _initialGetBeritaSlideData();
   }
 

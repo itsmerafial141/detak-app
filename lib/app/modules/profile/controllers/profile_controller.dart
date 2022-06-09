@@ -17,7 +17,7 @@ class ProfileController extends GetxController {
   String name = "";
   String phone = "";
 
-  void initializeProfile() {
+  void initializeData() {
     var service = GetStorage();
     if (service.read("dataUser") != null) {
       var dataUser = GetStorage().read("dataUser");

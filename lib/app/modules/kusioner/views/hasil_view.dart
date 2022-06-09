@@ -1,4 +1,8 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/modules/kusioner/controllers/kusioner_controller.dart';
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:detakapp/core/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,10 +11,14 @@ import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 
 class HasilView extends GetView<KusionerController> {
-  const HasilView({Key? key}) : super(key: key);
+  HasilView({Key? key}) : super(key: key);
+
+  @override
+  var controller = Get.put(KusionerController());
 
   @override
   Widget build(BuildContext context) {
+    var daftarRiwayatController = Get.put(DaftarRiwayatController());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 55),
@@ -78,9 +86,8 @@ class HasilView extends GetView<KusionerController> {
                       const Spacer(),
                       ElevatedButton(
                         onPressed: () {
-                          Get.back();
-                          Get.back();
-                          Get.back();
+                          Get.offAllNamed(AppPages.NV);
+                          // daftarRiwayatController.initializeData();
                         },
                         style: ButtonStyle(
                           shape: MaterialStateProperty.all(
