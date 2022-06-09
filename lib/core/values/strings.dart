@@ -1,12 +1,21 @@
 class CustomStrings {
+  /// Navigation
+  static List<List<String>> listSVGnavigationBar = [
+    ["assets/icons/homeIcon.svg", "Home"],
+    ["assets/icons/testIcon.svg", "Test"],
+    ["assets/icons/riwayatIcon.svg", "Riwayat"],
+    ["assets/icons/profileIcon.svg", "Profile"],
+  ];
+
   /// Profile
   static List listBottomNavigation = [
     ["assets/icons/home.png", "Home"],
     // ["assets/icons/video.png", "Video"],
     ["assets/icons/test.png", "Test"],
-    ["assets/icons/profile.png", "Profile"],
     ["assets/icons/hasilTest.png", "Hasil Test"],
+    ["assets/icons/profile.png", "Profile"],
   ];
+
   static List listProfileListTile = [
     // ["assets/icons/hasilTest.png", "Hasil Test"],
     // ["assets/icons/pengaturan.png", "Pengaturan"],

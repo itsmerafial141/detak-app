@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:detakapp/app/modules/login/controllers/auth_controller.dart';
+import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/app/widgets/custom_text_widget.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:detakapp/core/values/strings.dart';
@@ -19,36 +19,57 @@ class LoginView extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> listWidget = [
-      _logoApp(),
-      _titleText(),
-      _errorMessage(),
-      _emailTextField(),
-      _passwordTextField(),
-      _lupaPasswordButton().align(alignment: Alignment.centerRight),
-      _loginButton(),
-      _daftarButton(),
-    ];
+    // List<Widget> listWidget = [
+    //   _logoApp(),
+    //   _titleText(),
+    //   _errorMessage(),
+    //   _emailTextField(),
+    //   _passwordTextField(),
+    //   _lupaPasswordButton().align(alignment: Alignment.centerRight),
+    //   _loginButton(),
+    //   _daftarButton(),
+    // ];
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SizedBox(
-        width: 100.sw,
-        height: 100.sh,
-        child: SingleChildScrollView(
-          child: ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (_, index) {
-              return listWidget[index].margin(horizontal: 8.sh);
-            },
-            separatorBuilder: (_, __) {
-              return _customDivider(height: 2.sh);
-            },
-            itemCount: listWidget.length,
-          ),
-        ).align(
-          alignment: Alignment.center,
+      body: SingleChildScrollView(
+        child: SizedBox(
+          height: 100.sh,
+          width: 100.sw,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _logoApp(),
+              CustomDivider(height: 2.sh),
+              _titleText(),
+              CustomDivider(height: 2.sh),
+              _errorMessage(),
+              CustomDivider(height: 2.sh),
+              _emailTextField(),
+              CustomDivider(height: 2.sh),
+              _passwordTextField(),
+              CustomDivider(height: 2.sh),
+              _lupaPasswordButton().align(alignment: Alignment.centerRight),
+              CustomDivider(height: 2.sh),
+              _loginButton(),
+              CustomDivider(height: 2.sh),
+              _daftarButton(),
+            ],
+          ).margin(horizontal: 8.sh),
         ),
+        //   ListView.separated(
+        //     shrinkWrap: true,
+        //     physics: const NeverScrollableScrollPhysics(),
+        //     itemBuilder: (_, index) {
+        //       return listWidget[index].margin(horizontal: 8.sh);
+        //     },
+        //     separatorBuilder: (_, __) {
+        //       return _customDivider(height: 2.sh);
+        //     },
+        //     itemCount: listWidget.length,
+        //   ),
+        // ).align(
+        //   alignment: Alignment.center,
+        // ),
       ),
     );
   }
@@ -95,10 +116,9 @@ class LoginView extends GetView<LoginController> {
   }
 
   Widget _loginButton() {
-    var controller = Get.put(LoginController());
     return ElevatedButton(
       onPressed: () {
-        controller.login();
+        controller.loginButton();
       },
       child: const Text("LOGIN"),
     );
@@ -158,11 +178,11 @@ class LoginView extends GetView<LoginController> {
   }
 
   Widget _errorMessage() {
-    return GetBuilder<AuthController>(
-      init: AuthController(),
-      builder: (authController) {
-        return authController.isDataNotExist != "" ||
-                authController.isDataNotExist.isNotEmpty
+    return GetBuilder<LoginController>(
+      init: LoginController(),
+      builder: (controller) {
+        return controller.isDataNotExist != "" ||
+                controller.isDataNotExist.isNotEmpty
             ? Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(15),
@@ -175,7 +195,7 @@ class LoginView extends GetView<LoginController> {
                   color: CustomColors.red.withOpacity(0.2),
                 ),
                 child: CustomText(
-                  authController.isDataNotExist,
+                  controller.isDataNotExist,
                   style: CustomFonts.montserratBold12,
                   color: CustomColors.red,
                 ),

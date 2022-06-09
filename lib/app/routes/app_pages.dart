@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:detakapp/app/modules/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
 import 'package:detakapp/app/modules/profile/bindings/hasil_test_binding.dart';
 import 'package:detakapp/app/modules/daftar_riwayat/views/daftar_riwayat_view.dart';
@@ -20,9 +22,6 @@ import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
 import '../modules/video/bindings/video_binding.dart';
 import '../modules/video/views/video_view.dart';
-
-// ignore_for_file: constant_identifier_names
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -41,6 +40,11 @@ class AppPages {
 
   static final routes = [
     GetPage(
+      name: _Paths.LOGIN,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
       name: _Paths.HOME,
       page: () => HomeView(),
       binding: HomeBinding(),
@@ -49,11 +53,6 @@ class AppPages {
       name: _Paths.DAFTAR,
       page: () => const DaftarView(),
       binding: DaftarBinding(),
-    ),
-    GetPage(
-      name: _Paths.LOGIN,
-      page: () => const LoginView(),
-      binding: LoginBinding(),
     ),
     GetPage(
       name: _Paths.NAVIGASI,

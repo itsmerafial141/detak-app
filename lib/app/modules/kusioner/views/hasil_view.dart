@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/modules/kusioner/controllers/kusioner_controller.dart';
 import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:detakapp/core/utils/helpers.dart';
@@ -18,7 +17,6 @@ class HasilView extends GetView<KusionerController> {
 
   @override
   Widget build(BuildContext context) {
-    var daftarRiwayatController = Get.put(DaftarRiwayatController());
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 55),

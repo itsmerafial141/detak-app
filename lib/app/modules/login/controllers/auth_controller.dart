@@ -4,20 +4,19 @@ import 'dart:developer';
 
 import 'package:detakapp/app/modules/login/controllers/login_controller.dart';
 import 'package:detakapp/app/modules/login/providers/login_provider.dart';
-import 'package:detakapp/app/modules/profile/controllers/profile_controller.dart';
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 // danngriel@gmail.com
 // tes123
 
-class AuthController extends GetxController with StateMixin {
+class AuthController extends GetxController {
   var loginProvider = Get.put(LoginProvider());
-  var profileController = Get.put(ProfileController());
-  var loginController = Get.put(LoginController());
+  // var profileController = Get.put(ProfileController());
+  // var loginController = Get.put(LoginController());
 
-  var isAuth = false.obs;
-  var isDataNotExist = "";
+  // var isAuth = false.obs;
 
   var keepAwakae = false;
 
@@ -33,8 +32,9 @@ class AuthController extends GetxController with StateMixin {
     }
   }
 
-  void login(String email, String password) {
+  void login(String email, String password) async {
     try {
+      print("object");
       loginProvider
           .login(
         email,
@@ -56,13 +56,14 @@ class AuthController extends GetxController with StateMixin {
           log("onError");
           stackTrace.printError();
           log(error.toString());
-          isDataNotExist = error.toString();
+          LoginController().isDataNotExist = error.toString();
+          LoginController().update();
         },
       ).whenComplete(
         () {
           Get.back();
           // update();q
-          change(null, status: RxStatus.success());
+          // change(null, status: RxStatus.success());
           log("whernComplete");
         },
       );
@@ -85,20 +86,18 @@ class AuthController extends GetxController with StateMixin {
         "PASSWORD": password,
         "NAME": name,
         "NAME_ROLE": nameRole,
-        "PROFILEPIC_USER": null,
+        "PROFILEPIC_USER": "",
         "PHONE": phone,
-        "DATE_BIRTH": null
+        "DATE_BIRTH": ""
       },
     );
 
-    isDataNotExist = "";
-    profileController.initializeData();
-    isAuth.value = true;
-    loginController.listloginController[0].text = "";
-    loginController.listloginController[1].text = "";
-    isDataNotExist = "";
-    change(null, status: RxStatus.success());
-    log("delayed");
+    Get.offAllNamed(AppPages.NV);
+
+    // profileController.initializeProfile();
+    // isAuth.value = true;
+    // change(null, status: RxStatus.success());
+    // log("delayed");
     // Future.delayed(Duration(seconds: 1)).then((value) {
     //   loginController.update();
     //   update();
@@ -108,17 +107,18 @@ class AuthController extends GetxController with StateMixin {
   void logout() {
     if (storageIsNotNull("dataUser")) {
       GetStorage().erase();
-      isAuth.value = false;
+      Get.offAllNamed(AppPages.LG);
+      // isAuth.value = false;
       // update();
-      change(null, status: RxStatus.success());
+      // change(null, status: RxStatus.success());
     }
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    isDataNotExist = "";
-  }
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   isDataNotExist = "";
+  // }
 
   bool storageIsNotNull(String key) {
     final box = GetStorage();

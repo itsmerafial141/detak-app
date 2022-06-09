@@ -12,7 +12,7 @@ import '../../../../core/values/strings.dart';
 import '../../login/controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
+class ProfileView extends GetView<NavigasiController> {
   ProfileView({
     Key? key,
   }) : super(key: key);

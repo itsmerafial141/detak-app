@@ -40,6 +40,6 @@ class HasilTestController extends GetxController with StateMixin {
   }
 
   double countTestMetter(int totalTest) {
-    return percentageOfScreenWidth(40) * totalTest / 100;
+    return (percentageOfScreenWidth(35) * totalTest / 100);
   }
 }
