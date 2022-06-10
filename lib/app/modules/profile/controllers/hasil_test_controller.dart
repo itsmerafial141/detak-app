@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:detakapp/app/modules/profile/models/detail_riwayat_test_model.dart';
 import 'package:detakapp/app/modules/profile/providers/hasil_test_provider.dart';
+import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/utils/helpers.dart';
@@ -11,12 +12,14 @@ class HasilTestController extends GetxController with StateMixin {
 
   var idData = Get.arguments["id"];
 
+  var scorIndicator = 0;
+
   late DetailRiwayatTestModel listDataHasilTest;
 
   @override
   void onInit() {
-    initializeData();
     super.onInit();
+    initializeData();
   }
 
   void initializeData() {
@@ -27,6 +30,13 @@ class HasilTestController extends GetxController with StateMixin {
           status: value.status,
           data: value.data,
         );
+        if (listDataHasilTest.data.dataSadari[0].totalScore.toInt < 0) {
+          scorIndicator = 0;
+        } else if (listDataHasilTest.data.dataSadari[0].totalScore.toInt > 32) {
+          scorIndicator = 16;
+        } else {
+          scorIndicator = (listDataHasilTest.data.dataSadari[0].totalScore.toInt*0.5).floor();
+        }
         change(null, status: RxStatus.success());
       }).onError((error, stackTrace) {
         log("Detail riwayat test onError!");

@@ -38,7 +38,7 @@ void main() async {
           subtitle1: CustomFonts.montserratSemibold12,
         ),
         colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: CustomColors.secondaryColor.withOpacity(0.5),
+          secondary: CustomColors.grey.withOpacity(0.5),
         ),
       ),
       debugShowCheckedModeBanner: false,

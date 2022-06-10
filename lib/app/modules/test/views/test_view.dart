@@ -109,7 +109,7 @@ class TestView extends GetView<TestController> {
                                   },
                               ),
                               const TextSpan(
-                                text: "MamoApp",
+                                text: "DetakApp",
                               ),
                             ],
                           ),

@@ -169,7 +169,7 @@ class KusionerController extends GetxController with StateMixin {
                   ),
                   SizedBox(
                     width: 50.sw,
-                    height: 10.sh,
+                    height: 5.sh,
                     child: Align(
                       alignment: Alignment.center,
                       child: CustomText(

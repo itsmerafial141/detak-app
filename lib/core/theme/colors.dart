@@ -29,4 +29,7 @@ class CustomColors {
 
   // Kusioner Umur
   static Color umurTotalBackground = const Color.fromRGBO(237, 241, 246, 1);
+  static Color boxDettailHasilTextLow = const Color.fromRGBO(221, 255, 229, 1);
+  static Color boxDettailHasilTextHight =
+      const Color.fromRGBO(255, 171, 171, 1);
 }

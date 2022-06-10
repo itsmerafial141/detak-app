@@ -138,7 +138,7 @@ class KusionerView extends GetView<KusionerController> {
                               },
                             ),
                             SizedBox(
-                              width: 15.sw,
+                              width: 18.sw,
                               height: 5.sh,
                               child: TextField(
                                 onChanged: (value) {
@@ -156,7 +156,7 @@ class KusionerView extends GetView<KusionerController> {
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
                                   constraints: BoxConstraints(
-                                      minWidth: 20.sw, maxHeight: 10.sh),
+                                      minWidth: 200, maxHeight: 10.sh),
                                   focusedBorder: const OutlineInputBorder(
                                     borderRadius: BorderRadius.zero,
                                     borderSide: BorderSide.none,
