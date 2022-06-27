@@ -15,18 +15,12 @@ class ScreenFive extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Text("3. Verifikasi pendaftaran",
+        Text("3. Login",
             textAlign: TextAlign.start, style: CustomFonts.montserratBold16),
         SizedBox(height: 1.sh),
-        Text(
-          "Kamu akan menerima kode verifikasi melalui email. Masukkan kode tersebut pada bagian Verifikasi Pendaftaran, lalu klik tombol “Verify”.",
-          textAlign: TextAlign.start,
-          style: CustomFonts.montserratBold14
-              .copyWith(color: CustomColors.darkGray),
-        ),
         SizedBox(height: 1.sh),
         Text(
-          "Verifikasi berhasil, pendaftaran pun selesai. Kamu sudah bisa login ke dalam aplikasi untuk menggunakan seluruh fiturnya.",
+          "Pendaftaran pun selesai. Kamu sudah bisa login ke dalam aplikasi untuk menggunakan seluruh fiturnya.",
           textAlign: TextAlign.start,
           style: CustomFonts.montserratBold14
               .copyWith(color: CustomColors.darkGray),

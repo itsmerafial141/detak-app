@@ -13,7 +13,7 @@ class ScreenSeven extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Text("1.	Edukasi ACS",
+        Text("1. Edukasi ACS",
             textAlign: TextAlign.start, style: CustomFonts.montserratBold16),
         SizedBox(height: 1.sh),
         Text(

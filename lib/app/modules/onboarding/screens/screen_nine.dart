@@ -13,7 +13,7 @@ class ScreenNine extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Text("3.	Tes dan Hasil",
+        Text("3. Tes dan Hasil",
             textAlign: TextAlign.start, style: CustomFonts.montserratBold16),
         SizedBox(height: 1.sh),
         Text(

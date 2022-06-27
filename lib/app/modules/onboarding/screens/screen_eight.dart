@@ -13,7 +13,7 @@ class ScreenEight extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
       children: [
-        Text("2.	Deteksi dini ACS",
+        Text("2. Deteksi dini ACS",
             textAlign: TextAlign.start, style: CustomFonts.montserratBold16),
         SizedBox(height: 1.sh),
         Text(
