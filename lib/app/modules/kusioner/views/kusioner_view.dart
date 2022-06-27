@@ -237,32 +237,41 @@ class KusionerView extends GetView<KusionerController> {
                       controller.indexKusioner.value != 1
                           ? ElevatedButton(
                               onPressed: () {
-                                switch (controller.indexKusioner.value) {
-                                  case 0:
-                                    controller.submitUmur(
-                                        controller.umur.value.toString());
-                                    break;
-                                  case 2:
-                                    controller.submitAnswer(
-                                        answer: "Yes", index: 2);
-                                    break;
-                                  case 3:
-                                    controller.submitAnswer(
-                                        answer: "Yes", index: 3);
-                                    break;
-                                  case 4:
-                                    controller.submitAnswer(
-                                        answer: "Yes", index: 4);
-                                    break;
-                                  case 5:
-                                    controller.submitAnswer(
-                                        answer: "Yes", index: 5);
-                                    break;
-                                  case 6:
-                                    controller.submitAnswer(
-                                        answer: "Yes", index: 6);
-                                    break;
+                                if (controller.indexKusioner.value == 0) {
+                                  controller.submitUmur(
+                                      controller.umur.value.toString());
+                                } else {
+                                  controller.submitAnswer(
+                                    answer: "Yes",
+                                    index: controller.indexKusioner.value,
+                                  );
                                 }
+                                // switch (controller.indexKusioner.value) {
+                                //   case 0:
+                                //     controller.submitUmur(
+                                //         controller.umur.value.toString());
+                                //     break;
+                                //   case 2:
+                                //     controller.submitAnswer(
+                                //         answer: "Yes", index: 2);
+                                //     break;
+                                //   case 3:
+                                //     controller.submitAnswer(
+                                //         answer: "Yes", index: 3);
+                                //     break;
+                                //   case 4:
+                                //     controller.submitAnswer(
+                                //         answer: "Yes", index: 4);
+                                //     break;
+                                //   case 5:
+                                //     controller.submitAnswer(
+                                //         answer: "Yes", index: 5);
+                                //     break;
+                                //   case 6:
+                                //     controller.submitAnswer(
+                                //         answer: "Yes", index: 6);
+                                //     break;
+                                // }
                                 // controller.answerKusioner(true);
                               },
                               child: Text(
@@ -281,28 +290,37 @@ class KusionerView extends GetView<KusionerController> {
                       Obx(() => controller.indexKusioner.value > 1
                           ? ElevatedButton(
                               onPressed: () {
-                                switch (controller.indexKusioner.value) {
-                                  case 2:
-                                    controller.submitAnswer(
-                                        answer: "No", index: 2);
-                                    break;
-                                  case 3:
-                                    controller.submitAnswer(
-                                        answer: "No", index: 3);
-                                    break;
-                                  case 4:
-                                    controller.submitAnswer(
-                                        answer: "No", index: 4);
-                                    break;
-                                  case 5:
-                                    controller.submitAnswer(
-                                        answer: "No", index: 5);
-                                    break;
-                                  case 6:
-                                    controller.submitAnswer(
-                                        answer: "No", index: 6);
-                                    break;
+                                if (controller.indexKusioner.value == 0) {
+                                  controller.submitUmur(
+                                      controller.umur.value.toString());
+                                } else {
+                                  controller.submitAnswer(
+                                    answer: "No",
+                                    index: controller.indexKusioner.value,
+                                  );
                                 }
+                                // switch (controller.indexKusioner.value) {
+                                //   case 2:
+                                //     controller.submitAnswer(
+                                //         answer: "No", index: 2);
+                                //     break;
+                                //   case 3:
+                                //     controller.submitAnswer(
+                                //         answer: "No", index: 3);
+                                //     break;
+                                //   case 4:
+                                //     controller.submitAnswer(
+                                //         answer: "No", index: 4);
+                                //     break;
+                                //   case 5:
+                                //     controller.submitAnswer(
+                                //         answer: "No", index: 5);
+                                //     break;
+                                //   case 6:
+                                //     controller.submitAnswer(
+                                //         answer: "No", index: 6);
+                                //     break;
+                                // }
                               },
                               style: ButtonStyle(
                                 side: MaterialStateProperty.all(

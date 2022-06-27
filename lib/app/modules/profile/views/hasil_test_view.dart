@@ -1,3 +1,4 @@
+import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/modules/profile/controllers/hasil_test_controller.dart';
 import 'package:detakapp/app/widgets/custom_app_bar_widget.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
@@ -16,6 +17,7 @@ class HasilTestView extends GetView<HasilTestController> {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(HasilTestController());
+    var daftarRiwayatController = Get.put(DaftarRiwayatController());
     return Scaffold(
       appBar: CustomAppBar(
         label: "Detail Hasil Test",
@@ -42,7 +44,7 @@ class HasilTestView extends GetView<HasilTestController> {
                           style: CustomFonts.montserratRegular64.copyWith(
                             color: controller.listDataHasilTest.data
                                         .dataSadari[0].totalScore.toInt <
-                                    17
+                                    11
                                 ? CustomColors.green
                                 : CustomColors.red,
                           ),
@@ -56,7 +58,7 @@ class HasilTestView extends GetView<HasilTestController> {
                               style: CustomFonts.montserratBold14.copyWith(
                                 color: controller.listDataHasilTest.data
                                             .dataSadari[0].totalScore.toInt <
-                                        17
+                                        11
                                     ? CustomColors.green
                                     : CustomColors.red,
                               ),
@@ -81,7 +83,7 @@ class HasilTestView extends GetView<HasilTestController> {
                     Icons.circle,
                     color: controller.listDataHasilTest.data.dataSadari[0]
                                 .totalScore.toInt >=
-                            17
+                            11
                         ? CustomColors.red
                         : CustomColors.green,
                     size: 5.sh,
@@ -123,7 +125,7 @@ class HasilTestView extends GetView<HasilTestController> {
                         .backgroundColor(
                           color: controller.listDataHasilTest.data.dataSadari[0]
                                       .totalScore.toInt <
-                                  17
+                                  11
                               ? index < controller.scorIndicator
                                   ? CustomColors.green
                                   : CustomColors.grey.withOpacity(0.5)
@@ -135,10 +137,10 @@ class HasilTestView extends GetView<HasilTestController> {
                   },
                   separatorBuilder: (_, __) {
                     return SizedBox(
-                      width: 1.sw,
+                      width: 1.5.sw,
                     );
                   },
-                  itemCount: 16,
+                  itemCount: 12,
                 ),
                 onLoading: ListView.separated(
                   shrinkWrap: true,
@@ -188,7 +190,7 @@ class HasilTestView extends GetView<HasilTestController> {
                   width: 2.sw,
                 ),
                 Text(
-                  ">16 Low Risk",
+                  ">16 High Risk",
                   style: CustomFonts.montserratRegular14,
                 ),
               ],
@@ -239,7 +241,7 @@ class HasilTestView extends GetView<HasilTestController> {
                       .backgroundColor(
                         color: controller.listDataHasilTest.data.dataSadari[0]
                                     .totalScore.toInt <
-                                17
+                                11
                             ? CustomColors.boxDettailHasilTextLow
                             : CustomColors.boxDettailHasilTextHight,
                       )
@@ -274,7 +276,15 @@ class HasilTestView extends GetView<HasilTestController> {
             controller.obx(
               (_) => ElevatedButton(
                 onPressed: () {
-                  Get.back();
+                  if (controller.from.toString() == "list") {
+                    Get.back();
+                  } else {
+                    Get.back();
+                    Get.back();
+                    Get.back();
+                    Get.back();
+                  }
+                  daftarRiwayatController.initializeData();
                 },
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
@@ -284,7 +294,7 @@ class HasilTestView extends GetView<HasilTestController> {
                   backgroundColor: MaterialStateProperty.all(
                     controller.listDataHasilTest.data.dataSadari[0].totalScore
                                 .toInt <
-                            17
+                            11
                         ? CustomColors.green
                         : CustomColors.red,
                   ),
@@ -309,269 +319,9 @@ class HasilTestView extends GetView<HasilTestController> {
             SizedBox(
               height: 4.sh,
             ),
-
-            ///
-            // controller.obx(
-            //   (_) {
-            //     return Stack(
-            //       alignment: Alignment.bottomLeft,
-            //       children: [
-            //         Row(
-            //           mainAxisAlignment: MainAxisAlignment.start,
-            //           mainAxisSize: MainAxisSize.min,
-            //           children: [
-            //             SizedBox(
-            //               height: 8.sh,
-            //               width: 40.sw,
-            //             )
-            //                 .backgroundColor(color: CustomColors.green)
-            //                 .borderRadius(horizontalLeft: 7),
-            //             SizedBox(
-            //               height: 8.sh,
-            //               width: 40.sw,
-            //             )
-            //                 .backgroundColor(color: CustomColors.red)
-            //                 .borderRadius(horizontalRight: 7),
-            //           ],
-            //         ).margin(bottom: 0.5.sh),
-            //         Column(
-            //           crossAxisAlignment: CrossAxisAlignment.center,
-            //           mainAxisAlignment: MainAxisAlignment.end,
-            //           mainAxisSize: MainAxisSize.min,
-            //           children: [
-            //             Image(
-            //               height: 2.sh,
-            //               width: 2.sh,
-            //               fit: BoxFit.fitWidth,
-            //               image: const AssetImage("assets/icons/polygon.png"),
-            //             ),
-            //             SizedBox(
-            //               height: 9.sh,
-            //               width: 1.sh,
-            //             )
-            //                 .backgroundColor(color: CustomColors.subTittle)
-            //                 .borderRadius(all: 1),
-            //           ],
-            //         ).margin(
-            //           left: controller
-            //               .countTestMetter(
-            //                 controller.listDataHasilTest.data.dataSadari[0]
-            //                     .totalScore.toInt,
-            //               )
-            //               .sh,
-            //         ),
-            //       ],
-            //     );
-            //   },
-            //   onLoading: Center(
-            //     child: Skelaton(
-            //       width: 80.sw,
-            //       height: 8.sh,
-            //     ).shimmer(),
-            //   ),
-            // ),
-            // CustomDivider(
-            //   height: 1.sh,
-            // ),
-            // controller.obx(
-            //   (_) {
-            //     return Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       mainAxisSize: MainAxisSize.max,
-            //       children: [
-            //         Column(
-            //           children: [
-            //             CustomText(
-            //               "<16",
-            //               style: CustomFonts.montserratRegular24,
-            //             ),
-            //             CustomText(
-            //               "Low Risk",
-            //               style: CustomFonts.montserratRegular11,
-            //             ),
-            //           ],
-            //         ),
-            //         Column(
-            //           children: [
-            //             CustomText(
-            //               "<17",
-            //               style: CustomFonts.montserratRegular24,
-            //             ),
-            //             CustomText(
-            //               "High Risk",
-            //               style: CustomFonts.montserratRegular11,
-            //             ),
-            //           ],
-            //         ),
-            //       ],
-            //     ).margin(horizontal: 10.sw);
-            //   },
-            //   onLoading: Row(
-            //     mainAxisSize: MainAxisSize.max,
-            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //     children: [
-            //       Column(
-            //         children: [
-            //           Skelaton(
-            //             height: 8.sh,
-            //             width: 8.sh,
-            //           ),
-            //           CustomDivider(height: 1.sh),
-            //           Skelaton(
-            //             height: 2.sh,
-            //             width: 10.sh,
-            //           ),
-            //         ],
-            //       ),
-            //       Column(
-            //         children: [
-            //           Skelaton(
-            //             height: 8.sh,
-            //             width: 8.sh,
-            //           ),
-            //           CustomDivider(height: 1.sh),
-            //           Skelaton(
-            //             height: 2.sh,
-            //             width: 10.sh,
-            //           ),
-            //         ],
-            //       ),
-            //     ],
-            //   ).shimmer().margin(horizontal: 10.sw),
-            // ),
-            // CustomDivider(
-            //   height: 5.sh,
-            // ),
-            // controller.obx(
-            //   (_) => ListView.separated(
-            //     padding: EdgeInsets.only(bottom: 2.sh),
-            //     shrinkWrap: true,
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     itemBuilder: (_, index) {
-            //       return Stack(
-            //         alignment: Alignment.centerLeft,
-            //         children: [
-            //           Row(
-            //             children: [
-            //               Expanded(
-            //                 flex: 9,
-            //                 child: SizedBox(
-            //                   height: 7.sh,
-            //                   child: Align(
-            //                     alignment: Alignment.centerLeft,
-            //                     child: Text(
-            //                       controller.listDataHasilTest.data
-            //                           .dataSadariDetail[index].contentQuestion,
-            //                       style: CustomFonts.montserratBold9,
-            //                     ).margin(left: 2.sh),
-            //                   ),
-            //                 )
-            //                     .backgroundColor(color: CustomColors.whiteGrey)
-            //                     .borderRadius(all: 2),
-            //               ),
-            //               CustomDivider(
-            //                 width: 2.sw,
-            //               ),
-            //               Expanded(
-            //                 flex: 2,
-            //                 child: SizedBox(
-            //                   height: 7.sh,
-            //                   // width: 7.sh,
-            //                   child: Align(
-            //                     alignment: Alignment.center,
-            //                     child: AutoSizeText(
-            //                       controller.listDataHasilTest.data
-            //                           .dataSadariDetail[index].answer,
-            //                       maxLines: 1,
-            //                       style: CustomFonts.montserratBold16,
-            //                     ).margin(all: 1.sh),
-            //                   ),
-            //                 )
-            //                     .backgroundColor(color: CustomColors.whiteGrey)
-            //                     .borderRadius(all: 2),
-            //               ),
-            //             ],
-            //           ).margin(left: 0.5.sh),
-            //           SizedBox(
-            //             height: 3.sh,
-            //             width: 1.sh,
-            //           ).backgroundColor(color: Colors.red).borderRadius(all: 1),
-            //         ],
-            //       ).margin(horizontal: 2.sh);
-            //     },
-            //     separatorBuilder: (_, __) {
-            //       return CustomDivider(
-            //         height: 2.sh,
-            //       );
-            //     },
-            //     itemCount:
-            //         controller.listDataHasilTest.data.dataSadariDetail.length,
-            //   ),
-            //   onLoading: ListView.separated(
-            //     padding: EdgeInsets.symmetric(horizontal: 3.sh),
-            //     shrinkWrap: true,
-            //     physics: const NeverScrollableScrollPhysics(),
-            //     itemBuilder: (_, __) {
-            //       return Row(
-            //         mainAxisSize: MainAxisSize.max,
-            //         children: [
-            //           Expanded(
-            //             flex: 7,
-            //             child: Skelaton(
-            //               height: 7.sh,
-            //             ),
-            //           ),
-            //           CustomDivider(
-            //             width: 2.sw,
-            //           ),
-            //           Expanded(
-            //             flex: 1,
-            //             child: Skelaton(
-            //               height: 7.sh,
-            //             ),
-            //           ),
-            //         ],
-            //       );
-            //     },
-            //     separatorBuilder: (_, __) {
-            //       return CustomDivider(
-            //         height: 2.sh,
-            //       );
-            //     },
-            //     itemCount: 7,
-            //   ),
-            // ),
           ],
         ),
       ),
-      // bottomNavigationBar: SizedBox(
-      //   width: 100.sw,
-      //   height: 8.sh,
-      //   child: ElevatedButton(
-      //     onPressed: () {
-      //       Get.back();
-      //     },
-      //     style: ButtonStyle(
-      //       elevation: MaterialStateProperty.all(0),
-      //       overlayColor: MaterialStateProperty.all(
-      //         CustomColors.black.withOpacity(0.1),
-      //       ),
-      //       backgroundColor:
-      //           MaterialStateProperty.all(CustomColors.primaryColor),
-      //       padding: MaterialStateProperty.all(EdgeInsets.zero),
-      //       shape: MaterialStateProperty.all(
-      //         RoundedRectangleBorder(
-      //           borderRadius: BorderRadius.circular(10),
-      //         ),
-      //       ),
-      //     ),
-      //     child: CustomText(
-      //       "DAFTAR RIWAYAT",
-      //       style: CustomFonts.montserratBold14,
-      //       color: Colors.white,
-      //     ),
-      //   ),
-      // ).paddingAll(2.sh),
     );
   }
 }
@@ -598,7 +348,7 @@ class CustomDetailHasilTestCardWidget extends GetView<HasilTestController> {
             style: CustomFonts.montserratBold16.copyWith(
               color: controller.listDataHasilTest.data.dataSadari[0].totalScore
                           .toInt <
-                      17
+                      11
                   ? CustomColors.green
                   : CustomColors.red,
             ),
@@ -611,7 +361,7 @@ class CustomDetailHasilTestCardWidget extends GetView<HasilTestController> {
             style: CustomFonts.montserratBold16.copyWith(
               color: controller.listDataHasilTest.data.dataSadari[0].totalScore
                           .toInt <
-                      17
+                      11
                   ? CustomColors.subTittle
                   : Colors.white,
             ),

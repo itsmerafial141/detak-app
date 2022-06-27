@@ -34,21 +34,25 @@ class Data {
     required this.hasilSadari,
     required this.keterangan,
     required this.totalScore,
+    required this.idSadari,
   });
 
   String hasilSadari;
   String keterangan;
   int totalScore;
+  int idSadari;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         hasilSadari: json["HASIL_SADARI"],
         keterangan: json["KETERANGAN"],
         totalScore: json["TOTAL_SCORE"],
+        idSadari: json["ID_SADARI"],
       );
 
   Map<String, dynamic> toJson() => {
         "HASIL_SADARI": hasilSadari,
         "KETERANGAN": keterangan,
         "TOTAL_SCORE": totalScore,
+        "ID_SADARI": idSadari,
       };
 }

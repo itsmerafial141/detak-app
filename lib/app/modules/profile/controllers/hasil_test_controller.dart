@@ -11,6 +11,7 @@ class HasilTestController extends GetxController with StateMixin {
   var htdProvider = Get.put(HasilTestProvider());
 
   var idData = Get.arguments["id"];
+  var from = Get.arguments["from"];
 
   var scorIndicator = 0;
 
@@ -32,10 +33,13 @@ class HasilTestController extends GetxController with StateMixin {
         );
         if (listDataHasilTest.data.dataSadari[0].totalScore.toInt < 0) {
           scorIndicator = 0;
-        } else if (listDataHasilTest.data.dataSadari[0].totalScore.toInt > 32) {
-          scorIndicator = 16;
+        } else if (listDataHasilTest.data.dataSadari[0].totalScore.toInt >=
+            23) {
+          scorIndicator = 12;
         } else {
-          scorIndicator = (listDataHasilTest.data.dataSadari[0].totalScore.toInt*0.5).floor();
+          scorIndicator =
+              (listDataHasilTest.data.dataSadari[0].totalScore.toInt * 0.5)
+                  .floor();
         }
         change(null, status: RxStatus.success());
       }).onError((error, stackTrace) {

@@ -72,8 +72,8 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                 Icon(
                                   Icons.circle,
                                   color: controller.daftarRiwayatModel
-                                              .data[index].totalScore.toInt >
-                                          15
+                                              .data[index].totalScore.toInt >=
+                                          11
                                       ? CustomColors.red
                                       : CustomColors.green,
                                   size: 19,
@@ -127,6 +127,7 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                               Get.toNamed(AppPages.HT, arguments: {
                                 "id": controller
                                     .daftarRiwayatModel.data[index].idSadari,
+                                "from": "list",
                               });
                             },
                             backgroundColor: CustomColors.whiteGrey,

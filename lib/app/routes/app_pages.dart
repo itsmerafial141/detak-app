@@ -1,12 +1,9 @@
-// ignore_for_file: constant_identifier_names
-
-import 'package:detakapp/app/modules/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
-import 'package:detakapp/app/modules/profile/bindings/hasil_test_binding.dart';
-import 'package:detakapp/app/modules/daftar_riwayat/views/daftar_riwayat_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/daftar/bindings/daftar_binding.dart';
 import '../modules/daftar/views/daftar_view.dart';
+import '../modules/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
+import '../modules/daftar_riwayat/views/daftar_riwayat_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kusioner/bindings/kusioner_binding.dart';
@@ -15,6 +12,9 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/navigasi/bindings/navigasi_binding.dart';
 import '../modules/navigasi/views/navigasi_view.dart';
+import '../modules/onboarding/bindings/onboarding_binding.dart';
+import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/profile/bindings/hasil_test_binding.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/hasil_test_view.dart';
 import '../modules/profile/views/profile_view.dart';
@@ -22,6 +22,9 @@ import '../modules/test/bindings/test_binding.dart';
 import '../modules/test/views/test_view.dart';
 import '../modules/video/bindings/video_binding.dart';
 import '../modules/video/views/video_view.dart';
+
+// ignore_for_file: constant_identifier_names
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -37,6 +40,7 @@ class AppPages {
   static const KS = Routes.KUSIONER;
   static const HT = Routes.HASIL_TEST;
   static const DR = Routes.DAFTAR_RIWAYAT;
+  static const OB = Routes.ONBOARDING;
 
   static final routes = [
     GetPage(
@@ -88,6 +92,11 @@ class AppPages {
       name: _Paths.DAFTAR_RIWAYAT,
       page: () => DaftarRiwayatView(),
       binding: DaftarRiwayatBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () => const OnboardingView(),
+      binding: OnboardingBinding(),
     ),
   ];
 }

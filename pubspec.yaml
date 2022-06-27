@@ -69,6 +69,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/videos/
+    - assets/obboarding/
     - assets/
     # - assets/models/
   uses-material-design: true

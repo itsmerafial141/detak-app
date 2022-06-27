@@ -3,7 +3,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/modules/kusioner/controllers/kusioner_controller.dart';
-import 'package:detakapp/app/modules/navigasi/controllers/navigasi_controller.dart';
+import 'package:detakapp/app/routes/app_pages.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,7 +21,6 @@ class HasilView extends GetView<KusionerController> {
 
   @override
   Widget build(BuildContext context) {
-    var navController = Get.put(NavigasiController());
     var daftarRiwayatController = Get.put(DaftarRiwayatController());
     return Scaffold(
       appBar: PreferredSize(
@@ -33,7 +32,7 @@ class HasilView extends GetView<KusionerController> {
           title: Text(
             "DetakApp",
             style: CustomFonts.montserratBold18.copyWith(
-              color: controller.answerModel.data.totalScore < 17
+              color: controller.answerModel.data.totalScore < 11
                   ? CustomColors.subTittle
                   : CustomColors.primaryColor,
             ),
@@ -49,7 +48,7 @@ class HasilView extends GetView<KusionerController> {
               SizedBox(
                 width: 100.sw,
                 child: SvgPicture.asset(
-                  controller.answerModel.data.totalScore < 17
+                  controller.answerModel.data.totalScore < 11
                       ? "assets/images/lowRisk.svg"
                       : "assets/images/highRisk.svg",
                   height: 50.sh,
@@ -65,7 +64,7 @@ class HasilView extends GetView<KusionerController> {
                     image: DecorationImage(
                       fit: BoxFit.fill,
                       image: AssetImage(
-                          controller.answerModel.data.totalScore < 17
+                          controller.answerModel.data.totalScore < 11
                               ? "assets/images/hasilBgLowRisk.png"
                               : "assets/images/hasilBgHighRisk.png"),
                     ),
@@ -155,12 +154,19 @@ class HasilView extends GetView<KusionerController> {
                             Expanded(
                               child: InkWell(
                                 onTap: () {
-                                  Get.back();
-                                  Get.back();
-                                  Get.back();
-                                  navController.indexPageController = 2;
-                                  navController.update();
-                                  daftarRiwayatController.initializeData();
+                                  Get.toNamed(
+                                    AppPages.HT,
+                                    arguments: {
+                                      "id":
+                                          controller.answerModel.data.idSadari,
+                                      "from": "test",
+                                    },
+                                  );
+                                  // Get.back();
+                                  // Get.back();
+                                  // Get.back();
+                                  // navController.indexPageController = 2;
+                                  // navController.update();
                                 },
                                 borderRadius: BorderRadius.circular(6),
                                 child: Container(
@@ -180,7 +186,7 @@ class HasilView extends GetView<KusionerController> {
                                         CustomFonts.montserratBold14.copyWith(
                                       color: controller
                                                   .answerModel.data.totalScore <
-                                              17
+                                              11
                                           ? Colors.green
                                           : CustomColors.primaryColor,
                                     ),

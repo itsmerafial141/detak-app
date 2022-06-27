@@ -50,3 +50,4 @@ class DaftarRiwayatController extends GetxController with StateMixin {
     return value.split(' ')[index];
   }
 }
+

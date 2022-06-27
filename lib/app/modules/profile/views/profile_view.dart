@@ -2,6 +2,7 @@
 
 import 'package:detakapp/app/modules/navigasi/controllers/navigasi_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
@@ -55,12 +56,17 @@ class ProfileView extends GetView<NavigasiController> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(
-                      "assets/images/stefan-stefancik-QXevDflbl8A-unsplash.jpg",
-                    ),
+                  SvgPicture.asset(
+                    "assets/images/profileIcon.svg",
+                    height: 60,
+                    width: 60,
                   ),
+                  // const CircleAvatar(
+                  //   radius: 30,
+                  //   backgroundImage: AssetImage(
+                  //     "assets/images/stefan-stefancik-QXevDflbl8A-unsplash.jpg",
+                  //   ),
+                  // ),
                   const SizedBox(
                     width: 20,
                   ),

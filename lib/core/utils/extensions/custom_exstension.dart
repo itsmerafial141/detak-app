@@ -112,8 +112,7 @@ extension WidgetExtension on Widget {
           overlayColor: MaterialStateProperty.all(
             CustomColors.black.withOpacity(0.1),
           ),
-          minimumSize:
-              MaterialStateProperty.all(size ?? Size(double.infinity, 5.sh)),
+          minimumSize: MaterialStateProperty.all(size ?? Size.fromHeight(5.sh)),
           backgroundColor:
               MaterialStateProperty.all(backgroundColor ?? Colors.white),
           padding: MaterialStateProperty.all(EdgeInsets.zero),

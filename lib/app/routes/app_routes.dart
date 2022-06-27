@@ -16,6 +16,7 @@ abstract class Routes {
   static const KUSIONER = _Paths.KUSIONER;
   static const HASIL_TEST = _Paths.HASIL_TEST;
   static const DAFTAR_RIWAYAT = _Paths.DAFTAR_RIWAYAT;
+  static const ONBOARDING = _Paths.ONBOARDING;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const KUSIONER = '/kusioner';
   static const HASIL_TEST = '/hasil-test';
   static const DAFTAR_RIWAYAT = '/daftar-riwayat';
+  static const ONBOARDING = '/onboarding';
 }

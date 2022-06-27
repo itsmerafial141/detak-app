@@ -3,6 +3,7 @@
     "data": {
         "HASIL_SADARI": "Low Risk",
         "KETERANGAN": "Risiko rendah dengan keluhan gejala klinis : segera bawa ke klinik/puskesmas terdekat yang tersedia pemeriksaan EKG.",
-        "TOTAL_SCORE": 6
+        "TOTAL_SCORE": 6,
+        "ID_SADARI": 92
     }
 }
