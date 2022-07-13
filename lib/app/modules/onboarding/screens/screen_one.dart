@@ -14,7 +14,7 @@ class ScreenOne extends StatelessWidget {
         Text("Apa itu mobile DETAK?",
             textAlign: TextAlign.center, style: CustomFonts.montserratBold14),
         Text(
-            "Aplikasi Mobile DETAK merupakan aplikasi yang diluncurkan oleh Novita Anna Anggraini yang memungkinkan pasien dengan resiko ACS mengakses layanan DETAK, seperti menilai factor resiko, tata laksana ACS, pencegahan ACS dan edukasi mengenai penyakit ACS serta sebagainya langsung dari ponsel.",
+            "Aplikasi Mobile DETAK merupakan aplikasi yang diluncurkan oleh untuk pasien dengan resiko ACS mengakses layanan DETAK, seperti menilai factor resiko, tata laksana ACS, pencegahan ACS dan edukasi mengenai penyakit ACS serta sebagainya langsung dari ponsel.",
             textAlign: TextAlign.center,
             style: CustomFonts.montserratBold14),
       ],
