@@ -19,6 +19,6 @@ class ScreenTwo extends StatelessWidget {
             textAlign: TextAlign.center,
             style: CustomFonts.montserratBold14),
       ],
-    ).margin(horizontal: 5.sw);
+    ).margin(horizontal: MediaQuery.of(context).size.width * .05);
   }
 }

@@ -68,11 +68,11 @@ class HasilTestView extends GetView<HasilTestController> {
                       ),
                     ),
                 onLoading: Skelaton(
-                  height: 10.sh,
-                  width: 10.sh,
+                  height: MediaQuery.of(context).size.height * .1,
+                  width: MediaQuery.of(context).size.height * .1,
                 ).shimmer()),
             CustomDivider(
-              height: 1.sh,
+              height: MediaQuery.of(context).size.height * .01,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -86,15 +86,15 @@ class HasilTestView extends GetView<HasilTestController> {
                             11
                         ? CustomColors.red
                         : CustomColors.green,
-                    size: 5.sh,
+                    size: MediaQuery.of(context).size.height * .05,
                   ),
                   onLoading: Skelaton(
-                    height: 5.sh,
-                    width: 5.sh,
+                    height: MediaQuery.of(context).size.height * .05,
+                    width: MediaQuery.of(context).size.height * .05,
                   ).shimmer(),
                 ),
                 CustomDivider(
-                  width: 1.sh,
+                  width: MediaQuery.of(context).size.height * .01,
                 ),
                 controller.obx(
                   (_) => CustomText(
@@ -102,17 +102,17 @@ class HasilTestView extends GetView<HasilTestController> {
                     style: CustomFonts.montserratBold20,
                   ),
                   onLoading: Skelaton(
-                    height: 5.sh,
-                    width: 30.sh,
+                    height: MediaQuery.of(context).size.height * .05,
+                    width: MediaQuery.of(context).size.height * .3,
                   ).shimmer(),
                 ),
               ],
             ),
             CustomDivider(
-              height: 2.sh,
+              height: MediaQuery.of(context).size.height * .02,
             ),
             SizedBox(
-              height: 8.sh,
+              height: MediaQuery.of(context).size.height * .08,
               child: controller.obx(
                 (_) => ListView.separated(
                   shrinkWrap: true,
@@ -120,7 +120,7 @@ class HasilTestView extends GetView<HasilTestController> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (_, index) {
                     return SizedBox(
-                      width: 3.5.sw,
+                      width: MediaQuery.of(context).size.width * .035,
                     )
                         .backgroundColor(
                           color: controller.listDataHasilTest.data.dataSadari[0]
@@ -137,7 +137,7 @@ class HasilTestView extends GetView<HasilTestController> {
                   },
                   separatorBuilder: (_, __) {
                     return SizedBox(
-                      width: 1.5.sw,
+                      width: MediaQuery.of(context).size.width * .015,
                     );
                   },
                   itemCount: 12,
@@ -148,12 +148,12 @@ class HasilTestView extends GetView<HasilTestController> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (_, index) {
                     return Skelaton(
-                      width: 3.5.sw,
+                      width: MediaQuery.of(context).size.width * .035,
                     );
                   },
                   separatorBuilder: (_, __) {
                     return SizedBox(
-                      width: 1.sw,
+                      width: MediaQuery.of(context).size.width * .01,
                     );
                   },
                   itemCount: 16,
@@ -161,7 +161,7 @@ class HasilTestView extends GetView<HasilTestController> {
               ),
             ),
             SizedBox(
-              height: 2.sh,
+              height: MediaQuery.of(context).size.height * .02,
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -172,14 +172,14 @@ class HasilTestView extends GetView<HasilTestController> {
                   color: CustomColors.green,
                 ),
                 SizedBox(
-                  width: 2.sw,
+                  width: MediaQuery.of(context).size.width * .02,
                 ),
                 Text(
                   "<16 Low Risk",
                   style: CustomFonts.montserratRegular14,
                 ),
                 SizedBox(
-                  width: 5.sw,
+                  width: MediaQuery.of(context).size.width * .05,
                 ),
                 Icon(
                   Icons.circle,
@@ -187,7 +187,7 @@ class HasilTestView extends GetView<HasilTestController> {
                   color: CustomColors.red,
                 ),
                 SizedBox(
-                  width: 2.sw,
+                  width: MediaQuery.of(context).size.width * .02,
                 ),
                 Text(
                   ">16 High Risk",
@@ -196,39 +196,45 @@ class HasilTestView extends GetView<HasilTestController> {
               ],
             ),
             SizedBox(
-              height: 2.sh,
+              height: MediaQuery.of(context).size.height * .02,
             ),
             controller.obx(
               (_) => CustomText(
                 controller.listDataHasilTest.data.dataSadari[0].keterangan,
                 style: CustomFonts.montserratBold14,
-              ).margin(horizontal: 10.sw),
+              ).margin(horizontal: MediaQuery.of(context).size.width * .1),
               onLoading: Column(
                 children: [
                   Skelaton(
                     width: double.infinity,
-                    height: 2.sh,
+                    height: MediaQuery.of(context).size.height * .02,
                   ),
-                  CustomDivider(height: 1.sh),
+                  CustomDivider(
+                      height: MediaQuery.of(context).size.height * .01),
                   Skelaton(
                     width: double.infinity,
-                    height: 2.sh,
+                    height: MediaQuery.of(context).size.height * .02,
                   ),
-                  CustomDivider(height: 1.sh),
+                  CustomDivider(
+                      height: MediaQuery.of(context).size.height * .01),
                   Skelaton(
-                    width: 50.sw,
-                    height: 2.sh,
+                    width: MediaQuery.of(context).size.width * .5,
+                    height: MediaQuery.of(context).size.height * .02,
                   ),
-                  CustomDivider(height: 1.sh),
+                  CustomDivider(
+                      height: MediaQuery.of(context).size.height * .01),
                 ],
-              ).margin(horizontal: 3.sh).shimmer(),
+              )
+                  .margin(horizontal: MediaQuery.of(context).size.height * .03)
+                  .shimmer(),
             ),
             CustomDivider(
-              height: 2.sh,
+              height: MediaQuery.of(context).size.height * .02,
             ),
             controller.obx(
               (_) => ListView.separated(
-                padding: EdgeInsets.only(bottom: 2.sh),
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height * .02),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
@@ -245,29 +251,31 @@ class HasilTestView extends GetView<HasilTestController> {
                             ? CustomColors.boxDettailHasilTextLow
                             : CustomColors.boxDettailHasilTextHight,
                       )
-                      .margin(horizontal: 5.sw);
+                      .margin(
+                          horizontal: MediaQuery.of(context).size.width * .05);
                 },
                 separatorBuilder: (_, __) {
                   return CustomDivider(
-                    height: 2.sh,
+                    height: MediaQuery.of(context).size.height * .02,
                   );
                 },
                 itemCount:
                     controller.listDataHasilTest.data.dataSadariDetail.length,
               ),
               onLoading: ListView.separated(
-                padding: EdgeInsets.symmetric(horizontal: 3.sh),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.height * .03),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, __) {
                   return Skelaton(
-                    height: 10.sh,
+                    height: MediaQuery.of(context).size.height * .1,
                     width: double.infinity,
                   );
                 },
                 separatorBuilder: (_, __) {
                   return CustomDivider(
-                    height: 2.sh,
+                    height: MediaQuery.of(context).size.height * .02,
                   );
                 },
                 itemCount: 7,
@@ -310,14 +318,14 @@ class HasilTestView extends GetView<HasilTestController> {
                   style: CustomFonts.montserratBold14,
                   color: Colors.white,
                 ),
-              ).margin(horizontal: 10.sw),
+              ).margin(horizontal: MediaQuery.of(context).size.width * .1),
               onLoading: Skelaton(
-                height: 10.sh,
-                width: 70.sw,
+                height: MediaQuery.of(context).size.height * .1,
+                width: MediaQuery.of(context).size.width * .7,
               ).shimmer(),
             ),
             SizedBox(
-              height: 4.sh,
+              height: MediaQuery.of(context).size.height * .04,
             ),
           ],
         ),
@@ -354,7 +362,7 @@ class CustomDetailHasilTestCardWidget extends GetView<HasilTestController> {
             ),
           ),
           SizedBox(
-            height: 0.5.sh,
+            height: MediaQuery.of(context).size.height * .05,
           ),
           Text(
             answer,
@@ -367,7 +375,7 @@ class CustomDetailHasilTestCardWidget extends GetView<HasilTestController> {
             ),
           ),
         ],
-      ).margin(all: 2.sh),
+      ).margin(all: MediaQuery.of(context).size.height * .02),
     );
   }
 }

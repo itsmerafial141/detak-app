@@ -1,4 +1,3 @@
-import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme/colors.dart';
@@ -19,7 +18,8 @@ class Skelaton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: borderRaddius ?? BorderRadius.circular(1.sh),
+      borderRadius: borderRaddius ??
+          BorderRadius.circular(MediaQuery.of(context).size.height * .01),
       child: ColoredBox(
         color: color ?? CustomColors.disable,
         child: SizedBox(

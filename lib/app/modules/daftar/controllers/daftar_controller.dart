@@ -41,7 +41,7 @@ class DaftarController extends GetxController {
     update();
   }
 
-  void daftar() {
+  void daftar(BuildContext context) {
     listErrorController = [
       nameIsError(),
       emailIsError(),
@@ -51,7 +51,7 @@ class DaftarController extends GetxController {
     ];
     if (allTextFieldIsNotEmpty() && allTextFieldIsNotError()) {
       log("daftar");
-      CustomLoadingDialog.customLoadingDialog();
+      CustomLoadingDialog.customLoadingDialog(context);
       _daftarProcess(
         nama: listController[0].text,
         email: listController[1].text,

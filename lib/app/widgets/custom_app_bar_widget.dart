@@ -1,5 +1,4 @@
 // ignore: use_key_in_widget_constructors
-import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme/colors.dart';
@@ -26,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   PreferredSize build(BuildContext context) {
     return PreferredSize(
-      preferredSize: Size(100.sw, 45),
+      preferredSize: Size(MediaQuery.of(context).size.width, 45),
       child: AppBar(
         backgroundColor: colorBackground ?? CustomColors.primaryColor,
         elevation: 0,

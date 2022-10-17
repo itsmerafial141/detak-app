@@ -79,28 +79,28 @@ class PreparingTestView extends GetView<TestController> {
                   ),
                   child: GetBuilder<TestController>(
                     init: TestController(),
-                    builder: (controller) =>
-                        controller.chewieController != null &&
-                                controller.chewieController!
-                                    .videoPlayerController.value.isInitialized
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: SizedBox(
-                                  height: 30.sh,
-                                  width: double.infinity,
-                                  child: Chewie(
-                                    controller: controller.chewieController!,
-                                  ),
-                                ).backgroundColor(color: Colors.black),
-                              )
-                            : Skelaton(
-                                height: 30.sh,
-                                width: double.infinity,
-                              ).shimmer(),
+                    builder: (controller) => controller.chewieController !=
+                                null &&
+                            controller.chewieController!.videoPlayerController
+                                .value.isInitialized
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height * .3,
+                              width: double.infinity,
+                              child: Chewie(
+                                controller: controller.chewieController!,
+                              ),
+                            ).backgroundColor(color: Colors.black),
+                          )
+                        : Skelaton(
+                            height: MediaQuery.of(context).size.height * .3,
+                            width: double.infinity,
+                          ).shimmer(),
                   ),
                 ),
                 CustomDivider(
-                  height: 4.sh,
+                  height: MediaQuery.of(context).size.height * .04,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(

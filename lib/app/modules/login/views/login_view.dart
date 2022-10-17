@@ -33,37 +33,37 @@ class LoginView extends GetView<LoginController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 100.sh,
-          width: 100.sw,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _logoApp(),
-              CustomDivider(height: 2.sh),
-              _titleText(),
-              CustomDivider(height: 2.sh),
+              _logoApp(context),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
+              _titleText(context),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
               _errorMessage(),
-              CustomDivider(height: 2.sh),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
               _emailTextField(),
-              CustomDivider(height: 2.sh),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
               _passwordTextField(),
-              CustomDivider(height: 2.sh),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
               _lupaPasswordButton().align(alignment: Alignment.centerRight),
-              CustomDivider(height: 2.sh),
-              _loginButton(),
-              CustomDivider(height: 2.sh),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
+              _loginButton(context),
+              CustomDivider(height: MediaQuery.of(context).size.height * .02),
               _daftarButton(),
             ],
-          ).margin(horizontal: 8.sh),
+          ).margin(horizontal: MediaQuery.of(context).size.height * .08),
         ),
         //   ListView.separated(
         //     shrinkWrap: true,
         //     physics: const NeverScrollableScrollPhysics(),
         //     itemBuilder: (_, index) {
-        //       return listWidget[index].margin(horizontal: 8.sh);
+        //       return listWidget[index].margin(horizontal:MediaQuery.of(context).size.height * .08);
         //     },
         //     separatorBuilder: (_, __) {
-        //       return _customDivider(height: 2.sh);
+        //       return _customDivider(height: MediaQuery.of(context).size.height *.02);
         //     },
         //     itemCount: listWidget.length,
         //   ),
@@ -74,7 +74,7 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget _titleText() {
+  Widget _titleText(BuildContext context) {
     return Column(
       children: [
         CustomText(
@@ -82,7 +82,7 @@ class LoginView extends GetView<LoginController> {
           style: CustomFonts.montserratBold24,
           color: CustomColors.primaryColor,
         ),
-        _customDivider(height: 0.5.sh),
+        _customDivider(height: MediaQuery.of(context).size.height * .05),
         CustomText(
           "Login untuk mengakses akun",
           style: CustomFonts.montserratMedium12,
@@ -115,10 +115,10 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget _loginButton() {
+  Widget _loginButton(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        controller.loginButton();
+        controller.loginButton(context);
       },
       child: const Text("LOGIN"),
     );
@@ -205,10 +205,10 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Widget _logoApp() {
+  Widget _logoApp(BuildContext context) {
     return Image(
-      height: 50.sw,
-      width: 50.sw,
+      height: MediaQuery.of(context).size.width * .5,
+      width: MediaQuery.of(context).size.width * .5,
       image: const AssetImage(CustomStrings.logoApp),
     );
   }

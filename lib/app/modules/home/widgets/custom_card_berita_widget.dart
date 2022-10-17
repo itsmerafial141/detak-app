@@ -21,18 +21,18 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.detailBerita(listData[0].data[index].idNews);
+        controller.detailBerita(listData[0].data[index].idNews, context);
       },
       borderRadius: BorderRadius.circular(14),
       child: SizedBox(
-        height: 15.sh,
+        height: MediaQuery.of(context).size.height * .15,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 3,
               child: Container(
-                width: 35.sh,
+                width: MediaQuery.of(context).size.height * .35,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
                   color: CustomColors.disable,

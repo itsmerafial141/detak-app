@@ -35,23 +35,23 @@ class HomeView extends GetView<HomeController> {
         child: Stack(
           children: [
             // Stack person ilustration with background
-            _backgroundView(),
-            _mainView(),
+            _backgroundView(context),
+            _mainView(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _mainView() {
+  Widget _mainView(BuildContext context) {
     return controller.obx(
         (_) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomDivider(height: 10.sh),
+                CustomDivider(height:MediaQuery.of(context).size.height * .1),
                 SizedBox(
-                  width: 65.sw,
-                  height: 10.sh,
+                  width: MediaQuery.of(context).size.width * .65,
+                  height:MediaQuery.of(context).size.height * .1,
                   child: AutoSizeText(
                     "Halo, ${controller.nameUser}!",
                     maxLines: 2,
@@ -60,19 +60,23 @@ class HomeView extends GetView<HomeController> {
                       color: Colors.white,
                     ),
                   ),
-                ).margin(left: 3.sh),
-                CustomDivider(height: 5.sh),
-                _listMainBerita(),
-                CustomDivider(height: 3.sh),
-                _customSubTitle(tittle: "Berita").margin(horizontal: 3.sh),
-                CustomDivider(height: 3.sh),
-                _listBerita().margin(horizontal: 3.sh).margin(bottom: 3.sh),
+                ).margin(left: MediaQuery.of(context).size.height * .03),
+                CustomDivider(height: MediaQuery.of(context).size.height * .05),
+                _listMainBerita(context),
+                CustomDivider(height: MediaQuery.of(context).size.height * .03),
+                _customSubTitle(tittle: "Berita").margin(
+                    horizontal: MediaQuery.of(context).size.height * .03),
+                CustomDivider(height: MediaQuery.of(context).size.height * .03),
+                _listBerita(context)
+                    .margin(
+                        horizontal: MediaQuery.of(context).size.height * .03)
+                    .margin(bottom: MediaQuery.of(context).size.height * .03),
               ],
             ),
         onLoading: const HomeShimmer());
   }
 
-  Widget _listBerita() {
+  Widget _listBerita(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -84,7 +88,7 @@ class HomeView extends GetView<HomeController> {
       },
       separatorBuilder: (_, __) {
         return CustomDivider(
-          height: 2.sh,
+          height: MediaQuery.of(context).size.height * .02,
         );
       },
       itemCount: controller.listBerita[0].data.length,
@@ -98,14 +102,14 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _listMainBerita() {
+  Widget _listMainBerita(BuildContext context) {
     return SizedBox(
-      height: 25.sh,
-      width: 100.sw,
+      height: MediaQuery.of(context).size.height * .25,
+      width: MediaQuery.of(context).size.width,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, __) {
-          return CustomDivider(width: 3.sh);
+          return CustomDivider(width: MediaQuery.of(context).size.height * .03);
         },
         separatorBuilder: (_, index) {
           return Stack(
@@ -122,7 +126,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _backgroundView() {
+  Widget _backgroundView(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomRight,
       children: [
@@ -130,8 +134,8 @@ class HomeView extends GetView<HomeController> {
         Stack(
           children: [
             SizedBox(
-              height: 30.sh,
-              width: 100.sw,
+              height:MediaQuery.of(context).size.height * .3,
+              width: MediaQuery.of(context).size.width,
             ).backgroundColor(
               color: CustomColors.primaryColor,
             ),
@@ -144,7 +148,7 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
         SvgPicture.asset(
-          height: 25.sh,
+          height: MediaQuery.of(context).size.height * .25,
           "assets/images/homeImageBackground.svg",
           alignment: Alignment.topRight,
         ),

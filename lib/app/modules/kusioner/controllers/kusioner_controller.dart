@@ -125,10 +125,10 @@ class KusionerController extends GetxController with StateMixin {
     update();
   }
 
-  void nextPageKusioner() {
+  void nextPageKusioner(BuildContext context) {
     if (indexKusioner < kuisonerModel.data.length - 1) {
       if (listAnswer.length < indexKusioner.value + 1) {
-        _showDialogDataNotNull();
+        _showDialogDataNotNull(context);
       } else {
         indexKusioner += 1;
         update();
@@ -136,7 +136,7 @@ class KusionerController extends GetxController with StateMixin {
     }
   }
 
-  void submitUmur(String umur) {
+  void submitUmur(String umur, BuildContext context) {
     if (umur != null && umur.isNotEmpty && umur != "" && umur != "0") {
       indexKusioner += 1;
       if (listAnswer.isNotEmpty) {
@@ -145,11 +145,11 @@ class KusionerController extends GetxController with StateMixin {
       listAnswer.insert(0, umur);
       update();
     } else {
-      _showDialogDataNotNull();
+      _showDialogDataNotNull(context);
     }
   }
 
-  void _showDialogDataNotNull() {
+  void _showDialogDataNotNull(BuildContext context) {
     Get.dialog(
       Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -165,11 +165,11 @@ class KusionerController extends GetxController with StateMixin {
                     style: CustomFonts.montserratBold16,
                   ),
                   CustomDivider(
-                    height: 4.sh,
+                    height: MediaQuery.of(context).size.height * .04,
                   ),
                   SizedBox(
-                    width: 50.sw,
-                    height: 5.sh,
+                    width: MediaQuery.of(context).size.width * .5,
+                    height: MediaQuery.of(context).size.height * .05,
                     child: Align(
                       alignment: Alignment.center,
                       child: CustomText(
@@ -182,10 +182,11 @@ class KusionerController extends GetxController with StateMixin {
                       onPressed: () {
                         Get.back();
                       },
-                      size: Size(50.sw, 1.sh),
+                      size: Size(MediaQuery.of(context).size.width * .5,
+                          MediaQuery.of(context).size.height * .01),
                       backgroundColor: CustomColors.primaryColor)
                 ],
-              ).margin(all: 4.sh)),
+              ).margin(all: MediaQuery.of(context).size.height * .04)),
             ],
           ).borderRadius(all: 10)
         ],
@@ -193,7 +194,11 @@ class KusionerController extends GetxController with StateMixin {
     );
   }
 
-  void submitAnswer({required String answer, required int index}) {
+  void submitAnswer({
+    required String answer,
+    required int index,
+    required BuildContext context,
+  }) {
     if (indexKusioner < kuisonerModel.data.length - 1) {
       indexKusioner += 1;
       if (listAnswer.length == kuisonerModel.data.length) {
@@ -222,15 +227,15 @@ class KusionerController extends GetxController with StateMixin {
                       style: CustomFonts.montserratBold16,
                     ),
                     CustomDivider(
-                      height: 4.sh,
+                      height: MediaQuery.of(context).size.height * .04,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 30.sw,
-                          height: 7.sh,
+                          width: MediaQuery.of(context).size.width * .3,
+                          height: MediaQuery.of(context).size.height * .07,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -248,14 +253,15 @@ class KusionerController extends GetxController with StateMixin {
                             onPressed: () {
                               Get.back();
                             },
-                            size: Size(30.sw, 1.sh),
+                            size: Size(MediaQuery.of(context).size.width * .3,
+                                MediaQuery.of(context).size.height * .01),
                             backgroundColor: Colors.white),
                         CustomDivider(
-                          width: 2.sh,
+                          width: MediaQuery.of(context).size.height * .02,
                         ),
                         Container(
-                          width: 30.sw,
-                          height: 7.sh,
+                          width: MediaQuery.of(context).size.width * .3,
+                          height: MediaQuery.of(context).size.height * .07,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -271,24 +277,25 @@ class KusionerController extends GetxController with StateMixin {
                           ),
                         ).borderRadius(all: 10).button(
                             onPressed: () {
-                              _postAnswer();
+                              _postAnswer(context);
                             },
-                            size: Size(30.sw, 1.sh),
+                            size: Size(MediaQuery.of(context).size.width * .3,
+                                MediaQuery.of(context).size.height * .01),
                             backgroundColor: CustomColors.white),
                       ],
                     ),
                   ],
-                ).margin(all: 4.sh)),
+                ).margin(all: MediaQuery.of(context).size.height * .04)),
               ],
             ).borderRadius(all: 10),
           ],
-        ).margin(horizontal: 3.sh),
+        ).margin(horizontal: MediaQuery.of(context).size.height * .03),
       );
     }
   }
 
-  void _postAnswer() {
-    CustomLoadingDialog.customLoadingDialog();
+  void _postAnswer(BuildContext context) {
+    CustomLoadingDialog.customLoadingDialog(context);
     try {
       kuisonerProvider
           .answer(

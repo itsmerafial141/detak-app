@@ -13,69 +13,73 @@ class HomeShimmer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _customDivider(height: 20.sh),
+        _customDivider(height: MediaQuery.of(context).size.height * .2),
         SizedBox(
-          height: 25.sh,
+          height: MediaQuery.of(context).size.height * 25,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, __) {
-              return _customDivider(widht: 3.sh);
+              return _customDivider(
+                  widht: MediaQuery.of(context).size.height * .03);
             },
             separatorBuilder: (_, __) {
               return Skelaton(
-                width: 40.sh,
+                width: MediaQuery.of(context).size.height * .4,
               );
             },
             itemCount: 3,
           ),
         ),
-        _customDivider(height: 3.sh),
+        _customDivider(height: MediaQuery.of(context).size.height * .03),
         Skelaton(
-          height: 3.sh,
-          width: 10.sh,
-        ).margin(horizontal: 3.sh),
-        _customDivider(height: 2.sh),
+          height: MediaQuery.of(context).size.height * .03,
+          width: MediaQuery.of(context).size.height * .1,
+        ).margin(horizontal: MediaQuery.of(context).size.height * .03),
+        _customDivider(height: MediaQuery.of(context).size.height * .02),
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (_, __) {
             return SizedBox(
-              height: 15.5.sh,
+              height: MediaQuery.of(context).size.height * .155,
               child: Row(
                 children: [
                   Skelaton(
-                    height: 15.5.sh,
-                    width: 25.sh,
+                    height: MediaQuery.of(context).size.height * .155,
+                    width: MediaQuery.of(context).size.height * .25,
                   ),
-                  _customDivider(widht: 1.sh),
+                  _customDivider(
+                      widht: MediaQuery.of(context).size.height * .01),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Skelaton(
-                          height: 3.sh,
+                          height: MediaQuery.of(context).size.height * .03,
                           width: double.infinity,
                         ),
-                        _customDivider(height: 1.sh),
+                        _customDivider(
+                            height: MediaQuery.of(context).size.height * .01),
                         Skelaton(
-                          height: 3.sh,
-                          width: 20.sh,
+                          height: MediaQuery.of(context).size.height * .03,
+                          width: MediaQuery.of(context).size.height * .2,
                         ),
                         const Spacer(),
                         Skelaton(
-                          height: 3.sh,
-                          width: 10.sh,
+                          height: MediaQuery.of(context).size.height * .03,
+                          width: MediaQuery.of(context).size.height * .1,
                         ),
                       ],
                     ),
                   ),
                 ],
               ),
-            ).margin(horizontal: 3.sh);
+            ).margin(horizontal: MediaQuery.of(context).size.height * .03);
           },
           separatorBuilder: (_, __) {
-            return _customDivider(height: 3.sh);
+            return _customDivider(
+                height: MediaQuery.of(context).size.height * .03);
           },
           itemCount: 3,
         ),

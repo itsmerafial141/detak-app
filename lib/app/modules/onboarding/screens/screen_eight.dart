@@ -15,19 +15,20 @@ class ScreenEight extends StatelessWidget {
       children: [
         Text("2. Deteksi dini ACS",
             textAlign: TextAlign.start, style: CustomFonts.montserratBold16),
-        SizedBox(height: 1.sh),
+        SizedBox(height: MediaQuery.of(context).size.height * .01),
         Text(
           "Informasi mengenai deteksi dini ACS dengan tes resiko  dapat dilakukan pada menu tes.",
           textAlign: TextAlign.start,
           style: CustomFonts.montserratBold14
               .copyWith(color: CustomColors.darkGray),
         ),
-        SizedBox(height: 5.sh),
+        SizedBox(height: MediaQuery.of(context).size.height * .05),
         Center(
           child: Container(
-            height: 50.sh,
-            width: 50.sw,
-            padding: EdgeInsets.only(top: 2.sh),
+            height: MediaQuery.of(context).size.height * .5,
+            width: MediaQuery.of(context).size.width * .5,
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * .02),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.black,
@@ -43,6 +44,6 @@ class ScreenEight extends StatelessWidget {
           ),
         ),
       ],
-    ).margin(horizontal: 5.sw);
+    ).margin(horizontal: MediaQuery.of(context).size.width * .05);
   }
 }

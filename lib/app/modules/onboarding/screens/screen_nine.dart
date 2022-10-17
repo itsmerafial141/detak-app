@@ -15,23 +15,24 @@ class ScreenNine extends StatelessWidget {
       children: [
         Text("3. Tes dan Hasil",
             textAlign: TextAlign.start, style: CustomFonts.montserratBold16),
-        SizedBox(height: 1.sh),
+        SizedBox(height: MediaQuery.of(context).size.height * .01),
         Text(
           "Fitur ini memungkinkan peserta untuk menilai resiko pasien ACS. Meliputi beberapa penilaian dengan memperhitungkan semua factor resiko dan memberikan skor untuk setiap item. Pengisian tes dibuat mudah dan sederhana untuk memudahkan pengguna dalam menghitung factor resiko. ",
           textAlign: TextAlign.start,
           style: CustomFonts.montserratBold14
               .copyWith(color: CustomColors.darkGray),
         ),
-        SizedBox(height: 5.sh),
+        SizedBox(height: MediaQuery.of(context).size.height * .05),
         Center(
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                height: 40.sh,
-                width: 40.sw,
-                padding: EdgeInsets.only(top: 2.sh),
+                height: MediaQuery.of(context).size.height * .4,
+                width: MediaQuery.of(context).size.width * .4,
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .02),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
@@ -46,9 +47,10 @@ class ScreenNine extends StatelessWidget {
                 ),
               ),
               Container(
-                height: 40.sh,
-                width: 40.sw,
-                padding: EdgeInsets.only(top: 2.sh),
+                height: MediaQuery.of(context).size.height * .4,
+                width: MediaQuery.of(context).size.width * .4,
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .02),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
@@ -66,6 +68,6 @@ class ScreenNine extends StatelessWidget {
           ),
         ),
       ],
-    ).margin(horizontal: 5.sw);
+    ).margin(horizontal: MediaQuery.of(context).size.width * .05);
   }
 }

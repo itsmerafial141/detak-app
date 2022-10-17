@@ -1,7 +1,7 @@
 name: detakapp
 version: 1.0.0+1
 publish_to: none
-description: A new Flutter project.
+description: Aplikasi Detak untuk pemeriksaan kesehatan anda.
 environment: 
   sdk: '>=2.17.0 <3.0.0'
 

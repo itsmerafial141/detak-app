@@ -16,14 +16,14 @@ class BeritaShimmerWidget extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (_, index) {
         return SizedBox(
-          height: 15.sh,
+          height: MediaQuery.of(context).size.height * .15,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 flex: 3,
                 child: Skelaton(
-                  height: 15.sh,
+                  height: MediaQuery.of(context).size.height * .15,
                 ),
               ),
               Expanded(
@@ -32,20 +32,20 @@ class BeritaShimmerWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Skelaton(
-                      height: 2.sh,
+                      height: MediaQuery.of(context).size.height * .02,
                       width: double.infinity.sh,
                     ),
                     CustomDivider(
-                      height: 1.sh,
+                      height: MediaQuery.of(context).size.height * .01,
                     ),
                     Skelaton(
-                      height: 2.sh,
-                      width: 40.sw,
+                      height: MediaQuery.of(context).size.height * .02,
+                      width: MediaQuery.of(context).size.width * .4,
                     ),
                     const Spacer(),
                     Skelaton(
-                      height: 1.sh,
-                      width: 5.sh,
+                      height: MediaQuery.of(context).size.height * .01,
+                      width: MediaQuery.of(context).size.height * .05,
                     ),
                   ],
                 ).margin(all: 10),
@@ -56,7 +56,7 @@ class BeritaShimmerWidget extends StatelessWidget {
       },
       separatorBuilder: (_, __) {
         return CustomDivider(
-          height: 2.sh,
+          height: MediaQuery.of(context).size.height * .02,
         );
       },
       itemCount: 3,

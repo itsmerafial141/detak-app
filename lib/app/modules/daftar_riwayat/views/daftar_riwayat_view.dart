@@ -39,11 +39,13 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 100.sh - 45 - 60,
-          width: 100.sw,
+          height: MediaQuery.of(context).size.height - 45 - 60,
+          width: MediaQuery.of(context).size.width,
           child: controller.obx(
               (_) => ListView.separated(
-                    padding: EdgeInsets.only(top: 4.sh, bottom: 4.sh),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * .04,
+                        bottom: MediaQuery.of(context).size.height * .04),
                     itemBuilder: (_, index) {
                       return Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +63,7 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                             ),
                           ),
                           CustomDivider(
-                            width: 2.sh,
+                            width: MediaQuery.of(context).size.height * .02,
                           ),
                           Expanded(
                             flex: 8,
@@ -79,7 +81,8 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                                   size: 19,
                                 ),
                                 CustomDivider(
-                                  width: 1.sh,
+                                  width:
+                                      MediaQuery.of(context).size.height * .01,
                                 ),
                                 AutoSizeText(
                                   controller.daftarRiwayatModel.data[index]
@@ -119,7 +122,9 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                           ),
                         ],
                       )
-                          .paddingSymmetric(horizontal: 2.sh)
+                          .paddingSymmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.height * .02)
                           // .backgroundColor(color: CustomColors.whiteGrey)
                           .borderRadius(all: 10)
                           .button(
@@ -132,26 +137,30 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                             },
                             backgroundColor: CustomColors.whiteGrey,
                           )
-                          .margin(horizontal: 2.sh);
+                          .margin(
+                              horizontal:
+                                  MediaQuery.of(context).size.height * .02);
                     },
                     separatorBuilder: (_, __) {
                       return CustomDivider(
-                        height: 2.sh,
+                        height: MediaQuery.of(context).size.height * .02,
                       );
                     },
                     itemCount: controller.daftarRiwayatModel.data.length,
                   ),
               onLoading: ListView.separated(
-                padding: EdgeInsets.only(top: 4.sh),
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .04),
                 itemBuilder: (_, __) {
                   return Skelaton(
-                    height: 20.sh,
+                    height: MediaQuery.of(context).size.height * .2,
                     width: double.infinity,
-                  ).shimmer().margin(horizontal: 3.sh);
+                  ).shimmer().margin(
+                      horizontal: MediaQuery.of(context).size.height * .03);
                 },
                 separatorBuilder: (_, __) {
                   return CustomDivider(
-                    height: 2.sh,
+                    height: MediaQuery.of(context).size.height * .02,
                   );
                 },
                 itemCount: 5,

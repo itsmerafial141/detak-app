@@ -12,17 +12,17 @@ class BeritaSlideShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 25.sh,
-      width: 100.sw,
+      height: MediaQuery.of(context).size.height * .25,
+      width: MediaQuery.of(context).size.width,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (_, __) {
-          return CustomDivider(width: 3.sh);
+          return CustomDivider(width: MediaQuery.of(context).size.height * .03);
         },
         separatorBuilder: (_, index) {
           return Skelaton(
-            height: 25.sh,
-            width: 40.sh,
+            height: MediaQuery.of(context).size.height * .25,
+            width: MediaQuery.of(context).size.height * .4,
           );
         },
         itemCount: 3,

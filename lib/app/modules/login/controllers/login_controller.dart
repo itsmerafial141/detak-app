@@ -137,13 +137,13 @@ class LoginController extends GetxController {
     lupaPasswordEmailErrorController = false;
   }
 
-  void loginButton() {
+  void loginButton(BuildContext context) {
     listErrorController = [
       _emailIsError(),
       _passwordIsError(),
     ];
     if (_allTextFieldIsNotEmpty() && _allTextFieldIsNotError()) {
-      CustomLoadingDialog.customLoadingDialog();
+      CustomLoadingDialog.customLoadingDialog(context);
       print("login");
       login(
         listloginController[0].text, //emailController

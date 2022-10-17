@@ -19,7 +19,7 @@ class DetailBeritaView extends GetView<HomeController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _customDivider(height: 3.sh),
+            _customDivider(height: MediaQuery.of(context).size.height * .03),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -28,46 +28,46 @@ class DetailBeritaView extends GetView<HomeController> {
                   style: CustomFonts.montserratBold12,
                   color: CustomColors.grey,
                 ),
-                _customDivider(width: 1.sw),
+                _customDivider(width: MediaQuery.of(context).size.width * .01),
                 Icon(
                   Icons.circle,
                   size: 5,
                   color: CustomColors.grey,
                 ),
-                _customDivider(width: 1.sw),
+                _customDivider(width: MediaQuery.of(context).size.width * .01),
                 CustomText(
                   "${controller.getTimeDetailBerita(controller.dataDetailBerita.data.dateNews)} WIB",
                   style: CustomFonts.montserratSemibold12,
                   color: CustomColors.grey,
                 ),
               ],
-            ).margin(horizontal: 3.sh),
-            _customDivider(height: 1.sh),
+            ).margin(horizontal: MediaQuery.of(context).size.height * .03),
+            _customDivider(height: MediaQuery.of(context).size.height * .01),
             CustomText(
               controller.dataDetailBerita.data.titleNews,
               style: CustomFonts.montserratBold14,
-            ).margin(horizontal: 3.sh),
-            _customDivider(height: 1.sh),
+            ).margin(horizontal: MediaQuery.of(context).size.height * .03),
+            _customDivider(height: MediaQuery.of(context).size.height * .01),
             CustomText(
               "oleh ${controller.dataDetailBerita.data.editor}",
               style: CustomFonts.montserratBold9,
               color: CustomColors.grey,
-            ).margin(horizontal: 3.sh),
-            _customDivider(height: 1.sh),
+            ).margin(horizontal: MediaQuery.of(context).size.height * .03),
+            _customDivider(height: MediaQuery.of(context).size.height * .01),
             Image(
               width: double.infinity,
-              height: 30.sh,
+              height: MediaQuery.of(context).size.height * .3,
               fit: BoxFit.cover,
               image: NetworkImage(
                 "/images/news/${controller.dataDetailBerita.data.newsImage}"
                     .fromUrl,
               ),
             ),
-            _customDivider(height: 2.sh),
+            _customDivider(height: MediaQuery.of(context).size.height * .02),
             HtmlWidget(
               controller.dataDetailBerita.data.contentNews,
-            ).margin(horizontal: 3.sh),
-            _customDivider(height: 5.sh),
+            ).margin(horizontal: MediaQuery.of(context).size.height * .03),
+            _customDivider(height: MediaQuery.of(context).size.height * .05),
           ],
         ),
       ),

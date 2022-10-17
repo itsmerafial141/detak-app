@@ -8,7 +8,7 @@ import 'custom_divider_widget.dart';
 import 'custom_text_widget.dart';
 
 class CustomLoadingDialog {
-  static void customLoadingDialog() {
+  static void customLoadingDialog(BuildContext context) {
     Get.dialog(
       Center(
         child: Wrap(
@@ -21,7 +21,7 @@ class CustomLoadingDialog {
                     color: CustomColors.primaryColor,
                   ),
                   CustomDivider(
-                    height: 1.sh,
+                    height: MediaQuery.of(context).size.height * .01,
                   ),
                   DefaultTextStyle(
                     style: CustomFonts.montserratBold12,
@@ -31,7 +31,7 @@ class CustomLoadingDialog {
                     ),
                   ),
                 ],
-              ).margin(all: 5.sh),
+              ).margin(all: MediaQuery.of(context).size.height * .05),
             ).backgroundColor(color: Colors.white).borderRadius(all: 14),
           ],
         ),

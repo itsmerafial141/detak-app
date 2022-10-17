@@ -1,12 +1,12 @@
-import 'package:detakapp/app/routes/app_pages.dart';
-import 'package:detakapp/core/theme/colors.dart';
-import 'package:detakapp/core/theme/fonts.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../core/theme/colors.dart';
+import '../../../../core/theme/fonts.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/onboarding_controller.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
@@ -16,14 +16,14 @@ class OnboardingView extends GetView<OnboardingController> {
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 100.sh + Get.mediaQuery.viewPadding.top,
-          width: 100.sw,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               Expanded(
                 child: SizedBox(
-                  width: 100.sw,
+                  width: MediaQuery.of(context).size.width,
                   child: PageView.builder(
                     controller: controller.pageController.value,
                     // physics: const NeverScrollableScrollPhysics(),
@@ -35,7 +35,7 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                 ),
               ),
-              SizedBox(height: 1.sh),
+              SizedBox(height: MediaQuery.of(context).size.height * .01),
               Center(
                 child: Obx(
                   () => AnimatedSmoothIndicator(
@@ -56,7 +56,7 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                 ),
               ),
-              SizedBox(height: 1.sh),
+              SizedBox(height: MediaQuery.of(context).size.height * .01),
               Row(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -75,7 +75,8 @@ class OnboardingView extends GetView<OnboardingController> {
                             CustomColors.black.withOpacity(0.1),
                           ),
                           minimumSize: MaterialStateProperty.all(
-                            Size.fromHeight(8.sh),
+                            Size.fromHeight(
+                                MediaQuery.of(context).size.height * .08),
                           ),
                           backgroundColor:
                               MaterialStateProperty.all(CustomColors.white),
@@ -96,13 +97,13 @@ class OnboardingView extends GetView<OnboardingController> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 2.sw),
+                  SizedBox(width: MediaQuery.of(context).size.width * .02),
                   Obx(
                     () {
                       return controller.pageIndex.value !=
                               controller.pageView.length - 1
                           ? SizedBox(
-                              width: 20.sw,
+                              width: MediaQuery.of(context).size.height * .2,
                               child: ElevatedButton(
                                 onPressed: () {
                                   Get.offAllNamed(AppPages.LG);
@@ -113,7 +114,9 @@ class OnboardingView extends GetView<OnboardingController> {
                                     CustomColors.black.withOpacity(0.1),
                                   ),
                                   minimumSize: MaterialStateProperty.all(
-                                    Size.fromHeight(8.sh),
+                                    Size.fromHeight(
+                                        MediaQuery.of(context).size.height *
+                                            .08),
                                   ),
                                   backgroundColor: MaterialStateProperty.all(
                                       CustomColors.primaryColor),
@@ -137,7 +140,7 @@ class OnboardingView extends GetView<OnboardingController> {
                     },
                   )
                 ],
-              ).margin(all: 2.sw),
+              ).margin(all: MediaQuery.of(context).size.width * .02),
             ],
           ),
         ),

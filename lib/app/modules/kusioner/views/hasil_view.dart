@@ -4,7 +4,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:detakapp/app/modules/daftar_riwayat/controllers/daftar_riwayat_controller.dart';
 import 'package:detakapp/app/modules/kusioner/controllers/kusioner_controller.dart';
 import 'package:detakapp/app/routes/app_pages.dart';
-import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -41,25 +40,28 @@ class HasilView extends GetView<KusionerController> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          width: 100.sw,
-          height: 100.sh - 55,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height -
+              55 -
+              MediaQuery.of(context).viewPadding.top,
           child: Stack(
             children: [
               SizedBox(
-                width: 100.sw,
+                width: MediaQuery.of(context).size.width,
                 child: SvgPicture.asset(
                   controller.answerModel.data.totalScore < 11
                       ? "assets/images/lowRisk.svg"
                       : "assets/images/highRisk.svg",
-                  height: 50.sh,
+                  height: MediaQuery.of(context).size.height * .5,
                 ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
-                  height: 50.sh,
-                  width: 100.sw,
-                  padding: EdgeInsets.all(10.sw),
+                  height: MediaQuery.of(context).size.height * .5,
+                  width: MediaQuery.of(context).size.width,
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * .1),
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fill,
@@ -101,11 +103,11 @@ class HasilView extends GetView<KusionerController> {
                         ),
                       ),
                       SizedBox(
-                        height: 2.sh,
+                        height: MediaQuery.of(context).size.height * .02,
                       ),
                       SizedBox(
-                        height: 10.sh,
-                        width: 80.sw,
+                        height: MediaQuery.of(context).size.height * .1,
+                        width: MediaQuery.of(context).size.width * .8,
                         child: AutoSizeText(
                           controller.answerModel.data.keterangan,
                           textAlign: TextAlign.center,
@@ -116,7 +118,7 @@ class HasilView extends GetView<KusionerController> {
                       ),
                       const Spacer(),
                       SizedBox(
-                        width: 80.sw,
+                        width: MediaQuery.of(context).size.width * .8,
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -129,7 +131,8 @@ class HasilView extends GetView<KusionerController> {
                                 },
                                 borderRadius: BorderRadius.circular(6),
                                 child: Container(
-                                  height: 6.sh,
+                                  height:
+                                      MediaQuery.of(context).size.height * .06,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(6),
@@ -149,7 +152,7 @@ class HasilView extends GetView<KusionerController> {
                               ),
                             ),
                             SizedBox(
-                              width: 5.sw,
+                              width: MediaQuery.of(context).size.width * .05,
                             ),
                             Expanded(
                               child: InkWell(
@@ -170,7 +173,8 @@ class HasilView extends GetView<KusionerController> {
                                 },
                                 borderRadius: BorderRadius.circular(6),
                                 child: Container(
-                                  height: 6.sh,
+                                  height:
+                                      MediaQuery.of(context).size.height * .06,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(6),

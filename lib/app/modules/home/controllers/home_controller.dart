@@ -6,6 +6,7 @@ import 'package:detakapp/app/modules/home/models/berita_model.dart';
 import 'package:detakapp/app/modules/home/models/berita_slider_model.dart';
 import 'package:detakapp/app/modules/home/models/detail_berita_model.dart';
 import 'package:detakapp/app/modules/home/providers/berita_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -89,8 +90,8 @@ class HomeController extends GetxController with StateMixin {
     }
   }
 
-  void detailBerita(String idNews) {
-    CustomLoadingDialog.customLoadingDialog();
+  void detailBerita(String idNews,BuildContext context) {
+    CustomLoadingDialog.customLoadingDialog(context);
     try {
       beritaProvider.getDetailBerita(idNews).then((value) {
         dataDetailBerita = DetailBeritaModel(

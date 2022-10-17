@@ -32,14 +32,14 @@ class CustomMainCardWidget extends GetView<HomeController> {
       ),
       child: InkWell(
         onTap: () {
-          controller.detailBerita(listData.data[index].idNews);
+          controller.detailBerita(listData.data[index].idNews,context);
         },
         borderRadius: BorderRadius.circular(14),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             Container(
-              width: 40.sh,
+              width: MediaQuery.of(context).size.height * .4,
               decoration: BoxDecoration(
                 color: CustomColors.disable,
                 borderRadius: BorderRadius.circular(14),
@@ -52,7 +52,7 @@ class CustomMainCardWidget extends GetView<HomeController> {
               ),
             ),
             Container(
-              width: 40.sh,
+              width: MediaQuery.of(context).size.height * .4,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.black.withOpacity(0.5),

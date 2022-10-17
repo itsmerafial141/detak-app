@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print, must_be_immutable
 
 import 'package:detakapp/app/modules/test/views/preparing_test.dart';
-import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,7 +44,7 @@ class TestView extends GetView<TestController> {
             children: [
               SvgPicture.asset(
                 "assets/images/testImageBackground.svg",
-                width: 95.sw,
+                width: MediaQuery.of(context).size.width * .95,
                 fit: BoxFit.fitWidth,
               ),
               // Image(

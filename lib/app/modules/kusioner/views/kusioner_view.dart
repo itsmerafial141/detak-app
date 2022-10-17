@@ -19,354 +19,375 @@ class KusionerView extends GetView<KusionerController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            controller.previousPageKusioner();
-          },
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: CustomColors.primaryColor,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          elevation: 0,
+          leading: IconButton(
+            onPressed: () {
+              controller.previousPageKusioner();
+            },
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: CustomColors.primaryColor,
+            ),
           ),
-        ),
-        title: Column(
-          children: [
-            Text(
-              "Kuestioner",
-              style: CustomFonts.montserratBold18.copyWith(
-                color: CustomColors.primaryColor,
+          title: Column(
+            children: [
+              Text(
+                "Kuestioner",
+                style: CustomFonts.montserratBold18.copyWith(
+                  color: CustomColors.primaryColor,
+                ),
               ),
-            ),
-            SizedBox(
-              height: 1.sh,
-            ),
-            SizedBox(
-              height: 0.5.sh,
-              width: 60.sw,
-              child: controller.obx(
-                (_) => Row(
-                  children: List.generate(
-                    controller.kuisonerModel.data.length,
-                    (index) {
-                      return Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 2),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(Get.width),
-                            child: ColoredBox(
-                              color: controller.indexKusioner.value == index
-                                  ? CustomColors.primaryColor
-                                  : CustomColors.secondaryColor
-                                      .withOpacity(0.5),
-                              child: SizedBox(
-                                height: 0.5.sh,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .01,
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * .05,
+                width: MediaQuery.of(context).size.width * .05,
+                child: controller.obx(
+                  (_) => Row(
+                    children: List.generate(
+                      controller.kuisonerModel.data.length,
+                      (index) {
+                        return Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(Get.width),
+                              child: ColoredBox(
+                                color: controller.indexKusioner.value == index
+                                    ? CustomColors.primaryColor
+                                    : CustomColors.secondaryColor
+                                        .withOpacity(0.5),
+                                child: SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * .05,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
+                  onLoading: Skelaton(
+                    height: MediaQuery.of(context).size.height * .2,
+                    width: double.infinity,
+                  ).shimmer(),
                 ),
-                onLoading: Skelaton(
-                  height: 20.sh,
-                  width: double.infinity,
-                ).shimmer(),
+              ),
+            ],
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                if (controller.indexKusioner == 0) {
+                  controller.submitUmur(
+                      controller.umur.value.toString(), context);
+                } else {
+                  controller.nextPageKusioner(context);
+                }
+              },
+              icon: Icon(
+                Icons.arrow_forward_rounded,
+                color: CustomColors.primaryColor,
               ),
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              if (controller.indexKusioner == 0) {
-                controller.submitUmur(controller.umur.value.toString());
-              } else {
-                controller.nextPageKusioner();
-              }
-            },
-            icon: Icon(
-              Icons.arrow_forward_rounded,
-              color: CustomColors.primaryColor,
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: 100.sw,
-          height: 100.sh + Get.mediaQuery.viewPadding.top,
-          child: Column(
-            children: [
-              const Spacer(),
-              SizedBox(
-                width: 70.sw,
-                child: controller.obx(
-                  (_) => Text(
-                    controller.kuisonerModel
-                        .data[controller.indexKusioner.value].contentQuestion,
-                    textAlign: TextAlign.center,
-                    style: CustomFonts.montserratMedium14,
+        body: SingleChildScrollView(
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height +
+                MediaQuery.of(context).viewPadding.top,
+            child: Column(
+              children: [
+                const Spacer(),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * .7,
+                  child: controller.obx(
+                    (_) => Text(
+                      controller.kuisonerModel
+                          .data[controller.indexKusioner.value].contentQuestion,
+                      textAlign: TextAlign.center,
+                      style: CustomFonts.montserratMedium14,
+                    ),
+                    onLoading: Skelaton(
+                      height: MediaQuery.of(context).size.height * .05,
+                      width: MediaQuery.of(context).size.width * .8,
+                    ).shimmer(),
                   ),
+                ),
+                CustomDivider(
+                  height: MediaQuery.of(context).size.height * .02,
+                ),
+                controller.obx(
+                  (_) {
+                    return controller.indexKusioner == 0
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              _umurButton(
+                                onTap: () {
+                                  controller.decrement();
+                                },
+                                onLongPress: () {},
+                                icons: Icons.remove_rounded,
+                                onTapPressed: (TapDownDetails details) {
+                                  controller.autoDecrement();
+                                },
+                                context: context,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * .18,
+                                height:
+                                    MediaQuery.of(context).size.height * .05,
+                                child: TextField(
+                                  onChanged: (value) {
+                                    if (value.isNotEmpty) {
+                                      if (controller.umurController.text.toInt >
+                                          150) {
+                                        controller.umurController.text = "150";
+                                      }
+                                    } else {
+                                      controller.umurController.text = "0";
+                                    }
+                                    controller.umur.value =
+                                        controller.umurController.text.toInt;
+                                  },
+                                  textAlign: TextAlign.center,
+                                  decoration: InputDecoration(
+                                    constraints: BoxConstraints(
+                                        minWidth: 200,
+                                        maxHeight:
+                                            MediaQuery.of(context).size.height *
+                                                .1),
+                                    focusedBorder: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.zero,
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.zero,
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    fillColor: CustomColors.umurTotalBackground,
+                                  ),
+                                  maxLines: 1,
+                                  controller: controller.umurController,
+                                  textInputAction: TextInputAction.done,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(
+                                        RegExp("[0-9]")),
+                                    LengthLimitingTextInputFormatter(3),
+                                  ],
+                                ),
+                              ),
+                              _umurButton(
+                                onTap: () {
+                                  controller.increment();
+                                },
+                                icons: Icons.add_rounded,
+                                onTapPressed: (TapDownDetails details) {
+                                  controller.autoIncrement();
+                                },
+                                context: context,
+                              ),
+                            ],
+                          )
+                        : const SizedBox();
+                  },
                   onLoading: Skelaton(
-                    height: 5.sh,
-                    width: 80.sw,
+                    height: MediaQuery.of(context).size.height * .05,
+                    width: MediaQuery.of(context).size.width * .5,
                   ).shimmer(),
                 ),
-              ),
-              CustomDivider(
-                height: 2.sh,
-              ),
-              controller.obx(
-                (_) {
-                  return controller.indexKusioner == 0
-                      ? Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            _umurButton(
-                              onTap: () {
-                                controller.decrement();
-                              },
-                              onLongPress: () {},
-                              icons: Icons.remove_rounded,
-                              onTapPressed: (TapDownDetails details) {
-                                controller.autoDecrement();
-                              },
-                            ),
-                            SizedBox(
-                              width: 18.sw,
-                              height: 5.sh,
-                              child: TextField(
-                                onChanged: (value) {
-                                  if (value.isNotEmpty) {
-                                    if (controller.umurController.text.toInt >
-                                        150) {
-                                      controller.umurController.text = "150";
-                                    }
-                                  } else {
-                                    controller.umurController.text = "0";
-                                  }
-                                  controller.umur.value =
-                                      controller.umurController.text.toInt;
+                controller.obx(
+                  (_) {
+                    return controller.indexKusioner == 1
+                        ? Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              _customGenderButton(
+                                onTap: () {
+                                  controller.submitAnswer(
+                                    answer: "Female",
+                                    index: 1,
+                                    context: context,
+                                  );
                                 },
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  constraints: BoxConstraints(
-                                      minWidth: 200, maxHeight: 10.sh),
-                                  focusedBorder: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.zero,
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.zero,
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  fillColor: CustomColors.umurTotalBackground,
-                                ),
-                                maxLines: 1,
-                                controller: controller.umurController,
-                                textInputAction: TextInputAction.done,
-                                keyboardType: TextInputType.number,
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp("[0-9]")),
-                                  LengthLimitingTextInputFormatter(3),
-                                ],
+                                image: "assets/icons/FE.png",
+                                label: "WANITA",
+                                context: context,
                               ),
-                            ),
-                            _umurButton(
-                              onTap: () {
-                                controller.increment();
-                              },
-                              icons: Icons.add_rounded,
-                              onTapPressed: (TapDownDetails details) {
-                                controller.autoIncrement();
-                              },
-                            ),
-                          ],
-                        )
-                      : const SizedBox();
-                },
-                onLoading: Skelaton(
-                  height: 5.sh,
-                  width: 50.sw,
-                ).shimmer(),
-              ),
-              controller.obx(
-                (_) {
-                  return controller.indexKusioner == 1
-                      ? Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            _customGenderButton(
-                              onTap: () {
-                                controller.submitAnswer(
-                                    answer: "Female", index: 1);
-                              },
-                              image: "assets/icons/FE.png",
-                              label: "WANITA",
-                            ),
-                            SizedBox(
-                              width: 10.sw,
-                            ),
-                            _customGenderButton(
-                              onTap: () {
-                                controller.submitAnswer(
-                                    answer: "Male", index: 1);
-                              },
-                              image: "assets/icons/MA.png",
-                              label: "LAKI - LAKI",
-                            ),
-                          ],
-                        ).margin(top: 10.sh)
-                      : const SizedBox();
-                },
-              ),
-              const Spacer(),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5.sh,
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * .1,
+                              ),
+                              _customGenderButton(
+                                onTap: () {
+                                  controller.submitAnswer(
+                                    answer: "Male",
+                                    index: 1,
+                                    context: context,
+                                  );
+                                },
+                                image: "assets/icons/MA.png",
+                                label: "LAKI - LAKI",
+                                context: context,
+                              ),
+                            ],
+                          ).margin(top: MediaQuery.of(context).size.height * .1)
+                        : const SizedBox();
+                  },
                 ),
-                child: controller.obx(
-                  (_) => Column(
-                    children: [
-                      controller.indexKusioner.value != 1
-                          ? ElevatedButton(
-                              onPressed: () {
-                                if (controller.indexKusioner.value == 0) {
-                                  controller.submitUmur(
-                                      controller.umur.value.toString());
-                                } else {
-                                  controller.submitAnswer(
-                                    answer: "Yes",
-                                    index: controller.indexKusioner.value,
-                                  );
-                                }
-                                // switch (controller.indexKusioner.value) {
-                                //   case 0:
-                                //     controller.submitUmur(
-                                //         controller.umur.value.toString());
-                                //     break;
-                                //   case 2:
-                                //     controller.submitAnswer(
-                                //         answer: "Yes", index: 2);
-                                //     break;
-                                //   case 3:
-                                //     controller.submitAnswer(
-                                //         answer: "Yes", index: 3);
-                                //     break;
-                                //   case 4:
-                                //     controller.submitAnswer(
-                                //         answer: "Yes", index: 4);
-                                //     break;
-                                //   case 5:
-                                //     controller.submitAnswer(
-                                //         answer: "Yes", index: 5);
-                                //     break;
-                                //   case 6:
-                                //     controller.submitAnswer(
-                                //         answer: "Yes", index: 6);
-                                //     break;
-                                // }
-                                // controller.answerKusioner(true);
-                              },
-                              child: Text(
-                                controller.indexKusioner.value == 0
-                                    ? "LANJUT"
-                                    : "YA",
-                                style: CustomFonts.montserratBold14.copyWith(
-                                  color: CustomColors.white,
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.height * .05,
+                  ),
+                  child: controller.obx(
+                    (_) => Column(
+                      children: [
+                        controller.indexKusioner.value != 1
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  if (controller.indexKusioner.value == 0) {
+                                    controller.submitUmur(
+                                        controller.umur.value.toString(),
+                                        context);
+                                  } else {
+                                    controller.submitAnswer(
+                                        answer: "Yes",
+                                        index: controller.indexKusioner.value,
+                                        context: context);
+                                  }
+                                  // switch (controller.indexKusioner.value) {
+                                  //   case 0:
+                                  //     controller.submitUmur(
+                                  //         controller.umur.value.toStrin,contextg());
+                                  //     break;
+                                  //   case 2:
+                                  //     controller.submitAnswer(
+                                  //         answer: "Yes", index: 2);
+                                  //     break;
+                                  //   case 3:
+                                  //     controller.submitAnswer(
+                                  //         answer: "Yes", index: 3);
+                                  //     break;
+                                  //   case 4:
+                                  //     controller.submitAnswer(
+                                  //         answer: "Yes", index: 4);
+                                  //     break;
+                                  //   case 5:
+                                  //     controller.submitAnswer(
+                                  //         answer: "Yes", index: 5);
+                                  //     break;
+                                  //   case 6:
+                                  //     controller.submitAnswer(
+                                  //         answer: "Yes", index: 6);
+                                  //     break;
+                                  // }
+                                  // controller.answerKusioner(true);
+                                },
+                                child: Text(
+                                  controller.indexKusioner.value == 0
+                                      ? "LANJUT"
+                                      : "YA",
+                                  style: CustomFonts.montserratBold14.copyWith(
+                                    color: CustomColors.white,
+                                  ),
                                 ),
-                              ),
-                            )
-                          : const SizedBox(),
-                      SizedBox(
-                        height: percentageOfScreenHeight(1),
-                      ),
-                      Obx(() => controller.indexKusioner.value > 1
-                          ? ElevatedButton(
-                              onPressed: () {
-                                if (controller.indexKusioner.value == 0) {
-                                  controller.submitUmur(
-                                      controller.umur.value.toString());
-                                } else {
-                                  controller.submitAnswer(
-                                    answer: "No",
-                                    index: controller.indexKusioner.value,
-                                  );
-                                }
-                                // switch (controller.indexKusioner.value) {
-                                //   case 2:
-                                //     controller.submitAnswer(
-                                //         answer: "No", index: 2);
-                                //     break;
-                                //   case 3:
-                                //     controller.submitAnswer(
-                                //         answer: "No", index: 3);
-                                //     break;
-                                //   case 4:
-                                //     controller.submitAnswer(
-                                //         answer: "No", index: 4);
-                                //     break;
-                                //   case 5:
-                                //     controller.submitAnswer(
-                                //         answer: "No", index: 5);
-                                //     break;
-                                //   case 6:
-                                //     controller.submitAnswer(
-                                //         answer: "No", index: 6);
-                                //     break;
-                                // }
-                              },
-                              style: ButtonStyle(
-                                side: MaterialStateProperty.all(
-                                  BorderSide(
-                                    width: 1,
+                              )
+                            : const SizedBox(),
+                        SizedBox(
+                          height: percentageOfScreenHeight(1),
+                        ),
+                        Obx(() => controller.indexKusioner.value > 1
+                            ? ElevatedButton(
+                                onPressed: () {
+                                  if (controller.indexKusioner.value == 0) {
+                                    controller.submitUmur(
+                                        controller.umur.value.toString(),
+                                        context);
+                                  } else {
+                                    controller.submitAnswer(
+                                        answer: "No",
+                                        index: controller.indexKusioner.value,
+                                        context: context);
+                                  }
+                                  // switch (controller.indexKusioner.value) {
+                                  //   case 2:
+                                  //     controller.submitAnswer(
+                                  //         answer: "No", index: 2);
+                                  //     break;
+                                  //   case 3:
+                                  //     controller.submitAnswer(
+                                  //         answer: "No", index: 3);
+                                  //     break;
+                                  //   case 4:
+                                  //     controller.submitAnswer(
+                                  //         answer: "No", index: 4);
+                                  //     break;
+                                  //   case 5:
+                                  //     controller.submitAnswer(
+                                  //         answer: "No", index: 5);
+                                  //     break;
+                                  //   case 6:
+                                  //     controller.submitAnswer(
+                                  //         answer: "No", index: 6);
+                                  //     break;
+                                  // }
+                                },
+                                style: ButtonStyle(
+                                  side: MaterialStateProperty.all(
+                                    BorderSide(
+                                      width: 1,
+                                      color: CustomColors.primaryColor,
+                                    ),
+                                  ),
+                                  shape: MaterialStateProperty.all(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(6),
+                                    ),
+                                  ),
+                                  backgroundColor: MaterialStateProperty.all(
+                                    Colors.white,
+                                  ),
+                                ),
+                                child: Text(
+                                  "TIDAK",
+                                  style: TextStyle(
                                     color: CustomColors.primaryColor,
                                   ),
                                 ),
-                                shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                ),
-                                backgroundColor: MaterialStateProperty.all(
-                                  Colors.white,
-                                ),
-                              ),
-                              child: Text(
-                                "TIDAK",
-                                style: TextStyle(
-                                  color: CustomColors.primaryColor,
-                                ),
-                              ),
-                            )
-                          : const SizedBox()),
-                    ],
+                              )
+                            : const SizedBox()),
+                      ],
+                    ),
+                    onLoading: Column(
+                      children: [
+                        Skelaton(
+                          height: MediaQuery.of(context).size.height * .06,
+                          width: MediaQuery.of(context).size.width * .8,
+                        ),
+                        CustomDivider(
+                          height: MediaQuery.of(context).size.height * .02,
+                        ),
+                        Skelaton(
+                          height: MediaQuery.of(context).size.height * .06,
+                          width: MediaQuery.of(context).size.width * .8,
+                        ),
+                      ],
+                    ).shimmer(),
                   ),
-                  onLoading: Column(
-                    children: [
-                      Skelaton(
-                        height: 6.sh,
-                        width: 80.sw,
-                      ),
-                      CustomDivider(
-                        height: 2.sh,
-                      ),
-                      Skelaton(
-                        height: 6.sh,
-                        width: 80.sw,
-                      ),
-                    ],
-                  ).shimmer(),
                 ),
-              ),
-              const Spacer(),
-            ],
+                const Spacer(),
+              ],
+            ),
           ),
         ),
       ),
@@ -377,13 +398,14 @@ class KusionerView extends GetView<KusionerController> {
     required Function() onTap,
     required String image,
     required String label,
+    required BuildContext context,
   }) {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(6),
       child: Container(
-        height: 20.sh,
-        width: 20.sh,
+        height: MediaQuery.of(context).size.height * .2,
+        width: MediaQuery.of(context).size.height * .2,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Colors.transparent,
@@ -398,13 +420,13 @@ class KusionerView extends GetView<KusionerController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image(
-              height: 12.sh,
-              width: 12.sh,
+              height: MediaQuery.of(context).size.height * .12,
+              width: MediaQuery.of(context).size.height * .12,
               fit: BoxFit.fitHeight,
               image: AssetImage(image),
             ),
             SizedBox(
-              height: 1.sh,
+              height: MediaQuery.of(context).size.height * .01,
             ),
             AutoSizeText(
               label,
@@ -425,6 +447,7 @@ class KusionerView extends GetView<KusionerController> {
     required Function(TapDownDetails details) onTapPressed,
     Function()? onLongPress,
     required IconData icons,
+    required BuildContext context,
   }) {
     return GestureDetector(
       onTapDown: onTapPressed,
@@ -436,13 +459,13 @@ class KusionerView extends GetView<KusionerController> {
       },
       onTap: onTap,
       child: SizedBox(
-        height: 5.sh,
-        width: 5.sh,
+        height: MediaQuery.of(context).size.height * .05,
+        width: MediaQuery.of(context).size.height * .05,
         child: Align(
           alignment: Alignment.center,
           child: Icon(
             icons,
-            size: 3.sh,
+            size: MediaQuery.of(context).size.height * .03,
             color: Colors.white,
           ),
         ),

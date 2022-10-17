@@ -50,14 +50,19 @@ class DaftarView extends GetView<DaftarController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _customSubTitle(),
-                  CustomDivider(height: 4.sh),
-                  _listTextField(textInputType),
-                  CustomDivider(height: 5.sh),
-                  _buttonDaftar(),
-                  CustomDivider(height: 4.sh),
+                  CustomDivider(
+                      height: MediaQuery.of(context).size.height * .04),
+                  _listTextField(textInputType, context),
+                  CustomDivider(
+                      height: MediaQuery.of(context).size.height * .05),
+                  _buttonDaftar(context),
+                  CustomDivider(
+                      height: MediaQuery.of(context).size.height * .04),
                   _loginText(),
                 ],
-              ).margin(horizontal: 3.sh, top: 8.sh);
+              ).margin(
+                  horizontal: MediaQuery.of(context).size.height * .03,
+                  top: MediaQuery.of(context).size.height * .08);
             },
           ),
         ),
@@ -88,16 +93,17 @@ class DaftarView extends GetView<DaftarController> {
     );
   }
 
-  Widget _buttonDaftar() {
+  Widget _buttonDaftar(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        controller.daftar();
+        controller.daftar(context);
       },
       child: const Text("DAFTAR"),
     );
   }
 
-  Widget _listTextField(List<TextInputType> textInputType) {
+  Widget _listTextField(
+      List<TextInputType> textInputType, BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -111,7 +117,7 @@ class DaftarView extends GetView<DaftarController> {
         );
       },
       separatorBuilder: (_, __) {
-        return CustomDivider(height: 2.sh);
+        return CustomDivider(height: MediaQuery.of(context).size.height * .02);
       },
       itemCount: CustomStrings.listTextField.length,
     );
