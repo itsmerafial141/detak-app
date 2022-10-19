@@ -362,7 +362,7 @@ class CustomDetailHasilTestCardWidget extends GetView<HasilTestController> {
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * .05,
+            height: MediaQuery.of(context).size.height * .01,
           ),
           Text(
             answer,

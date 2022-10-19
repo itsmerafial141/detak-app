@@ -17,6 +17,10 @@ class DaftarRiwayatController extends GetxController with StateMixin {
     initializeData();
   }
 
+  void loadingDataRefresh() {
+    change(null, status: RxStatus.loading());
+  }
+
   void initializeData() {
     try {
       final service = GetStorage();
