@@ -3,10 +3,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:detakapp/app/modules/kusioner/models/kuisoner_model.dart';
-import 'package:detakapp/app/modules/kusioner/providers/kuisoner_provider.dart';
+import 'package:detakapp/app/data/models/kuisoner_model.dart';
+import 'package:detakapp/app/data/providers/kuisoner_provider.dart';
 import 'package:detakapp/app/modules/kusioner/views/hasil_view.dart';
-import 'package:detakapp/app/modules/profile/providers/hasil_test_provider.dart';
+import 'package:detakapp/app/data/providers/hasil_test_provider.dart';
 import 'package:detakapp/app/widgets/custom_divider_widget.dart';
 import 'package:detakapp/app/widgets/custom_loading_dialog_widget.dart';
 import 'package:detakapp/app/widgets/custom_text_widget.dart';
@@ -15,11 +15,14 @@ import 'package:detakapp/core/theme/fonts.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-import '../models/answer_model.dart';
+import '../../../../core/values/keys/storage_service_key.dart';
+import '../../../../services/storage_service.dart';
+import '../../../data/models/answer_model.dart';
 
 class KusionerController extends GetxController with StateMixin {
+  StorageService storageService = Get.put(StorageService());
+
   var hasilTestProvider = Get.put(HasilTestProvider());
   var kuisonerProvider = Get.put(KuisonerProvider());
   late KuisonerModel kuisonerModel;
@@ -300,7 +303,7 @@ class KusionerController extends GetxController with StateMixin {
       kuisonerProvider
           .answer(
         answer: listAnswer,
-        email: GetStorage().read("dataUser")["EMAIL"],
+        email: storageService.read(SSKey.userKey)["EMAIL"],
       )
           .then((value) {
         log("Post Answer Success!");
@@ -308,6 +311,7 @@ class KusionerController extends GetxController with StateMixin {
           status: value.status,
           data: value.data,
         );
+        Get.back();
         Get.back();
         Get.off(HasilView());
       }).onError((error, stackTrace) {

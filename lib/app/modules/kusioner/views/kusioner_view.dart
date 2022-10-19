@@ -35,6 +35,7 @@ class KusionerView extends GetView<KusionerController> {
             ),
           ),
           title: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Kuestioner",
@@ -42,43 +43,33 @@ class KusionerView extends GetView<KusionerController> {
                   color: CustomColors.primaryColor,
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .01,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .05,
-                width: MediaQuery.of(context).size.width * .05,
-                child: controller.obx(
-                  (_) => Row(
-                    children: List.generate(
-                      controller.kuisonerModel.data.length,
-                      (index) {
-                        return Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 2),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(Get.width),
-                              child: ColoredBox(
-                                color: controller.indexKusioner.value == index
-                                    ? CustomColors.primaryColor
-                                    : CustomColors.secondaryColor
-                                        .withOpacity(0.5),
-                                child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * .05,
-                                ),
-                              ),
+              controller.obx(
+                (_) => Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    controller.kuisonerModel.data.length,
+                    (index) {
+                      return Expanded(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(Get.width),
+                          child: ColoredBox(
+                            color: controller.indexKusioner.value == index
+                                ? CustomColors.primaryColor
+                                : CustomColors.secondaryColor.withOpacity(0.5),
+                            child: const SizedBox(
+                              height: 4,
                             ),
                           ),
-                        );
-                      },
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                  onLoading: Skelaton(
-                    height: MediaQuery.of(context).size.height * .2,
-                    width: double.infinity,
-                  ).shimmer(),
                 ),
+                onLoading: Skelaton(
+                  height: MediaQuery.of(context).size.height * .2,
+                  width: double.infinity,
+                ).shimmer(),
               ),
             ],
           ),
@@ -102,11 +93,10 @@ class KusionerView extends GetView<KusionerController> {
         body: SingleChildScrollView(
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height +
-                MediaQuery.of(context).viewPadding.top,
+            height: MediaQuery.of(context).size.height - 80,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Spacer(),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .7,
                   child: controller.obx(
@@ -243,8 +233,8 @@ class KusionerView extends GetView<KusionerController> {
                           ).margin(top: MediaQuery.of(context).size.height * .1)
                         : const SizedBox();
                   },
+                  onLoading: const SizedBox(),
                 ),
-                const Spacer(),
                 Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.height * .05,
@@ -385,7 +375,6 @@ class KusionerView extends GetView<KusionerController> {
                     ).shimmer(),
                   ),
                 ),
-                const Spacer(),
               ],
             ),
           ),

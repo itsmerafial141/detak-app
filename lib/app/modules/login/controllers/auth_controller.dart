@@ -3,8 +3,10 @@
 import 'dart:developer';
 
 import 'package:detakapp/app/modules/login/controllers/login_controller.dart';
-import 'package:detakapp/app/modules/login/providers/login_provider.dart';
+import 'package:detakapp/app/data/providers/login_provider.dart';
 import 'package:detakapp/app/routes/app_pages.dart';
+import 'package:detakapp/core/values/keys/storage_service_key.dart';
+import 'package:detakapp/services/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -13,6 +15,7 @@ import 'package:get_storage/get_storage.dart';
 
 class AuthController extends GetxController {
   var loginProvider = Get.put(LoginProvider());
+  StorageService storageService = Get.put(StorageService());
   // var profileController = Get.put(ProfileController());
   // var loginController = Get.put(LoginController());
 
@@ -22,7 +25,7 @@ class AuthController extends GetxController {
 
   Future<void> autoLoginUser() async {
     if (storageIsNotNull("dataUser")) {
-      var dataUser = GetStorage().read("dataUser");
+      var dataUser = storageService.read(SSKey.userKey);
       login(
         dataUser["EMAIL"].toString(),
         dataUser["PASSWORD"].toString(),
@@ -56,7 +59,7 @@ class AuthController extends GetxController {
           log("onError");
           stackTrace.printError();
           log(error.toString());
-          LoginController().isDataNotExist = error.toString();
+          // LoginController().isDataNotExist = error.toString();
           LoginController().update();
         },
       ).whenComplete(
@@ -108,9 +111,6 @@ class AuthController extends GetxController {
     if (storageIsNotNull("dataUser")) {
       GetStorage().erase();
       Get.offAllNamed(AppPages.LG);
-      // isAuth.value = false;
-      // update();
-      // change(null, status: RxStatus.success());
     }
   }
 

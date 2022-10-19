@@ -1,9 +1,10 @@
 import 'dart:developer';
 
-import 'package:detakapp/app/modules/daftar_riwayat/models/daftar_riwayat_model.dart';
-import 'package:detakapp/app/modules/daftar_riwayat/providers/daftar_riwayat_provider.dart';
+import 'package:detakapp/app/data/providers/daftar_riwayat_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+
+import '../../../data/models/daftar_riwayat_model.dart';
 
 class DaftarRiwayatController extends GetxController with StateMixin {
   var daftarRiwayatProvider = Get.put(DaftarRiwayatProvider());
@@ -35,8 +36,6 @@ class DaftarRiwayatController extends GetxController with StateMixin {
           stackTrace.printError();
           log("Daftar Riwayat onError!");
           change(null, status: RxStatus.error(error.toString()));
-        }).whenComplete(() {
-          log("Daftar Riwayat complete!");
         });
       } else {
         change(null, status: RxStatus.error());
@@ -50,4 +49,3 @@ class DaftarRiwayatController extends GetxController with StateMixin {
     return value.split(' ')[index];
   }
 }
-

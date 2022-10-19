@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:detakapp/app/modules/video/models/video_model.dart';
+import 'package:detakapp/app/data/models/video_model.dart';
 import 'package:detakapp/core/values/lists.dart';
 import 'package:get/get.dart';
 

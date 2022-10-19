@@ -202,8 +202,7 @@ class ProfileView extends GetView<NavigasiController> {
                                             Expanded(
                                               child: ElevatedButton(
                                                 onPressed: () {
-                                                  authController.logout();
-                                                  Get.back();
+                                                  controller.onLogoutTapped();
                                                 },
                                                 child: const Text(
                                                   "Ya",

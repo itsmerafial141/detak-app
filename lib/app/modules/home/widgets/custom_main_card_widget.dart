@@ -1,5 +1,5 @@
 import 'package:detakapp/app/modules/home/controllers/home_controller.dart';
-import 'package:detakapp/app/modules/home/models/berita_slider_model.dart';
+import 'package:detakapp/app/data/models/berita_slider_model.dart';
 import 'package:detakapp/core/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

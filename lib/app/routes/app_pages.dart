@@ -1,3 +1,4 @@
+import 'package:detakapp/app/middlewares/auth_middleware.dart';
 import 'package:get/get.dart';
 
 import '../modules/daftar/bindings/daftar_binding.dart';
@@ -47,6 +48,9 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
+      middlewares: [
+        AuthMidleware(),
+      ],
     ),
     GetPage(
       name: _Paths.HOME,

@@ -10,4 +10,10 @@ class StorageService extends GetxService {
   void write(String key, dynamic value) {
     GetStorage().write(key, value);
   }
+
+  void erase(String key) {
+    GetStorage().erase();
+  }
+
+  dynamic read(String key) => GetStorage().read(key);
 }

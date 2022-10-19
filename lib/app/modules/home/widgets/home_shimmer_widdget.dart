@@ -15,17 +15,23 @@ class HomeShimmer extends StatelessWidget {
       children: [
         _customDivider(height: MediaQuery.of(context).size.height * .2),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 25,
+          height: MediaQuery.of(context).size.height * .25,
+          width: MediaQuery.of(context).size.width,
           child: ListView.separated(
+            padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.of(context).size.width * .03,
+            ),
             scrollDirection: Axis.horizontal,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (_, __) {
-              return _customDivider(
-                  widht: MediaQuery.of(context).size.height * .03);
+              return Skelaton(
+                height: MediaQuery.of(context).size.height * .25,
+                width: MediaQuery.of(context).size.width * .5,
+              );
             },
             separatorBuilder: (_, __) {
-              return Skelaton(
-                width: MediaQuery.of(context).size.height * .4,
+              return _customDivider(
+                widht: 10,
               );
             },
             itemCount: 3,
@@ -34,8 +40,8 @@ class HomeShimmer extends StatelessWidget {
         _customDivider(height: MediaQuery.of(context).size.height * .03),
         Skelaton(
           height: MediaQuery.of(context).size.height * .03,
-          width: MediaQuery.of(context).size.height * .1,
-        ).margin(horizontal: MediaQuery.of(context).size.height * .03),
+          width: MediaQuery.of(context).size.width * .1,
+        ).margin(horizontal: MediaQuery.of(context).size.width * .03),
         _customDivider(height: MediaQuery.of(context).size.height * .02),
         ListView.separated(
           shrinkWrap: true,
@@ -47,10 +53,10 @@ class HomeShimmer extends StatelessWidget {
                 children: [
                   Skelaton(
                     height: MediaQuery.of(context).size.height * .155,
-                    width: MediaQuery.of(context).size.height * .25,
+                    width: MediaQuery.of(context).size.width * .25,
                   ),
                   _customDivider(
-                      widht: MediaQuery.of(context).size.height * .01),
+                      widht: MediaQuery.of(context).size.width * .01),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

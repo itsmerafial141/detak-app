@@ -50,3 +50,9 @@ class CustomStrings {
     },
   ];
 }
+
+class MyError {
+  static const String errorMessage =
+      "Terjadi kesalahan pada server. Silahkan coba beberapa saat lagi!";
+  static const String loginSuccess = "Berhasil Login!";
+}

@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:detakapp/app/modules/daftar/providers/daftar_provider.dart';
+import 'package:detakapp/app/data/providers/daftar_provider.dart';
 import 'package:detakapp/app/widgets/custom_loading_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

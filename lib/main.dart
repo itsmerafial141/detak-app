@@ -1,9 +1,9 @@
+import 'package:detakapp/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import 'app/routes/app_pages.dart';
 import 'core/theme/colors.dart';
@@ -11,15 +11,28 @@ import 'core/theme/fonts.dart';
 import 'core/theme/themes.dart';
 
 void main() async {
-  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ),
   );
-  runApp(
-    GetMaterialApp(
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+  initializeConfig().then((_) => runApp(const MyApp()));
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       title: "DetakApp",
       initialRoute: AppPages.OB,
       getPages: AppPages.routes,
@@ -45,6 +58,14 @@ void main() async {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: const [Locale('id')],
-    ),
-  );
+    );
+  }
+}
+
+Future<void> initializeConfig() async {
+  await Get.putAsync(() => StorageService().init());
+}
+
+Future initializeSentry({required Function() appRunner}) async {
+  // await SentryFlutter
 }

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:detakapp/app/modules/profile/models/detail_riwayat_test_model.dart';
-import 'package:detakapp/app/modules/profile/providers/hasil_test_provider.dart';
+import 'package:detakapp/app/data/models/detail_riwayat_test_model.dart';
+import 'package:detakapp/app/data/providers/hasil_test_provider.dart';
 import 'package:detakapp/core/utils/extensions/custom_exstension.dart';
 import 'package:get/get.dart';
 

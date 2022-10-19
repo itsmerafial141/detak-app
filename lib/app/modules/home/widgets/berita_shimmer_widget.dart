@@ -33,7 +33,7 @@ class BeritaShimmerWidget extends StatelessWidget {
                   children: [
                     Skelaton(
                       height: MediaQuery.of(context).size.height * .02,
-                      width: double.infinity.sh,
+                      width: double.infinity,
                     ),
                     CustomDivider(
                       height: MediaQuery.of(context).size.height * .01,

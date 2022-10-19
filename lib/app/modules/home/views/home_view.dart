@@ -45,35 +45,38 @@ class HomeView extends GetView<HomeController> {
 
   Widget _mainView(BuildContext context) {
     return controller.obx(
-        (_) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomDivider(height:MediaQuery.of(context).size.height * .1),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .65,
-                  height:MediaQuery.of(context).size.height * .1,
-                  child: AutoSizeText(
-                    "Halo, ${controller.nameUser}!",
-                    maxLines: 2,
-                    softWrap: true,
-                    style: CustomFonts.montserratBold24.copyWith(
-                      color: Colors.white,
-                    ),
-                  ),
-                ).margin(left: MediaQuery.of(context).size.height * .03),
-                CustomDivider(height: MediaQuery.of(context).size.height * .05),
-                _listMainBerita(context),
-                CustomDivider(height: MediaQuery.of(context).size.height * .03),
-                _customSubTitle(tittle: "Berita").margin(
-                    horizontal: MediaQuery.of(context).size.height * .03),
-                CustomDivider(height: MediaQuery.of(context).size.height * .03),
-                _listBerita(context)
-                    .margin(
-                        horizontal: MediaQuery.of(context).size.height * .03)
-                    .margin(bottom: MediaQuery.of(context).size.height * .03),
-              ],
+      (_) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CustomDivider(height: MediaQuery.of(context).size.height * .1),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * .65,
+            height: MediaQuery.of(context).size.height * .1,
+            child: AutoSizeText(
+              "Halo, ${controller.nameUser}!",
+              maxLines: 2,
+              softWrap: true,
+              style: CustomFonts.montserratBold24.copyWith(
+                color: Colors.white,
+              ),
             ),
-        onLoading: const HomeShimmer());
+          ).margin(left: MediaQuery.of(context).size.height * .03),
+          CustomDivider(height: MediaQuery.of(context).size.height * .05),
+          _listMainBerita(context),
+          CustomDivider(height: MediaQuery.of(context).size.height * .03),
+          _customSubTitle(tittle: "Berita")
+              .margin(horizontal: MediaQuery.of(context).size.height * .03),
+          CustomDivider(height: MediaQuery.of(context).size.height * .03),
+          _listBerita(context)
+              .margin(horizontal: MediaQuery.of(context).size.height * .03)
+              .margin(bottom: MediaQuery.of(context).size.height * .03),
+        ],
+      ),
+      onLoading: const HomeShimmer(),
+      onError: (error) {
+        return const SizedBox();
+      },
+    );
   }
 
   Widget _listBerita(BuildContext context) {
@@ -91,7 +94,7 @@ class HomeView extends GetView<HomeController> {
           height: MediaQuery.of(context).size.height * .02,
         );
       },
-      itemCount: controller.listBerita[0].data.length,
+      itemCount: controller.listBerita.data.length,
     );
   }
 
@@ -134,7 +137,7 @@ class HomeView extends GetView<HomeController> {
         Stack(
           children: [
             SizedBox(
-              height:MediaQuery.of(context).size.height * .3,
+              height: MediaQuery.of(context).size.height * .3,
               width: MediaQuery.of(context).size.width,
             ).backgroundColor(
               color: CustomColors.primaryColor,

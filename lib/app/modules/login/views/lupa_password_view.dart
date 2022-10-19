@@ -73,7 +73,7 @@ class LupaPasswordView extends StatelessWidget {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        controller.lupaPassword();
+                        // controller.onLupaPassword();
                       },
                       child: const Text("KIRIM"),
                     ),

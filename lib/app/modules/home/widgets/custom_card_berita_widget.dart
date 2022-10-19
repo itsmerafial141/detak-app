@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../../../core/theme/colors.dart';
 import '../../../../core/theme/fonts.dart';
 import '../controllers/home_controller.dart';
-import '../models/berita_model.dart';
+import '../../../data/models/berita_model.dart';
 
 class CustomCardBeritaWidget extends GetView<HomeController> {
   const CustomCardBeritaWidget({
@@ -15,13 +15,13 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
   }) : super(key: key);
 
   final int index;
-  final List<BeritaModel> listData;
+  final BeritaModel listData;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        controller.detailBerita(listData[0].data[index].idNews, context);
+        controller.detailBerita(listData.data[index].idNews, context);
       },
       borderRadius: BorderRadius.circular(14),
       child: SizedBox(
@@ -39,8 +39,7 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(
-                      "/images/news/${listData[0].data[index].newsImage}"
-                          .fromUrl,
+                      "/images/news/${listData.data[index].newsImage}".fromUrl,
                     ),
                   ),
                 ),
@@ -54,7 +53,7 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      listData[0].data[index].titleNews,
+                      listData.data[index].titleNews,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
@@ -72,7 +71,7 @@ class CustomCardBeritaWidget extends GetView<HomeController> {
                           ),
                           TextSpan(
                             style: CustomFonts.montserratBold9,
-                            text: listData[0].data[index].editor,
+                            text: listData.data[index].editor,
                           ),
                         ],
                       ),
